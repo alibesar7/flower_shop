@@ -1,12 +1,17 @@
-import 'package:flower_shop/app/core/widgets/custom_text_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/auth/presentation/login/widgets/login_options.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
-
 
 class LoginForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final bool autoValidate;
-  const LoginForm({super.key, required this.formKey, required this.autoValidate});
+
+  const LoginForm({
+    super.key,
+    required this.formKey,
+    required this.autoValidate,
+  });
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -14,34 +19,66 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool _obscurePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
-      autovalidateMode:
-          widget.autoValidate ? AutovalidateMode.always : AutovalidateMode.disabled,
+      autovalidateMode: widget.autoValidate
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       child: Column(
         children: [
-          BuildTextFormField(
-            labelText: 'Email',
-            hintText: 'Enter your email',
+          TextFormField(
             keyboardType: TextInputType.emailAddress,
+            decoration:  InputDecoration(
+              labelText: LocaleKeys.email.tr(),
+              hintText: LocaleKeys.enterYourEmail.tr(),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Email is required';
+              }
+              return null;
+            },
           ),
-          BuildTextFormField(
-            labelText: 'Password',
-            hintText: 'Enter your password',
+          const SizedBox(height: 20),
+          TextFormField(
             keyboardType: TextInputType.visiblePassword,
             obscureText: _obscurePassword,
-            isPassword: true,
-            onToggleVisibility: () => setState(() => _obscurePassword = !_obscurePassword),
+            obscuringCharacter: '*',
+            decoration: InputDecoration(
+              labelText: 'password'.tr(),
+              hintText: 'enterYourPassword'.tr(),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscurePassword
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Password is required';
+              }
+              return null;
+            },
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 22),
           LoginOptions(
             onChanged: (isChecked) {},
           ),
-          const SizedBox(height: 20),
-
-
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {  },
+            child: Text(LocaleKeys.login.tr()),
+          ),
         ],
       ),
     );

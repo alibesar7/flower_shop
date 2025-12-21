@@ -1,6 +1,15 @@
 {
   "emailVerification": "تأكيد البريد الإلكتروني",
   "emailVerification2": "تأكيد البريد الإلكتروني",
-  "rememberMe": "تذكرني"
+  "rememberMe": "تذكرني",
+  "login": "تسجيل الدخول",
+  "continueAsGuest": "المتابعة كزائر",
+  "dontHaveAnAccount": "ليس لديك حساب؟ ",
+  "signUp": "إنشاء حساب",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "enterYourPassword": "أدخل كلمة المرور الخاصة بك",
+  "forgotPassword": "هل نسيت كلمة المرور؟"
 
 }

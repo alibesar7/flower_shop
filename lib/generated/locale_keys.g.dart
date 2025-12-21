@@ -5,5 +5,15 @@
 abstract class  LocaleKeys {
   static const emailVerification = 'emailVerification';
   static const emailVerification2 = 'emailVerification2';
+  static const rememberMe = 'rememberMe';
+  static const login = 'login';
+  static const continueAsGuest = 'continueAsGuest';
+  static const dontHaveAnAccount = 'dontHaveAnAccount';
+  static const signUp = 'signUp';
+  static const email = 'email';
+  static const password = 'password';
+  static const enterYourEmail = 'enterYourEmail';
+  static const enterYourPassword = 'enterYourPassword';
+  static const forgotPassword = 'forgotPassword?';
 
 }
