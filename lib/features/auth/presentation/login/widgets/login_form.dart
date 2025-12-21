@@ -48,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
             obscureText: _obscurePassword,
             obscuringCharacter: '*',
             decoration: InputDecoration(
-              labelText: 'password'.tr(),
+              labelText: LocaleKeys.password.tr(),
               hintText: 'enterYourPassword'.tr(),
               suffixIcon: IconButton(
                 icon: Icon(

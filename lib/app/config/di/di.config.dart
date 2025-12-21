@@ -21,6 +21,7 @@ import '../../../features/auth/domain/usecase/login_usecase.dart' as _i75;
 import '../../../features/auth/presentation/login/manager/login_cubit.dart'
     as _i810;
 import '../../core/api_manger/api_client.dart' as _i890;
+import '../auth_storge/auth_storge.dart' as _i48;
 import '../network/network_module.dart' as _i200;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -31,6 +32,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final networkModule = _$NetworkModule();
+    gh.lazySingleton<_i48.AuthStorage>(() => _i48.AuthStorage());
     gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
     gh.lazySingleton<_i890.ApiClient>(
       () => networkModule.authApiClient(gh<_i361.Dio>()),
@@ -45,7 +47,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i75.LoginUseCase(gh<_i712.AuthRepo>()),
     );
     gh.factory<_i810.LoginCubit>(
-      () => _i810.LoginCubit(gh<_i75.LoginUseCase>()),
+      () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i48.AuthStorage>()),
     );
     return this;
   }

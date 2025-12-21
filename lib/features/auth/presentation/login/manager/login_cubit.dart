@@ -1,4 +1,5 @@
 import 'package:flower_shop/app/config/base_state/base_state.dart';
+import 'package:flower_shop/app/config/auth_storge/auth_storge.dart';
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/auth/domain/models/login_model.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_intent.dart';
@@ -9,7 +10,8 @@ import 'package:flower_shop/features/auth/domain/usecase/login_usecase.dart';
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
   final LoginUseCase _loginUseCase;
-  LoginCubit(this._loginUseCase) : super(LoginStates());
+  final AuthStorage _authStorage;
+  LoginCubit(this._loginUseCase, this._authStorage) : super(LoginStates());
 
   void doIntent(LoginIntent intent) {
     switch (intent.runtimeType) {
@@ -40,6 +42,7 @@ class LoginCubit extends Cubit<LoginStates> {
         if (rememberMe) {
           await _saveUserData(result.data);
         }
+        await _authStorage.saveToken(result.data.token);
         emit(state.copyWith(
           loginResource: Resource.success(result.data),
         ));
@@ -53,5 +56,6 @@ class LoginCubit extends Cubit<LoginStates> {
   }
 
   Future<void> _saveUserData(LoginModel model) async {
+    await _authStorage.saveUser(model.user);
   }
 }
