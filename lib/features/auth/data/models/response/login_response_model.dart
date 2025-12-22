@@ -3,7 +3,7 @@ import 'package:flower_shop/features/auth/domain/models/login_model.dart';
 import 'package:flower_shop/features/auth/domain/models/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'login_response_model.dart.g.dart';
+part 'login_response_model.g.dart';
 
 @JsonSerializable()
 class LoginResponse {
