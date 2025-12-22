@@ -1,4 +1,4 @@
 abstract class RouteNames {
-  static const test = 'test';
+  static const signup = '/signup';
 
 }

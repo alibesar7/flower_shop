@@ -1,14 +1,13 @@
+import 'package:flower_shop/app/core/router/route_names.dart';
+import 'package:flower_shop/features/auth/presentation/pages/signup_screen.dart';
 import 'package:go_router/go_router.dart';
 
-
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/', //  start here
+  initialLocation: RouteNames.signup, //  start here
   routes: [
-
-   // GoRoute(
-   //   path: '/',
-   //   name: 'login',
-   //   builder: (context, state) => const LoginPage(),
-   // ),
+    GoRoute(
+      path: RouteNames.signup,
+      builder: (context, state) => SignupScreen(),
+    ),
   ],
 );
