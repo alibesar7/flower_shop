@@ -6,12 +6,24 @@
 import 'dart:async' as _i4;
 
 import 'package:flower_shop/app/core/api_manger/api_client.dart' as _i3;
+import 'package:flower_shop/features/auth/data/models/request/forget_password_request_model/forget_password_request_model.dart'
+    as _i9;
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart'
     as _i7;
+import 'package:flower_shop/features/auth/data/models/request/reset_password_request_model/reset_password_request_model.dart'
+    as _i13;
+import 'package:flower_shop/features/auth/data/models/request/verify_reset_code_request_model/verify_reset_code_request.dart'
+    as _i11;
+import 'package:flower_shop/features/auth/data/models/response/forget_password_response_model/forget_password_response_model.dart'
+    as _i8;
 import 'package:flower_shop/features/auth/data/models/response/login_response_model.dart'
     as _i6;
+import 'package:flower_shop/features/auth/data/models/response/reset_password_response_model/reset_password_response_model.dart'
+    as _i12;
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart'
     as _i5;
+import 'package:flower_shop/features/auth/data/models/response/verify_reset_code_response_model/verify_reset_code_response_model.dart'
+    as _i10;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:retrofit/retrofit.dart' as _i2;
 
@@ -72,4 +84,54 @@ class MockApiClient extends _i1.Mock implements _i3.ApiClient {
             ),
           )
           as _i4.Future<_i2.HttpResponse<_i6.LoginResponse>>);
+
+  @override
+  _i4.Future<_i2.HttpResponse<_i8.ForgotPasswordResponse>> forgotPassword(
+    _i9.ForgotPasswordRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgotPassword, [request]),
+            returnValue:
+                _i4.Future<_i2.HttpResponse<_i8.ForgotPasswordResponse>>.value(
+                  _FakeHttpResponse_0<_i8.ForgotPasswordResponse>(
+                    this,
+                    Invocation.method(#forgotPassword, [request]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.HttpResponse<_i8.ForgotPasswordResponse>>);
+
+  @override
+  _i4.Future<_i2.HttpResponse<_i10.VerifyResetCodeResponse>> verifyResetCode(
+    _i11.VerifyResetCodeRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#verifyResetCode, [request]),
+            returnValue:
+                _i4.Future<
+                  _i2.HttpResponse<_i10.VerifyResetCodeResponse>
+                >.value(
+                  _FakeHttpResponse_0<_i10.VerifyResetCodeResponse>(
+                    this,
+                    Invocation.method(#verifyResetCode, [request]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.HttpResponse<_i10.VerifyResetCodeResponse>>);
+
+  @override
+  _i4.Future<_i2.HttpResponse<_i12.ResetPasswordResponse>> resetPassword(
+    _i13.ResetPasswordRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [request]),
+            returnValue:
+                _i4.Future<_i2.HttpResponse<_i12.ResetPasswordResponse>>.value(
+                  _FakeHttpResponse_0<_i12.ResetPasswordResponse>(
+                    this,
+                    Invocation.method(#resetPassword, [request]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.HttpResponse<_i12.ResetPasswordResponse>>);
 }

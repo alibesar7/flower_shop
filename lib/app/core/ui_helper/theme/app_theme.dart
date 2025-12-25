@@ -5,8 +5,8 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.white,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primaryColor,
-      primary: AppColors.primaryColor,
+      seedColor: AppColors.pink,
+      primary: AppColors.pink,
       secondary: AppColors.secondaryColor,
       tertiary: AppColors.blueColor,
     ),
@@ -30,7 +30,7 @@ class AppTheme {
       fillColor: Colors.white,
       errorStyle: TextStyle(color: Colors.red, fontSize: 12, height: 1.3),
       enabledBorder: _border(Color(0xFF8C8C8C)),
-      focusedBorder: _border(AppColors.primaryColor),
+      focusedBorder: _border(AppColors.pink),
       errorBorder: _border(Colors.red),
       focusedErrorBorder: _border(Colors.red),
     ),
@@ -38,7 +38,7 @@ class AppTheme {
     textTheme: TextTheme(
       headlineMedium: TextStyle(
         fontSize: 18,
-        color: AppColors.primaryColor,
+        color: AppColors.pink,
         fontWeight: FontWeight.bold,
       ),
       headlineSmall: TextStyle(fontSize: 14, color: AppColors.blackColor),
@@ -46,7 +46,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppColors.pink,
         foregroundColor: Colors.white,
         elevation: 0,
         minimumSize: const Size(double.infinity, 52),

@@ -31,7 +31,7 @@ class _SignupScreenState extends State<SignupScreen> {
           DialogUtils.showLoading(
             context,
             LocaleKeys.loading.tr(),
-            AppColors.primaryColor,
+            AppColors.pink,
           );
         case HideLoadingEvent():
           DialogUtils.hideLoading(context);
@@ -44,7 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
             posAction: () {
               context.go('/login');
             },
-            actionColor: AppColors.primaryColor,
+            actionColor: AppColors.pink,
           );
         case ShowErrorDialogEvent():
           DialogUtils.showMessage(
@@ -52,7 +52,7 @@ class _SignupScreenState extends State<SignupScreen> {
             event.errorMessage.toString(),
             titleMessage: LocaleKeys.error.tr(),
             posActionName: LocaleKeys.ok.tr(),
-            actionColor: AppColors.primaryColor,
+            actionColor: AppColors.pink,
           );
       }
     });

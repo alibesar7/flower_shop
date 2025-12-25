@@ -6,10 +6,18 @@
 import 'dart:async' as _i3;
 
 import 'package:flower_shop/app/core/network/api_result.dart' as _i4;
+import 'package:flower_shop/features/auth/data/models/request/reset_password_request_model/reset_password_request_model.dart'
+    as _i11;
+import 'package:flower_shop/features/auth/domain/models/forget_password_entity.dart'
+    as _i8;
 import 'package:flower_shop/features/auth/domain/models/login_model.dart'
     as _i5;
+import 'package:flower_shop/features/auth/domain/models/reset_password_entity.dart'
+    as _i10;
 import 'package:flower_shop/features/auth/domain/models/signup_model.dart'
     as _i7;
+import 'package:flower_shop/features/auth/domain/models/verify_reset_code_entity.dart'
+    as _i9;
 import 'package:flower_shop/features/auth/domain/repos/auth_repo.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
@@ -88,4 +96,52 @@ class MockAuthRepo extends _i1.Mock implements _i2.AuthRepo {
             ),
           )
           as _i3.Future<_i4.ApiResult<_i7.SignupModel>>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i8.ForgotPasswordEntity>> forgotPassword(
+    String? email,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgotPassword, [email]),
+            returnValue:
+                _i3.Future<_i4.ApiResult<_i8.ForgotPasswordEntity>>.value(
+                  _i6.dummyValue<_i4.ApiResult<_i8.ForgotPasswordEntity>>(
+                    this,
+                    Invocation.method(#forgotPassword, [email]),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.ApiResult<_i8.ForgotPasswordEntity>>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i9.VerifyResetCodeEntity>> verifyResetCode(
+    String? code,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#verifyResetCode, [code]),
+            returnValue:
+                _i3.Future<_i4.ApiResult<_i9.VerifyResetCodeEntity>>.value(
+                  _i6.dummyValue<_i4.ApiResult<_i9.VerifyResetCodeEntity>>(
+                    this,
+                    Invocation.method(#verifyResetCode, [code]),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.ApiResult<_i9.VerifyResetCodeEntity>>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i10.ResetPasswordEntity>> resetPassword(
+    _i11.ResetPasswordRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [request]),
+            returnValue:
+                _i3.Future<_i4.ApiResult<_i10.ResetPasswordEntity>>.value(
+                  _i6.dummyValue<_i4.ApiResult<_i10.ResetPasswordEntity>>(
+                    this,
+                    Invocation.method(#resetPassword, [request]),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.ApiResult<_i10.ResetPasswordEntity>>);
 }

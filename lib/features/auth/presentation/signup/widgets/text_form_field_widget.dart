@@ -32,7 +32,7 @@ class TextFormFieldWidget extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         focusNode: focusNode,
         keyboardType: keyboardType,
-        cursorColor: AppColors.primaryColor,
+        cursorColor: AppColors.pink,
         validator: validator,
 
         onTapOutside: (event) {

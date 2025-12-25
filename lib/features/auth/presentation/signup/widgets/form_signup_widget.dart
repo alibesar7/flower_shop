@@ -174,8 +174,8 @@ class FormSignupWidget extends StatelessWidget {
                                 text: LocaleKeys.login.tr(),
                                 style: const TextStyle(
                                   decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.primaryColor,
-                                  color: AppColors.primaryColor,
+                                  decorationColor: AppColors.pink,
+                                  color: AppColors.pink,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
