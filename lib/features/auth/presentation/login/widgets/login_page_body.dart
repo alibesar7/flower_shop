@@ -1,7 +1,7 @@
+import 'package:flower_shop/features/auth/presentation/login/widgets/dont_have_an_account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'login_form.dart';
-import 'dont_not_have_an_account.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_cubit.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_states.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -72,7 +72,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               ),
             ),
             const SizedBox(height: 15),
-            const DontNotHaveAnAccount(),
+            const DontHaveAnAccount(),
           ],
         ),
       ),

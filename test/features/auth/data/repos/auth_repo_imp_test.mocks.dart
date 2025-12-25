@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:flower_shop/app/core/network/api_result.dart' as _i4;
-import 'package:flower_shop/features/auth/data/datasoure/auth_datasource.dart'
+import 'package:flower_shop/features/auth/data/datasource/auth_datasource.dart'
     as _i2;
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart'
     as _i6;

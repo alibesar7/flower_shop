@@ -1,5 +1,5 @@
 import 'package:flower_shop/app/config/base_state/base_state.dart';
-import 'package:flower_shop/app/config/auth_storge/auth_storge.dart';
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/auth/domain/models/login_model.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_intent.dart';

@@ -3,8 +3,8 @@ import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class DontNotHaveAnAccount extends StatelessWidget {
-  const DontNotHaveAnAccount({super.key});
+class DontHaveAnAccount extends StatelessWidget {
+  const DontHaveAnAccount({super.key});
 
   @override
   Widget build(BuildContext context) {

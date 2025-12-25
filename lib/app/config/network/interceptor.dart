@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flower_shop/app/config/auth_storge/auth_storge.dart';
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
 class AppInterceptor extends Interceptor {
   final AuthStorage tokenStorage;
   AppInterceptor(this.tokenStorage);

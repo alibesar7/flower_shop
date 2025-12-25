@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:flower_shop/app/config/auth_storge/auth_storge.dart' as _i7;
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart' as _i7;
 import 'package:flower_shop/app/core/network/api_result.dart' as _i4;
 import 'package:flower_shop/features/auth/domain/models/login_model.dart'
     as _i5;

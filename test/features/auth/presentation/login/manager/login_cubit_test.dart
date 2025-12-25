@@ -7,7 +7,7 @@ import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/auth/domain/models/login_model.dart';
 import 'package:flower_shop/features/auth/domain/models/user_model.dart';
 import 'package:flower_shop/features/auth/domain/usecase/login_usecase.dart';
-import 'package:flower_shop/app/config/auth_storge/auth_storge.dart';
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_cubit.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_intent.dart';
 import 'package:flower_shop/features/auth/presentation/login/manager/login_states.dart';
