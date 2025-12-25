@@ -8,11 +8,11 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: RouteNames.signup,
-      builder: (context, state) => SignupScreen(),
+      builder: (context, state) => const SignupScreen(),
     ),
-     GoRoute(
+    GoRoute(
       path: RouteNames.login,
-      builder: (context, state) => LoginScreen(),
+      builder: (context, state) => const LoginScreen(),
     ),
   ],
 );

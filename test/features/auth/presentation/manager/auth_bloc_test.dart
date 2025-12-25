@@ -24,6 +24,9 @@ void main() {
   setUp(() {
     cubit = AuthCubit(mockUseCase);
   });
+  tearDown(() async {
+  await cubit.close();
+  });
   group("Signup Event", () {
     blocTest<AuthCubit, AuthStates>(
       'emits loading then success when usecase returns SuccessApiResult',
@@ -266,7 +269,7 @@ void main() {
       'emits state with changeEmail=true',
       build: () => cubit,
       act: (cubit) =>
-          cubit.doIntent(EmailChangedEvent(email: 'test@exampla.com')),
+          cubit.doIntent(EmailChangedEvent(email: 'test@example.com')),
       expect: () => [
         isA<AuthStates>().having(
           (s) => s.signupState!.changeEmail,
@@ -275,7 +278,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        expect(cubit.email, 'test@exampla.com');
+        expect(cubit.email, 'test@example.com');
       },
     );
 

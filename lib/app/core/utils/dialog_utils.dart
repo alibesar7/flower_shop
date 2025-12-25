@@ -17,14 +17,7 @@ class DialogUtils {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CircularProgressIndicator(color: AppColors.pink),
-              Text(
-                message,
-                style: TextStyle(
-                  color: backgroundColor == AppColors.pink
-                      ? AppColors.white
-                      : AppColors.white,
-                ),
-              ),
+              Text(message, style: TextStyle(color: AppColors.white)),
             ],
           ),
         );

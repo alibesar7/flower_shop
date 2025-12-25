@@ -3,7 +3,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flower_shop/features/auth/presentation/manager/auth_intent.dart';
-import 'package:flower_shop/features/auth/presentation/manager/auth_states.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,12 +33,7 @@ class _SelectGenderWidgetState extends State<SelectGenderWidget> {
           onChanged: (value) {
             setState(() {
               selectedGender = value;
-              bloc.gender = value.toString();
             });
-
-            bloc.state.copywith(
-              signupStateCopywith: SignupState(genderError: null),
-            );
             bloc.doIntent(GenderChangedEvent(gender: value));
           },
         ),
@@ -51,11 +45,7 @@ class _SelectGenderWidgetState extends State<SelectGenderWidget> {
           onChanged: (value) {
             setState(() {
               selectedGender = value;
-              bloc.gender = value.toString();
             });
-            bloc.state.copywith(
-              signupStateCopywith: SignupState(genderError: null),
-            );
             bloc.doIntent(GenderChangedEvent(gender: value));
           },
         ),

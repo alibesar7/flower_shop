@@ -1,8 +1,8 @@
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
 import 'package:flutter/material.dart';
 
-class TextFormFeildWidget extends StatelessWidget {
-   const TextFormFeildWidget({
+class TextFormFieldWidget extends StatelessWidget {
+  const TextFormFieldWidget({
     super.key,
     this.obscureText = false,
     required this.label,
@@ -20,10 +20,9 @@ class TextFormFeildWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final void Function(String?)? onChanged;
 
-
   @override
   Widget build(BuildContext context) {
-   final  textTheme = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       width: double.infinity,
       child: TextFormField(

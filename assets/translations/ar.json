@@ -33,7 +33,7 @@
   "phoneInvalid": "رقم الهاتف غير صالح، يجب أن يكون بصيغة +201XXXXXXXXX",
   "firstNameRequired": "الاسم الأول مطلوب",
   "lastNameRequired": "الاسم الأخير مطلوب",
-  "nameInvalid": "الاسم يجب أن يكون بين 3-20 حرفًا",
+  "nameInvalid": "الاسم يجب أن يكون بين 3-50 حرفًا",
   "genderRequired": "الجنس مطلوب",
     "loading": "جار التحميل...",
   "registrationSuccessful": "تم التسجيل بنجاح",

@@ -19,8 +19,17 @@ Future<ApiResult<T>> safeApiCall<T>({
         error: "Failed with status code: ${response.response.statusCode}",
       );
     }
-  } on DioException catch (dioError) {
-    return ErrorApiResult(error: "Dio error: ${dioError.response?.data['error']} ");
+  } on DioException catch (dioError) {    
+    final responseData = dioError.response?.data;
+    String errorDetail;
+    if (responseData is Map && responseData['error'] != null) {
+      errorDetail = responseData['error'].toString();
+    } else if (dioError.message != null && dioError.message!.isNotEmpty) {
+      errorDetail = dioError.message!;
+    } else {
+      errorDetail = 'Unknown Dio error';
+    }
+    return ErrorApiResult(error: "Dio error: $errorDetail");
   } catch (e) {
     return ErrorApiResult(error: "Unexpected error: $e");
   }

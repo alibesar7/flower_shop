@@ -22,13 +22,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) {
     return safeApiCall<SignupDto>(
       call: () => apiClient.signUp({
-        'firstName': firstName!,
-        'lastName': lastName!,
-        'email': email!,
-        'password': password!,
-        'rePassword': rePassword!,
-        'phone': phone!,
-        'gender': gender!,
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'rePassword': rePassword,
+        'phone': phone,
+        'gender': gender,
       }),
     );
   }

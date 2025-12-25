@@ -33,7 +33,7 @@
   "phoneInvalid": "Invalid number, must be in the format +201XXXXXXXXX",
   "firstNameRequired": "First name is required",
   "lastNameRequired": "Last name is required",
-  "nameInvalid": "Name must be 3-20 characters",
+  "nameInvalid": "Name must be 3-50 characters",
   "genderRequired": "Gender is required",
   "loading": "Loading...",
   "registrationSuccessful": "Registration Successful",

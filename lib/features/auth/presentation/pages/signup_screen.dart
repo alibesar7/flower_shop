@@ -75,7 +75,7 @@ class _SignupScreenState extends State<SignupScreen> {
         padding: const EdgeInsets.all(16.0),
         child: BlocProvider(
           create: (context) => bloc,
-          child: SingleChildScrollView(child: FormSignupWidget()),
+          child: SingleChildScrollView(child: const FormSignupWidget()),
         ),
       ),
     );

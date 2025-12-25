@@ -7,7 +7,7 @@ import 'package:flower_shop/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flower_shop/features/auth/presentation/manager/auth_intent.dart';
 import 'package:flower_shop/features/auth/presentation/manager/auth_states.dart';
 import 'package:flower_shop/features/auth/presentation/widgets/select_gender_widget.dart';
-import 'package:flower_shop/features/auth/presentation/widgets/text_form_feild_widget.dart';
+import 'package:flower_shop/features/auth/presentation/widgets/text_form_field_widget.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +30,7 @@ class FormSignupWidget extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFeildWidget(
+                        child: TextFormFieldWidget(
                           keyboardType: TextInputType.text,
                           label: LocaleKeys.firstName.tr(),
                           hint: LocaleKeys.enterFirstName.tr(),
@@ -47,7 +47,7 @@ class FormSignupWidget extends StatelessWidget {
                       ),
                       const SizedBox(width: 1),
                       Expanded(
-                        child: TextFormFeildWidget(
+                        child: TextFormFieldWidget(
                           label: LocaleKeys.lastName.tr(),
                           hint: LocaleKeys.enterLastName.tr(),
                           validator: (val) => Validators.lastNameValidator(val),
@@ -61,7 +61,7 @@ class FormSignupWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  TextFormFeildWidget(
+                  TextFormFieldWidget(
                     validator: (val) => Validators.emailValidator(val),
                     keyboardType: TextInputType.emailAddress,
                     label: LocaleKeys.email.tr(),
@@ -74,7 +74,7 @@ class FormSignupWidget extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFeildWidget(
+                        child: TextFormFieldWidget(
                           keyboardType: TextInputType.text,
                           obscureText: true,
                           label: LocaleKeys.password.tr(),
@@ -89,7 +89,7 @@ class FormSignupWidget extends StatelessWidget {
                       ),
                       const SizedBox(width: 1),
                       Expanded(
-                        child: TextFormFeildWidget(
+                        child: TextFormFieldWidget(
                           obscureText: true,
                           label: LocaleKeys.confirmPassword.tr(),
                           hint: LocaleKeys.confirmPassword.tr(),
@@ -110,7 +110,7 @@ class FormSignupWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  TextFormFeildWidget(
+                  TextFormFieldWidget(
                     validator: (val) => Validators.phoneValidator(val),
                     keyboardType: TextInputType.phone,
                     label: LocaleKeys.phone.tr(),
@@ -120,7 +120,7 @@ class FormSignupWidget extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 24),
-                  SelectGenderWidget(),
+                  const SelectGenderWidget(),
                   if (bloc.state.signupState?.genderError != null)
                     Padding(
                       padding: const EdgeInsets.only(left: 18.0),
@@ -136,12 +136,12 @@ class FormSignupWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     LocaleKeys.createAccount.tr(),
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  SizedBox(height: 48),
+                  const SizedBox(height: 48),
                   SizedBox(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.06,
@@ -157,7 +157,7 @@ class FormSignupWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   GestureDetector(
                     onTap: () {
                       bloc.doUiIntent(NavigateToLoginEvent());
