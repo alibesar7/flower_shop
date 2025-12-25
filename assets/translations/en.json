@@ -1,5 +1,16 @@
 {
   "emailVerification": "Email verification",
-  "emailVerification2": "Email verification"
+  "emailVerification2": "Email verification",
+  "rememberMe": "Remember me",
+  "forgotPassword?": "Forgot Password?",
+  "login": "Login",
+  "continueAsGuest": "Continue as Guest",
+  "dontHaveAnAccount": "Don't have an account? ",
+  "signUp": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
+  "forgotPassword": "Forgot Password?"
 
 }
