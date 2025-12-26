@@ -27,7 +27,7 @@ class LoginOptions extends StatelessWidget {
               onChecked: onChanged,
             ),
             const SizedBox(width: 10),
-            Text(LocaleKeys.rememberMe.tr(), style: const TextStyle(fontSize: 16),),
+            Text(LocaleKeys.rememberMe.tr(), style: Theme.of(context).textTheme.labelSmall),
           ],
         ),
         InkWell(
@@ -36,7 +36,7 @@ class LoginOptions extends StatelessWidget {
           },
           child: Text(
             LocaleKeys.forgotPassword.tr(),
-            style: const TextStyle(decoration: TextDecoration.underline, fontSize: 16),
+            style: const TextStyle(decoration: TextDecoration.underline, fontSize: 15),
           ),
         ),
       ],
