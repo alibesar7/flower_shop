@@ -1,8 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flower_shop/app/core/app_constants.dart';
 import 'package:flower_shop/app/core/router/app_router.dart';
-import 'package:flower_shop/features/nav_bar/manager/nav_cubit.dart';
-import 'package:flower_shop/features/nav_bar/pages/app_sections.dart';
 import 'package:flutter/material.dart';
 import 'app/config/di/di.dart';
 import 'app/core/ui_helper/theme/app_theme.dart';

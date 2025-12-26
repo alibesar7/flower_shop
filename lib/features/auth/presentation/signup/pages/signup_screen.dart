@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/config/di/di.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
-import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
 import 'package:flower_shop/app/core/widgets/show_app_dialog.dart';
 import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
 import 'package:flower_shop/features/auth/presentation/signup/manager/signup_cubit.dart';
