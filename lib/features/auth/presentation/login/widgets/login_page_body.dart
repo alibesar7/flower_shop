@@ -1,4 +1,5 @@
 import 'package:flower_shop/app/core/router/route_names.dart';
+import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
 import 'package:flower_shop/features/auth/presentation/login/widgets/dont_have_an_account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,16 +38,10 @@ class _LoginPageBodyState extends State<LoginPageBody> {
         if (state.loginResource.isSuccess == true) {
           _emailController.clear();
           _passwordController.clear();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Login Successful :)")),
-          );
-         context.go(RouteNames.home);
+          showAppSnackbar(context, "Login Successful :)");
+          context.go(RouteNames.home);
         } else if (state.loginResource.isError == true) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.loginResource.error ?? 'Error'),
-            ),
-          );
+          showAppSnackbar(context, state.loginResource.error ?? 'Error');
         }
       },
       child: SingleChildScrollView(
@@ -63,13 +58,15 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go(RouteNames.home);
+                },
                 style: TextButton.styleFrom(
                   side: const BorderSide(color: Colors.grey),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(23),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text(LocaleKeys.continueAsGuest.tr()),
               ),
@@ -82,4 +79,3 @@ class _LoginPageBodyState extends State<LoginPageBody> {
     );
   }
 }
-

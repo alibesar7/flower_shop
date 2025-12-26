@@ -50,6 +50,7 @@ class LoginCubit extends Cubit<LoginStates> {
             await _saveUserData(result.data);
           }
           await _authStorage.saveToken(result.data.token);
+          await _authStorage.setRememberMe(rememberMe);
           emit(state.copyWith(
             loginResource: Resource.success(result.data),
           ));

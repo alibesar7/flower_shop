@@ -13,6 +13,8 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../../features/app_start/presentation/manager/app_cubit.dart'
+    as _i858;
 import '../../../features/auth/api/datasource/auth_remote_datasource_impl.dart'
     as _i777;
 import '../../../features/auth/data/datasource/auth_remote_datasource.dart'
@@ -59,6 +61,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i708.AuthRemoteDataSource>(
       () => _i777.AuthRemoteDataSourceImpl(gh<_i890.ApiClient>()),
     );
+    gh.factory<_i858.AppCubit>(() => _i858.AppCubit(gh<_i603.AuthStorage>()));
     gh.factory<_i712.AuthRepo>(
       () => _i866.AuthRepoImp(gh<_i708.AuthRemoteDataSource>()),
     );

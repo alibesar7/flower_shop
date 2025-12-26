@@ -1,4 +1,5 @@
 import 'package:flower_shop/app/core/router/route_names.dart';
+import 'package:flower_shop/features/app_start/presentation/pages/app_start_page.dart';
 import 'package:flower_shop/features/auth/presentation/signup/pages/signup_screen.dart';
 import 'package:flower_shop/features/auth/presentation/login/pages/login_page.dart';
 import 'package:flower_shop/features/nav_bar/manager/nav_cubit.dart';
@@ -14,7 +15,7 @@ import '../../../features/nav_bar/pages/app_sections.dart';
 import '../../config/di/di.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RouteNames.login, //  start here
+  initialLocation: RouteNames.appStart, //  start here
   routes: [
     GoRoute(
       path: RouteNames.signup,
@@ -24,6 +25,11 @@ final GoRouter appRouter = GoRouter(
       path: RouteNames.login,
       name: 'login',
       builder: (context, state) => const LoginPage(),
+    ),
+
+    GoRoute(
+      path: RouteNames.appStart,
+      builder: (context, state) => const AppStartPage(),
     ),
 
     GoRoute(
