@@ -1,3 +1,4 @@
+import 'package:flower_shop/features/home/domain/models/product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
@@ -72,5 +73,30 @@ class Product {
 
   Map<String, dynamic> toJson() {
     return _$ProductToJson(this);
+  }
+
+    ProductModel toEntity() {
+    return ProductModel(
+      id: id ?? Id ?? '',
+      title: title ?? '',
+      slug: slug ?? '',
+      description: description ?? '',
+      imgCover: imgCover ?? '',
+      images: images ?? [],
+      price: price ?? 0,
+      priceAfterDiscount: priceAfterDiscount,
+      quantity: quantity ?? 0,
+      category: category ?? '',
+      occasion: occasion ?? '',
+      createdAt:
+          createdAt != null ? DateTime.tryParse(createdAt!) : null,
+      updatedAt:
+          updatedAt != null ? DateTime.tryParse(updatedAt!) : null,
+      v: v,
+      isSuperAdmin: isSuperAdmin ?? false,
+      sold: sold ?? 0,
+      rateAvg: rateAvg ?? 0,
+      rateCount: rateCount ?? 0,
+    );
   }
 }
