@@ -39,6 +39,16 @@ import '../../../features/auth/presentation/signup/manager/signup_cubit.dart'
     as _i392;
 import '../../../features/auth/presentation/verify_reset_code/manager/verify_reset_code_cubit.dart'
     as _i303;
+import '../../../features/categories/api/datasource/all_categories_remote_datasource_impl.dart'
+    as _i646;
+import '../../../features/categories/data/datasource/all_categories_remote_datasource.dart'
+    as _i932;
+import '../../../features/categories/data/repos/all_categories_repo_impl.dart'
+    as _i168;
+import '../../../features/categories/domain/repos/all_categories_repo.dart'
+    as _i599;
+import '../../../features/categories/domain/usecase/all_categories_usecase.dart'
+    as _i543;
 import '../../../features/nav_bar/manager/nav_cubit.dart' as _i137;
 import '../../core/api_manger/api_client.dart' as _i890;
 import '../auth_storage/auth_storage.dart' as _i603;
@@ -65,6 +75,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i712.AuthRepo>(
       () => _i866.AuthRepoImp(gh<_i708.AuthRemoteDataSource>()),
     );
+    gh.factory<_i932.AllCategoriesRemoteDatasource>(
+      () => _i646.AllCategoriesRemoteDatasourceImpl(gh<_i890.ApiClient>()),
+    );
     gh.lazySingleton<_i280.ResetPasswordUseCase>(
       () => _i280.ResetPasswordUseCase(gh<_i712.AuthRepo>()),
     );
@@ -90,12 +103,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i75.LoginUseCase>(
       () => _i75.LoginUseCase(gh<_i712.AuthRepo>()),
     );
+    gh.factory<_i599.AllCategoriesRepo>(
+      () => _i168.AllCategoriesRepoImpl(
+        gh<_i932.AllCategoriesRemoteDatasource>(),
+      ),
+    );
     gh.factory<_i392.AuthCubit>(
       () => _i392.AuthCubit(gh<_i543.SignupUsecase>()),
     );
     gh.factoryParam<_i378.ResetPasswordCubit, String, dynamic>(
       (email, _) =>
           _i378.ResetPasswordCubit(email, gh<_i280.ResetPasswordUseCase>()),
+    );
+    gh.factory<_i543.AllCategoriesUsecase>(
+      () => _i543.AllCategoriesUsecase(gh<_i599.AllCategoriesRepo>()),
     );
     gh.factory<_i810.LoginCubit>(
       () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i603.AuthStorage>()),

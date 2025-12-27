@@ -24,6 +24,8 @@ import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart'
     as _i5;
 import 'package:flower_shop/features/auth/data/models/response/verify_reset_code_response_model/verify_reset_code_response_model.dart'
     as _i10;
+import 'package:flower_shop/features/categories/data/models/all_categories_dto.dart'
+    as _i14;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:retrofit/retrofit.dart' as _i2;
 
@@ -134,4 +136,18 @@ class MockApiClient extends _i1.Mock implements _i3.ApiClient {
                 ),
           )
           as _i4.Future<_i2.HttpResponse<_i12.ResetPasswordResponse>>);
+
+  @override
+  _i4.Future<_i2.HttpResponse<_i14.AllCategoriesDto>> getAllCategories() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllCategories, []),
+            returnValue:
+                _i4.Future<_i2.HttpResponse<_i14.AllCategoriesDto>>.value(
+                  _FakeHttpResponse_0<_i14.AllCategoriesDto>(
+                    this,
+                    Invocation.method(#getAllCategories, []),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.HttpResponse<_i14.AllCategoriesDto>>);
 }
