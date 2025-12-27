@@ -3,16 +3,28 @@ import 'package:flutter/material.dart';
 
 class CustomActionText extends StatelessWidget {
   final String text;
-  final void Function()? onTapAction;
-  const CustomActionText({super.key, required this.text, this.onTapAction});
+  final VoidCallback onTapAction;
+  final bool isEnabled;
+
+  const CustomActionText({
+    super.key,
+    required this.text,
+    required this.onTapAction,
+    this.isEnabled = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTapAction,
-      child:  Text(
+      onTap: isEnabled ? onTapAction : null,
+      child: Text(
         text,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.pink),
-      ),);
+        style: (Theme.of(context).textTheme.bodyMedium)?.copyWith(
+          color: isEnabled ? Colors.pink : Colors.grey,
+          decoration: TextDecoration.underline,
+          decorationColor: isEnabled ? Colors.pink : Colors.grey,
+        ),
+      ),
+    );
   }
 }

@@ -22,7 +22,6 @@ class VerifyResetCodePage extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           LocaleKeys.emailVerification.tr(),
-          style: Theme.of(context).textTheme.headlineMedium,
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
