@@ -38,7 +38,11 @@ abstract class ApiClient {
   Future<HttpResponse<ResetPasswordResponse>> resetPassword(
       @Body() ResetPasswordRequest request);
 
+
   @GET(AppEndpointString.getProduct)
-  Future<HttpResponse<ProductsResponse>> getProducts({@Query("occasion") String? occasion});
+  Future<HttpResponse<ProductsResponse>> getProducts({
+    @Query("occasion") String? occasion,
+    @Query("category") String? category,
+  });
 
   }
