@@ -44,6 +44,19 @@ import '../../../features/home/data/datasource/home_remote_data_source.dart'
     as _i701;
 import '../../../features/home/data/repos/home_repo_imp.dart' as _i401;
 import '../../../features/home/domain/repos/home_repo.dart' as _i520;
+import '../../../features/home/domain/usecase/get_best_seller_usecase.dart'
+    as _i534;
+import '../../../features/home/domain/usecase/get_categories_usecase.dart'
+    as _i576;
+import '../../../features/home/domain/usecase/get_occasions_usecase.dart'
+    as _i386;
+import '../../../features/home/domain/usecase/get_products_usecase.dart'
+    as _i498;
+import '../../../features/home/presentation/manager/factory/home_factory.dart'
+    as _i94;
+import '../../../features/home/presentation/manager/factory/home_factory_imp.dart'
+    as _i73;
+import '../../../features/home/presentation/manager/home_cubit.dart' as _i682;
 import '../../../features/nav_bar/manager/nav_cubit.dart' as _i137;
 import '../../core/api_manger/api_client.dart' as _i890;
 import '../auth_storage/auth_storage.dart' as _i603;
@@ -108,9 +121,30 @@ extension GetItInjectableX on _i174.GetIt {
       (email, _) =>
           _i378.ResetPasswordCubit(email, gh<_i280.ResetPasswordUseCase>()),
     );
+    gh.factory<_i534.GetBestSellerUseCase>(
+      () => _i534.GetBestSellerUseCase(gh<_i520.HomeRepo>()),
+    );
+    gh.factory<_i576.GetCategoriesUseCase>(
+      () => _i576.GetCategoriesUseCase(gh<_i520.HomeRepo>()),
+    );
+    gh.factory<_i386.GetOccasionsUseCase>(
+      () => _i386.GetOccasionsUseCase(gh<_i520.HomeRepo>()),
+    );
+    gh.factory<_i498.GetProductsUseCase>(
+      () => _i498.GetProductsUseCase(gh<_i520.HomeRepo>()),
+    );
+    gh.lazySingleton<_i94.HomeFactory>(
+      () => _i73.RemoteHomeFactory(
+        gh<_i498.GetProductsUseCase>(),
+        gh<_i576.GetCategoriesUseCase>(),
+        gh<_i534.GetBestSellerUseCase>(),
+        gh<_i386.GetOccasionsUseCase>(),
+      ),
+    );
     gh.factory<_i810.LoginCubit>(
       () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i603.AuthStorage>()),
     );
+    gh.factory<_i682.HomeCubit>(() => _i682.HomeCubit(gh<_i94.HomeFactory>()));
     return this;
   }
 }
