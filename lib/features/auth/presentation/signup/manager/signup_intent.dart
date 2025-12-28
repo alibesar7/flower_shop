@@ -41,10 +41,6 @@ sealed class RegisterUiEvents {}
 
 class NavigateToLoginEvent extends RegisterUiEvents {}
 
-// class ShowLoadingEvent extends RegisterUiEvents {}
-
-// class HideLoadingEvent extends RegisterUiEvents {}
-
 class ShowSuccessDialogEvent extends RegisterUiEvents {}
 
 class ShowErrorDialogEvent extends RegisterUiEvents {

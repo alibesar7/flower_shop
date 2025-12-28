@@ -2,6 +2,7 @@ import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/app_start/presentation/pages/app_start_page.dart';
 import 'package:flower_shop/features/auth/presentation/signup/pages/signup_screen.dart';
 import 'package:flower_shop/features/auth/presentation/login/pages/login_page.dart';
+import 'package:flower_shop/features/categories/presentation/pages/categories_page.dart';
 import 'package:flower_shop/features/nav_bar/manager/nav_cubit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ import '../../../features/nav_bar/pages/app_sections.dart';
 import '../../config/di/di.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RouteNames.appStart, //  start here
+  initialLocation: RouteNames.categories, //  start here
   routes: [
     GoRoute(
       path: RouteNames.signup,
@@ -26,7 +27,6 @@ final GoRouter appRouter = GoRouter(
       name: 'login',
       builder: (context, state) => const LoginPage(),
     ),
-
 
     GoRoute(
       path: RouteNames.appStart,
@@ -58,7 +58,7 @@ final GoRouter appRouter = GoRouter(
         final email = state.extra as String;
         return BlocProvider(
           create: (_) => getIt<ResetPasswordCubit>(param1: email),
-          child:  ResetPasswordPage(),
+          child: ResetPasswordPage(),
         );
       },
     ),
@@ -71,6 +71,11 @@ final GoRouter appRouter = GoRouter(
           child: const AppSections(),
         );
       },
+    ),
+
+    GoRoute(
+      path: RouteNames.categories,
+      builder: (context, state) => CategoriesPage(),
     ),
   ],
 );

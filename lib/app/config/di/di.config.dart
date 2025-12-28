@@ -49,6 +49,8 @@ import '../../../features/categories/domain/repos/all_categories_repo.dart'
     as _i599;
 import '../../../features/categories/domain/usecase/all_categories_usecase.dart'
     as _i543;
+import '../../../features/categories/presentation/manager/all_categories_cubit.dart'
+    as _i986;
 import '../../../features/nav_bar/manager/nav_cubit.dart' as _i137;
 import '../../core/api_manger/api_client.dart' as _i890;
 import '../auth_storage/auth_storage.dart' as _i603;
@@ -120,6 +122,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i810.LoginCubit>(
       () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i603.AuthStorage>()),
+    );
+    gh.factory<_i986.AllCategoriesCubit>(
+      () => _i986.AllCategoriesCubit(gh<_i543.AllCategoriesUsecase>()),
     );
     return this;
   }
