@@ -1,5 +1,4 @@
 import 'package:flower_shop/app/core/network/api_result.dart';
-import 'package:flower_shop/features/auth/domain/repos/auth_repo.dart';
 import 'package:flower_shop/features/nav_bar/data/mappers/products_mapper.dart';
 import 'package:flower_shop/features/nav_bar/data/models/response/products_response.dart';
 import 'package:flower_shop/features/nav_bar/domain/models/product_model.dart';
@@ -14,7 +13,10 @@ class HomeRepoImp implements HomeRepo {
   HomeRepoImp(this.homeDatasource);
 
   @override
-  Future<ApiResult<List<ProductModel>>> getProducts({String? occasion}) async {
+  Future<ApiResult<List<ProductModel>>> getProducts({
+    String? occasion,
+    String? category,
+  }) async {
     final result = await homeDatasource.getProduct();
     switch (result) {
       case SuccessApiResult<ProductsResponse>():

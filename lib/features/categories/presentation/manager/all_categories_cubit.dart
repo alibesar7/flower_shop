@@ -4,13 +4,17 @@ import 'package:flower_shop/features/categories/domain/models/all_categories_mod
 import 'package:flower_shop/features/categories/domain/usecase/all_categories_usecase.dart';
 import 'package:flower_shop/features/categories/presentation/manager/all_categories_intent.dart';
 import 'package:flower_shop/features/categories/presentation/manager/all_categories_states.dart';
+import 'package:flower_shop/features/nav_bar/domain/models/product_model.dart';
+import 'package:flower_shop/features/nav_bar/domain/usecase/get_product_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class AllCategoriesCubit extends Cubit<AllCategoriesStates> {
   final AllCategoriesUsecase _allCategoriesUsecase;
-  AllCategoriesCubit(this._allCategoriesUsecase) : super(AllCategoriesStates());
+  final GetProductUsecase _getProductUsecase;
+  AllCategoriesCubit(this._allCategoriesUsecase, this._getProductUsecase)
+    : super(AllCategoriesStates());
   List<CategoryItemModel> categoriesList = [];
   int selectedIndex = 0;
 
@@ -20,6 +24,8 @@ class AllCategoriesCubit extends Cubit<AllCategoriesStates> {
         _getAllCategories();
       case SelectCategoryEvent():
         _selectCategory(intent.selectedIndex);
+      case GetCategoriesProductsEvent():
+        _getProducts();
     }
   }
 
@@ -50,5 +56,18 @@ class AllCategoriesCubit extends Cubit<AllCategoriesStates> {
     if (selectedIndex == index) return;
     selectedIndex = index;
     emit(state.copyWith(allCategoriesCopyWith: state.allCategories));
+  }
+
+  Future<void> _getProducts({String? category}) async {
+    emit(state.copyWith(products: Resource.loading()));
+    final ApiResult<List<ProductModel>> result = await _getProductUsecase.call(
+      category: category,
+    );
+    switch (result) {
+      case SuccessApiResult<List<ProductModel>>():
+        emit(state.copyWith(products: Resource.success(result.data)));
+      case ErrorApiResult<List<ProductModel>>():
+        emit(state.copyWith(products: Resource.error(result.error)));
+    }
   }
 }

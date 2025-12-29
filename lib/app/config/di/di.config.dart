@@ -144,7 +144,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i603.AuthStorage>()),
     );
     gh.factory<_i986.AllCategoriesCubit>(
-      () => _i986.AllCategoriesCubit(gh<_i543.AllCategoriesUsecase>()),
+      () => _i986.AllCategoriesCubit(
+        gh<_i543.AllCategoriesUsecase>(),
+        gh<_i329.GetProductUsecase>(),
+      ),
     );
     gh.factory<_i652.OccasionCubit>(
       () => _i652.OccasionCubit(gh<_i329.GetProductUsecase>()),

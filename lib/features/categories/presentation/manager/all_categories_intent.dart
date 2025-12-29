@@ -6,3 +6,6 @@ class SelectCategoryEvent extends AllCategoriesIntent {
   int selectedIndex;
   SelectCategoryEvent({this.selectedIndex = 0});
 }
+
+class GetCategoriesProductsEvent extends AllCategoriesIntent {}
+
