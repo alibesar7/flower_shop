@@ -1,5 +1,5 @@
 import 'package:flower_shop/app/config/base_state/base_state.dart';
-import 'package:flower_shop/features/home/presentation/widgets/section_row.dart';
+import 'package:flower_shop/features/home/presentation/widgets/row_section.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
