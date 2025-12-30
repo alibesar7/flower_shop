@@ -62,7 +62,7 @@ class ProductItemCard extends StatelessWidget {
 
             // Name
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -98,6 +98,8 @@ class ProductItemCard extends StatelessWidget {
                         Text(
                           '${discountPercentage.round()}%',
                           style: AppStyles.green14regular,
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
                         ),
                     ],
                   ),
