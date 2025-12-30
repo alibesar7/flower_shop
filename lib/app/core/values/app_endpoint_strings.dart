@@ -7,4 +7,6 @@ class AppEndpointString {
   static const String getSubject = '/subjects';
   static const String getExam = '/exams';
   static const String signup = '/auth/signup';
+  static const String productDetails = 'products/{id}';
+
 }

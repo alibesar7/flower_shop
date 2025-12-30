@@ -39,7 +39,17 @@ import '../../../features/auth/presentation/signup/manager/signup_cubit.dart'
     as _i392;
 import '../../../features/auth/presentation/verify_reset_code/manager/verify_reset_code_cubit.dart'
     as _i303;
-import '../../../features/nav_bar/manager/nav_cubit/nav_cubit.dart' as _i137;
+import '../../../features/nav_bar/api/datasource/product_details_datasource_imp.dart'
+    as _i749;
+import '../../../features/nav_bar/data/product_details/datasource/product_details_remote_datasource.dart'
+    as _i555;
+import '../../../features/nav_bar/data/product_details/repos/product_details_repo_imp.dart'
+    as _i737;
+import '../../../features/nav_bar/domain/product_details/repos/product_details_repo.dart'
+    as _i618;
+import '../../../features/nav_bar/domain/product_details/usecase/get_product_details_usecase.dart'
+    as _i1056;
+import '../../../features/nav_bar/manager/nav_cubit/nav_cubit.dart' as _i235;
 import '../../core/api_manger/api_client.dart' as _i890;
 import '../auth_storage/auth_storage.dart' as _i603;
 import '../network/network_module.dart' as _i200;
@@ -52,7 +62,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final networkModule = _$NetworkModule();
-    gh.factory<_i137.NavCubit>(() => _i137.NavCubit());
+    gh.factory<_i235.NavCubit>(() => _i235.NavCubit());
     gh.lazySingleton<_i603.AuthStorage>(() => _i603.AuthStorage());
     gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
     gh.lazySingleton<_i890.ApiClient>(
@@ -84,11 +94,19 @@ extension GetItInjectableX on _i174.GetIt {
         email,
       ),
     );
+    gh.lazySingleton<_i555.ProductDetailsRemoteDataSource>(
+      () => _i749.ProductDetailsRemoteDataSourceImpl(gh<_i890.ApiClient>()),
+    );
     gh.factory<_i543.SignupUsecase>(
       () => _i543.SignupUsecase(gh<_i712.AuthRepo>()),
     );
     gh.factory<_i75.LoginUseCase>(
       () => _i75.LoginUseCase(gh<_i712.AuthRepo>()),
+    );
+    gh.lazySingleton<_i618.ProductDetailsRepo>(
+      () => _i737.ProductDetailsRepoImpl(
+        gh<_i555.ProductDetailsRemoteDataSource>(),
+      ),
     );
     gh.factory<_i392.AuthCubit>(
       () => _i392.AuthCubit(gh<_i543.SignupUsecase>()),
@@ -96,6 +114,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factoryParam<_i378.ResetPasswordCubit, String, dynamic>(
       (email, _) =>
           _i378.ResetPasswordCubit(email, gh<_i280.ResetPasswordUseCase>()),
+    );
+    gh.lazySingleton<_i1056.GetProductDetailsUseCase>(
+      () => _i1056.GetProductDetailsUseCase(gh<_i618.ProductDetailsRepo>()),
     );
     gh.factory<_i810.LoginCubit>(
       () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i603.AuthStorage>()),
