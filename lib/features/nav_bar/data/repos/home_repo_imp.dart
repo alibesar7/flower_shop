@@ -15,7 +15,7 @@ class HomeRepoImp implements HomeRepo {
 
   @override
   Future<ApiResult<List<ProductModel>>> getProducts({String? occasion}) async {
-    final result = await homeDatasource.getProduct();
+    final result = await homeDatasource.getProduct(occasion: occasion);
     switch (result) {
       case SuccessApiResult<ProductsResponse>():
         return SuccessApiResult(

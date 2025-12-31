@@ -13,7 +13,6 @@ class HomeRemoteDatasourceImpl implements HomeRemoteDatasource {
   @override
   Future<ApiResult<ProductsResponse>> getProduct({String? occasion}) {
     return safeApiCall(call: () => apiClient.getProducts());
-
   }
 
 
