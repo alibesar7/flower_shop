@@ -1,4 +1,3 @@
-import 'package:flower_shop/features/nav_bar/domain/models/product_model.dart';
 
 sealed class ApiResult<T> {}
 
