@@ -1,6 +1,14 @@
-abstract class AppImages {
-  static const String splashLogo = 'assets/images/app_logo.png';
+// ignore_for_file: prefer_single_quotes
+class Assets {
+  Assets._();
 
-
-
+  /// Assets for imagesCheck
+  /// assets/images/Check.svg
+  /// Assets for imagesFilter
+  /// assets/images/filter.png
+  /// Assets for imagesFlower
+  /// assets/images/Flower.svg
+  static const String imagesCheck = "assets/images/Check.svg";
+  static const String imagesFilter = "assets/images/filter.png";
+  static const String imagesFlower = "assets/images/Flower.svg";
 }
