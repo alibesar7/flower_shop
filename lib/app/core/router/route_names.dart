@@ -4,8 +4,10 @@ abstract class RouteNames {
   static const forgetPassword = '/forgetPassword';
   static const verifyResetCode = '/verifyResetCode';
   static const resetPassword = '/resetPassword';
-  static const home="/home";
-  static const appStart="/appStart";
-  static const productDetails="/productDetails";
+  static const home = "/home";
+  static const appStart = "/appStart";
+  static const categories = "/categories";
+  static const occasionPage = "/occasionPage";
+  static constproductDetails="/productDetails";
   static const occasionPage="/occasionPage";
 }

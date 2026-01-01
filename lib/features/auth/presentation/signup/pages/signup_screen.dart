@@ -28,45 +28,15 @@ class _SignupScreenState extends State<SignupScreen> {
       switch (event) {
         case NavigateToLoginEvent():
           context.go('/login');
-        // case ShowLoadingEvent():
-        //   DialogUtils.showLoading(
-        //     context,
-        //     LocaleKeys.loading.tr(),
-        //     AppColors.pink,
-        //   );
-        // case HideLoadingEvent():
-        //   DialogUtils.hideLoading(context);
         case ShowSuccessDialogEvent():
-          showAppSnackbar(
-            context,
-            LocaleKeys.registrationSuccessful.tr(),
-          );
+          showAppSnackbar(context, LocaleKeys.registrationSuccessful.tr());
           context.push(RouteNames.login);
-          // DialogUtils.showMessage(
-          //   context,
-          //   LocaleKeys.registrationSuccessful.tr(),
-          //   titleMessage: LocaleKeys.success.tr(),
-          //   posActionName: LocaleKeys.ok.tr(),
-          //   posAction: () {
-          //     context.go('/login');
-          //   },
-          //   actionColor: AppColors.pink,
-          // );
         case ShowErrorDialogEvent():
-           showAppDialog(
+          showAppDialog(
             context,
-            message: event.errorMessage.toString() ,
+            message: event.errorMessage.toString(),
             isError: true,
           );
-
-        
-          // DialogUtils.showMessage(
-          //   context,
-          //   event.errorMessage.toString(),
-          //   titleMessage: LocaleKeys.error.tr(),
-          //   posActionName: LocaleKeys.ok.tr(),
-          //   actionColor: AppColors.pink,
-          // );
       }
     });
   }

@@ -1,20 +1,17 @@
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/app_start/presentation/pages/app_start_page.dart';
-import 'package:flower_shop/features/auth/presentation/login/pages/login_page.dart';
 import 'package:flower_shop/features/auth/presentation/signup/pages/signup_screen.dart';
-import 'package:flower_shop/features/home/domain/models/occasion_model.dart';
+import 'package:flower_shop/features/auth/presentation/login/pages/login_page.dart';
 import 'package:flower_shop/features/nav_bar/manager/nav_cubit/nav_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../features/auth/presentation/forget_password/manager/forget_password_cubit.dart';
 import '../../../features/auth/presentation/forget_password/pages/forget_password_page.dart';
 import '../../../features/auth/presentation/reset_password/manager/reset_password_cubit.dart';
 import '../../../features/auth/presentation/reset_password/pages/reset_password.dart';
 import '../../../features/auth/presentation/verify_reset_code/manager/verify_reset_code_cubit.dart';
 import '../../../features/auth/presentation/verify_reset_code/pages/verify_reset_code_page.dart';
-import '../../../features/e_commerce/pages/occasion/pages/occasion_page.dart';
-import '../../../features/nav_bar/ui/pages/nav_bar/pages/app_sections.dart';
+import '../../../features/nav_bar/pages/app_sections.dart';
 import '../../../features/nav_bar/presentation/manger/product_details_cubit/product_details_cubit.dart';
 import '../../../features/nav_bar/presentation/pages/product_details_page.dart';
 import '../../config/di/di.dart';
@@ -82,11 +79,15 @@ final GoRouter appRouter = GoRouter(
     ),
 
     GoRoute(
+      path: RouteNames.categories,
+      builder: (context, state) => CategoriesPage(),
+    ),
+
+    GoRoute(
       path: RouteNames.productDetails,
       builder: (context, state) {
-       final productId = state.extra as String;
-       // const hardcodedProductId = '673e1cd711599201718280fb';
-
+        final productId = state.extra as String;
+        // const hardcodedProductId = '673e1cd711599201718280fb';
         return BlocProvider(
           create: (_) => getIt<ProductDetailsCubit>(param1: productId),
           child: ProductDetailsPage(productId: productId),

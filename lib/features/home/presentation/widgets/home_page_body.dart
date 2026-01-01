@@ -38,7 +38,7 @@ class HomePageBody extends StatelessWidget {
               HomeSection(
                 title: LocaleKeys.categories.tr(),
                 onTap: () {
-                  // Navigator.pushNamed(context, '/categories');
+                  context.push(RouteNames.categories);
                 },
                 height: size.height * 0.12,
                 resource: state.categories,

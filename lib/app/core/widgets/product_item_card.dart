@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
-
-import '../../../features/e_commerce/domain/models/product_model.dart';
+import '../../../features/nav_bar/domain/models/product_model.dart';
 import '../ui_helper/color/colors.dart';
 import '../ui_helper/style/font_style.dart';
 
@@ -25,13 +24,20 @@ class ProductItemCard extends StatelessWidget {
     final hasOldPrice =
         product.oldPrice != null && product.oldPrice! > product.price;
 
+    double originalPrice = product.oldPrice ?? 0;
+    double discountedPrice = product.price;
+
+    double discountPercentage = originalPrice > 0
+        ? ((originalPrice - discountedPrice) / originalPrice) * 100
+        : 0;
+
     return InkWell(
       borderRadius: BorderRadius.circular(14),
       onTap: onTap,
       child: Container(
         padding: padding,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(color: Colors.grey.shade300),
         ),
@@ -48,7 +54,7 @@ class ProductItemCard extends StatelessWidget {
                     product.imageUrl,
                     fit: BoxFit.fill,
                     errorBuilder: (_, __, ___) =>
-                        const Center(child: Icon(Icons.image_not_supported)),
+                    const Center(child: Icon(Icons.image_not_supported)),
                   ),
                 ),
               ),
@@ -59,7 +65,7 @@ class ProductItemCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+               crossAxisAlignment: CrossAxisAlignment.start ,
                 children: [
                   Text(
                     product.name,
@@ -75,7 +81,7 @@ class ProductItemCard extends StatelessWidget {
                     children: [
                       Text(
                         'EGP ${_format(product.price)}',
-                        style: AppStyles.black14bold,
+                        style:AppStyles.black14bold,
                       ),
                       const SizedBox(width: 8),
                       if (hasOldPrice)
@@ -89,19 +95,19 @@ class ProductItemCard extends StatelessWidget {
                         ),
                       const SizedBox(width: 8),
 
-                      if (product.discountPercent != null &&
-                          product.discountPercent! > 0)
+                      if (product.discountPercent != null && product.discountPercent! > 0)
                         Text(
                           '$product.discountPercent %',
                           style: AppStyles.green14regular,
                         ),
                     ],
                   ),
+
                 ],
               ),
             ),
 
-            const Spacer(),
+            const SizedBox(height: 10),
 
             // Button
             SizedBox(
@@ -110,10 +116,7 @@ class ProductItemCard extends StatelessWidget {
               child: ElevatedButton.icon(
                 onPressed: onAddToCart,
                 icon: const Icon(Icons.shopping_cart_outlined, size: 20),
-                label: Text(
-                  LocaleKeys.addToCard.tr(),
-                  style: AppStyles.white13medium,
-                ),
+                label:  Text(LocaleKeys.addToCard.tr(),style:AppStyles.white13medium,),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.pink,
                   foregroundColor: Colors.white,
