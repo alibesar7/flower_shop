@@ -19,7 +19,7 @@ import '../../../features/nav_bar/presentation/pages/product_details_page.dart';
 import '../../config/di/di.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RouteNames.login,
+  initialLocation: RouteNames.appStart,
   routes: [
     GoRoute(
       path: RouteNames.signup,

@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
-import 'package:flower_shop/features/home/data/models/best_seller_model.dart';
 import 'package:flower_shop/features/home/presentation/widgets/Category_item.dart';
 import 'package:flower_shop/features/home/presentation/widgets/home_header.dart';
 import 'package:flower_shop/features/home/presentation/widgets/home_section.dart';
@@ -37,7 +36,7 @@ class HomePageBody extends StatelessWidget {
               HomeSection(
                 title: LocaleKeys.categories.tr(),
                 onTap: () {
-                  // Navigator.pushNamed(context, '/categories');
+                  context.push(RouteNames.categories);
                 },
                 height: size.height * 0.12,
                 resource: state.categories,
@@ -78,7 +77,10 @@ class HomePageBody extends StatelessWidget {
                     title: BestSeller.title ?? "",
                     price: BestSeller.price?.toString(),
                     onTap: () {
-                      context.push(RouteNames.productDetails, extra: BestSeller.id);
+                      context.push(
+                        RouteNames.productDetails,
+                        extra: BestSeller.id,
+                      );
                     },
                   );
                 },
