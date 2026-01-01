@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart';
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart';
 import 'package:flower_shop/features/auth/data/models/response/login_response_model.dart';
+import 'package:flower_shop/features/commerce/data/models/all_categories_dto.dart';
+import 'package:flower_shop/features/nav_bar/data/models/response/products_response.dart';
 import 'package:flower_shop/features/home/data/models/response/home_response.dart';
 import 'package:flower_shop/features/nav_bar/data/product_details/models/response/product_details_response.dart';
 import 'package:retrofit/retrofit.dart';
@@ -38,6 +40,15 @@ abstract class ApiClient {
   Future<HttpResponse<ResetPasswordResponse>> resetPassword(
     @Body() ResetPasswordRequest request,
   );
+
+  @GET(AppEndpointString.allCategories)
+  Future<HttpResponse<AllCategoriesDto>> getAllCategories();
+
+  @GET(AppEndpointString.getProduct)
+  Future<HttpResponse<ProductsResponse>> getProducts({
+    @Query("occasion") String? occasion,
+    @Query("category") String? category,
+  });
 
   @GET(AppEndpointString.home)
   Future<HttpResponse<HomeResponse>> getHomeData();
