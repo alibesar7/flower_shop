@@ -1,13 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/config/base_state/base_state.dart';
-import 'package:flower_shop/features/best_seller/menager/best_seller_intent.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flower_shop/app/core/widgets/product_item_card.dart';
-import 'package:flower_shop/features/best_seller/best_seller_card.dart';
+import 'package:flower_shop/features/best_seller/best_seller_card_item/best_seller_card.dart';
 import 'package:flower_shop/features/best_seller/menager/best_sell_cubit.dart';
 import 'package:flower_shop/features/best_seller/menager/best_sell_state.dart';
+import 'package:flower_shop/features/best_seller/menager/best_seller_intent.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 class BestSellerScreen extends StatefulWidget {
   const BestSellerScreen({super.key});
 

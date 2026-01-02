@@ -55,6 +55,8 @@ class HomePageBody extends StatelessWidget {
               HomeSection(
                 title: LocaleKeys.bestSelling.tr(),
                 onTap: () {
+                  context.push(RouteNames.BestSeller);
+
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(
@@ -79,7 +81,10 @@ class HomePageBody extends StatelessWidget {
                     title: BestSeller.title ?? "",
                     price: BestSeller.price?.toString(),
                     onTap: () {
-                      context.push(RouteNames.productDetails, extra: BestSeller.id);
+                      context.push(
+                        RouteNames.productDetails,
+                        extra: BestSeller.id,
+                      );
                     },
                   );
                 },
@@ -89,7 +94,10 @@ class HomePageBody extends StatelessWidget {
               HomeSection(
                 title: LocaleKeys.occasions.tr(),
                 onTap: () {
-                  context.push(RouteNames.occasionPage, extra:state.occasions.data ?? [] );
+                  context.push(
+                    RouteNames.occasionPage,
+                    extra: state.occasions.data ?? [],
+                  );
                 },
                 height: size.height * 0.28,
                 resource: state.occasions,

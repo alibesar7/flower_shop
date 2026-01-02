@@ -33,7 +33,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
           emit(state.copyWith(
               products: Resource.success(products,)));
         } else {
-          emit(state.copyWith(products: Resource.success(products)));
+          emit(state.copyWith(products: Resource.success(products,)));
         }
 
       case ErrorApiResult<List<BestSellerModel>>():
