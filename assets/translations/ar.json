@@ -82,5 +82,16 @@
   "invalidName": "اسم غير صالح",
   "phoneNumber": "رقم الهاتف",
   "passwordUpdated": "تم تحديث كلمة المرور بنجاح",
-  "addToCard": "اضافه الي السله"
+  "addToCard": "اضافه الي السله",
+  "noProductsfound" : "لا يوجد منتجات",
+  "viewAll": "عرض الكل",
+  "search": "بحث",
+  "categories": "الفئات",
+  "bestSelling": "الأكثر مبيعًا",
+  "occasions": "المناسبات",
+  "allPricesIncludeTax":"كل الاسعار شامله الضرائب",
+  "productAddedToCart":"تم اضافة المنتج الي العربه",
+  "something_went_wrong": "حدث خطأ ما",
+  "no_products_found": "لم يتم العثور على منتجات"
+
 }

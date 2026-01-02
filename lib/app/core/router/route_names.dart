@@ -6,5 +6,7 @@ abstract class RouteNames {
   static const resetPassword = '/resetPassword';
   static const home = "/home";
   static const appStart = "/appStart";
-  static const bestsell = "/bestsell";
+  static const categories = "/categories";
+  static const occasionPage = "/occasionPage";
+  static const productDetails="/productDetails";
 }

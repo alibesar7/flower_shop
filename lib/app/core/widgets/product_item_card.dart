@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
-import '../../../features/best_seller/domain/product_model.dart';
+import '../../../features/e_commerce/domain/models/product_model.dart';
 import '../ui_helper/color/colors.dart';
 import '../ui_helper/style/font_style.dart';
 
@@ -21,7 +21,15 @@ class ProductItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasOldPrice = product.oldPrice != null && product.oldPrice! > product.price;
+    final hasOldPrice =
+        product.oldPrice != null && product.oldPrice! > product.price;
+
+    double originalPrice = product.oldPrice ?? 0;
+    double discountedPrice = product.price;
+
+    double discountPercentage = originalPrice > 0
+        ? ((originalPrice - discountedPrice) / originalPrice) * 100
+        : 0;
 
     return InkWell(
       borderRadius: BorderRadius.circular(14),
@@ -29,7 +37,7 @@ class ProductItemCard extends StatelessWidget {
       child: Container(
         padding: padding,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(color: Colors.grey.shade300),
         ),
