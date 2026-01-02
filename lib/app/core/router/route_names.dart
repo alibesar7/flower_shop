@@ -1,3 +1,5 @@
+import 'package:flower_shop/features/home/data/models/best_seller_model.dart';
+
 abstract class RouteNames {
   static const signup = '/signup';
   static const login = '/login';
@@ -9,4 +11,6 @@ abstract class RouteNames {
   static const categories = "/categories";
   static const occasionPage = "/occasionPage";
   static const productDetails="/productDetails";
+   static const BestSeller="/bestseller";
+ 
 }
