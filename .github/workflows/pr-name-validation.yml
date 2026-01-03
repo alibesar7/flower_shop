@@ -13,12 +13,14 @@ jobs:
         with:
           script: |
             const prTitle = context.payload.pull_request.title;
-            
+
             const pattern = /^(feature|fix|chore|docs|refactor)\/SCRUM-\d+/;
-            
+
             if (!pattern.test(prTitle)) {
-              core.setFailed(`❌ PR name "${prTitle}" is invalid.
-          Hint: Use "type/SCRUM-<number>", e.g., "feature/SCRUM-123 - add login page"`);
+              core.setFailed(
+                '❌ PR name "' + prTitle + '" is invalid.\n' +
+                'Hint: Use "type/SCRUM-<number>", e.g., "feature/SCRUM-123 - add login page"'
+              );
             } else {
-            console.log(`✅ PR name "${prTitle}" is valid.`);
+              console.log('✅ PR name "' + prTitle + '" is valid.');
             }
