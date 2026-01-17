@@ -92,6 +92,15 @@
   "something_went_wrong": "Something went wrong",
   "no_products_found": "No products found",
   "allPricesIncludeTax": "All prices include tax",
-  "productAddedToCart": "Product Added To Cart"
+  "productAddedToCart": "Product Added To Cart",
+  "cart": "Cart",
+  "items": "items",
+  "deliverTo": "Deliver to",
+  "egp": "EGP",
+  "subTotal": "Sub Total",
+  "deliveryFee": "Delivery Fee",
+  "total": "Total",
+  "checkout": "Checkout"
+  
 
 }

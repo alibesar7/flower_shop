@@ -92,6 +92,16 @@
   "allPricesIncludeTax":"كل الاسعار شامله الضرائب",
   "productAddedToCart":"تم اضافة المنتج الي العربه",
   "something_went_wrong": "حدث خطأ ما",
-  "no_products_found": "لم يتم العثور على منتجات"
+  "no_products_found": "لم يتم العثور على منتجات",
+  "cart": "المتجر",
+  "items": "منتجات",
+  "deliverTo": "توصيل الي",
+  "egp": "جنيه",
+  "subTotal": "مجموع المنتجات",
+  "deliveryFee": "رسوم التوصيل",
+  "total": "المجموع",
+  "checkout": "الدفع"
+
+  
 
 }

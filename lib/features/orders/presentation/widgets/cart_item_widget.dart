@@ -1,0 +1,129 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flower_shop/app/core/ui_helper/assets/images.dart';
+import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
+import 'package:flower_shop/features/orders/domain/models/user_carts_model.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
+import 'package:flutter/material.dart';
+
+class CartItemWidget extends StatelessWidget {
+  const CartItemWidget({super.key, required this.cartModel});
+  final CartItemsModel cartModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 117,
+      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.grey),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(16),
+            child: Container(
+              width: 96,
+              height: 100,
+              color: const Color(0xFFF7E9EE),
+              child: Image.network(
+                cartModel.product!.imgCover.toString(),
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) =>
+                    const Center(child: Icon(Icons.image_not_supported)),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            cartModel.product!.title.toString(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.blackColor,
+                                ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            ('${cartModel.product!.quantity.toString()} ${cartModel.product!.title.toString()}'),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.labelSmall!
+                                .copyWith(fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      onPressed: () {},
+                      iconSize: 16,
+                      icon: ImageIcon(
+                        AssetImage(Assets.delete),
+                        size: 16,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Text(
+                      '${LocaleKeys.egp.tr()} ${cartModel.price}',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: AppColors.blackColor,
+                      ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.minimize,
+                        color: AppColors.blackColor,
+                        size: 14,
+                      ),
+                    ),
+                    Text(
+                      cartModel.quantity.toString(),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: AppColors.blackColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.add,
+                        color: AppColors.blackColor,
+                        size: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

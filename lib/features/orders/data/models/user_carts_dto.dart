@@ -58,7 +58,7 @@ class CartDto {
 @JsonSerializable()
 class CartItemsDto {
   @JsonKey(name: 'product')
-  final Product? product;
+  final ProductCartDto? product;
   @JsonKey(name: 'price')
   final int? price;
   @JsonKey(name: 'quantity')
@@ -74,7 +74,7 @@ class CartItemsDto {
 }
 
 @JsonSerializable()
-class Product {
+class ProductCartDto {
   @JsonKey(name: '_id')
   final String? id;
   @JsonKey(name: 'title')
@@ -114,7 +114,7 @@ class Product {
   @JsonKey(name: 'id')
   final String? idString;
 
-  Product({
+  ProductCartDto({
     this.id,
     this.title,
     this.slug,
@@ -136,7 +136,7 @@ class Product {
     this.idString,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
+  factory ProductCartDto.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
   Map<String, dynamic> toJson() => _$ProductToJson(this);
 }

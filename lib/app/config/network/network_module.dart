@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
+import 'package:flower_shop/app/config/network/interceptor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -8,8 +10,10 @@ import '../../core/values/app_endpoint_strings.dart';
 @module
 abstract class NetworkModule {
   @lazySingleton
-  Dio dio() {
+  Dio dio(AuthStorage authStorage) {
     final dio = Dio(BaseOptions(baseUrl: AppEndpointString.baseUrl));
+    dio.interceptors.add(AppInterceptor(authStorage));
+
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,

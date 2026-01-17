@@ -1,4 +1,3 @@
-import 'package:flower_shop/features/home/domain/models/product_model.dart';
 import 'package:flower_shop/features/orders/data/models/user_carts_dto.dart';
 import 'package:flower_shop/features/orders/domain/models/user_carts_model.dart';
 
@@ -30,7 +29,20 @@ extension CartItemModelMapper on CartItemsDto {
     return CartItemsModel(
       id: id,
       price: price,
-      product: ProductModel(),
+      product: product?.toProductCartModel(),
+      quantity: quantity,
+    );
+  }
+}
+
+extension ProductCartModelMapper on ProductCartDto {
+  ProductCartModel toProductCartModel() {
+    return ProductCartModel(
+      id: id,
+      price: price,
+      description: description,
+      title: title,
+      imgCover: imgCover,
       quantity: quantity,
     );
   }

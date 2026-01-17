@@ -11,5 +11,5 @@ class AppEndpointString {
   static const String getProduct = '/products';
   static const String home = '/home';
   static const String productDetails = 'products/{id}';
-  static const String cartPage = 'cartPage';
+  static const String cartPage = 'cart';
 }
