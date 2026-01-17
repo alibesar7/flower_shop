@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../domain/models/change-password-entity.dart';
+import '../../../../domain/models/change_password_entity.dart';
 
 part 'change-password-response-model.g.dart';
 

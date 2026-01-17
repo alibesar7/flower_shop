@@ -9,7 +9,7 @@ import 'package:flower_shop/features/auth/domain/models/signup_model.dart';
 import 'package:flower_shop/features/auth/domain/repos/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/models/change-password-entity.dart';
+import '../../domain/models/change_password_entity.dart';
 import '../../domain/models/forget_password_entity.dart';
 import '../../domain/models/reset_password_entity.dart';
 import '../../domain/models/verify_reset_code_entity.dart';

@@ -10,7 +10,7 @@ import 'package:flower_shop/features/auth/data/models/request/change-password-re
     as _i13;
 import 'package:flower_shop/features/auth/data/models/request/reset_password_request_model/reset_password_request_model.dart'
     as _i11;
-import 'package:flower_shop/features/auth/domain/models/change-password-entity.dart'
+import 'package:flower_shop/features/auth/domain/models/change_password_entity.dart'
     as _i12;
 import 'package:flower_shop/features/auth/domain/models/forget_password_entity.dart'
     as _i8;
