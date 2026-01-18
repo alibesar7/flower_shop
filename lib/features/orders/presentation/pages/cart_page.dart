@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/config/base_state/base_state.dart';
-import 'package:flower_shop/app/config/di/di.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
-import 'package:flower_shop/features/e_commerce/presentation/occasion/pages/shimmer_grid_loading.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_cubit.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_intent.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_states.dart';
@@ -15,9 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({super.key});
-  final bloc = getIt<CartCubit>();
-
+  const CartPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +27,6 @@ class CartPage extends StatelessWidget {
             context.go(RouteNames.home);
           },
         ),
-
         title: Row(
           children: [
             Text(
@@ -41,12 +36,17 @@ class CartPage extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            Text(
-              '  (${bloc.state.cart?.data?.numOfCartItems} ${LocaleKeys.items.tr()})',
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: AppColors.grey,
-                fontSize: 20,
-              ),
+            BlocBuilder<CartCubit, CartStates>(
+              builder: (context, state) {
+                final itemCount = state.cart?.data?.numOfCartItems ?? 0;
+                return Text(
+                  '  ($itemCount ${LocaleKeys.items.tr()})',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: AppColors.grey,
+                    fontSize: 20,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -70,50 +70,53 @@ class CartPage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Expanded(
-              child: BlocProvider<CartCubit>(
-                create: (context) => bloc..doIntent(GetAllCartsIntent()),
-                child: BlocBuilder<CartCubit, CartStates>(
-                  builder: (context, state) {
-                    final carts = state.cart?.data?.cart?.cartItems;
-                    if (state.cart?.status == Status.loading || carts == null) {
-                      return const ShimmerGridLoading();
-                    }
-                    if (carts.isEmpty) {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.3,
-                          ),
-                          Text(
-                            textAlign: TextAlign.center,
-                            LocaleKeys.noProductsfound.tr(),
-                            style: Theme.of(context).textTheme.bodyMedium!
-                                .copyWith(
-                                  color: AppColors.blackColor,
-                                  fontSize: 16,
-                                ),
-                          ),
-                        ],
-                      );
-                    }
+              child: BlocBuilder<CartCubit, CartStates>(
+                bloc: BlocProvider.of<CartCubit>(context)
+                  ..doIntent(GetAllCartsIntent()),
+                builder: (context, state) {
+                  final isLoading = state.cart?.status == Status.loading;
+                  final carts = state.cart?.data?.cart?.cartItems ?? [];
+                  if (!isLoading && carts.isEmpty) {
                     return Column(
                       children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: carts.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final product = carts[index];
-                              return product != null
-                                  ? CartItemWidget(cartModel: product)
-                                  : const SizedBox();
-                            },
-                          ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.3,
                         ),
-                        TotalPriceSection(),
+                        Text(
+                          textAlign: TextAlign.center,
+                          LocaleKeys.noProductsfound.tr(),
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(
+                                color: AppColors.blackColor,
+                                fontSize: 16,
+                              ),
+                        ),
                       ],
                     );
-                  },
-                ),
+                  }
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: isLoading ? 3 : carts.length,
+                          itemBuilder: (context, index) {
+                            final item = isLoading ? null : carts[index]!;
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12.0,
+                              ),
+                              child: CartItemWidget(
+                                cartModel: item,
+                                isLoading: isLoading,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      TotalPriceSection(isLoading: isLoading),
+                    ],
+                  );
+                },
               ),
             ),
           ],
