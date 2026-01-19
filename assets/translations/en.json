@@ -100,7 +100,6 @@
   "subTotal": "Sub Total",
   "deliveryFee": "Delivery Fee",
   "total": "Total",
-  "checkout": "Checkout"
-  
-
+  "checkout": "Checkout",
+  "productDeletedSuccessfully": "Product Deleted Successfully"
 }

@@ -8,3 +8,9 @@ class AddProductToCartIntent extends CartIntent {
 
   AddProductToCartIntent({required this.productId, required this.quantity});
 }
+
+class DeleteCartItemIntent extends CartIntent {
+  final String cartItemId;
+
+  DeleteCartItemIntent({required this.cartItemId});
+}

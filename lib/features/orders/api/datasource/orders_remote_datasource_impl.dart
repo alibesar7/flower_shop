@@ -26,4 +26,11 @@ class OrdersRemoteDatasourceImpl implements OrdersRemoteDatasource {
       }),
     );
   }
+
+  @override
+  Future<ApiResult<UserCartsDto>> deleteCartItem({String? cartItemId}) {
+    return safeApiCall<UserCartsDto>(
+      call: () => apiClient.deleteCartItem(cartItemId!),
+    );
+  }
 }

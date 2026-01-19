@@ -8,4 +8,6 @@ abstract class OrdersRepo {
     String? product,
     int? quantity,
   });
+
+  Future<ApiResult<UserCartsModel>> deleteCartItem({String? cartItemId});
 }

@@ -1,9 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/core/ui_helper/assets/images.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
+import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
 import 'package:flower_shop/features/orders/domain/models/user_carts_model.dart';
+import 'package:flower_shop/features/orders/presentation/manager/cart_cubit.dart';
+import 'package:flower_shop/features/orders/presentation/manager/cart_intent.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CartItemWidget extends StatelessWidget {
@@ -108,7 +112,18 @@ class CartItemWidget extends StatelessWidget {
                             IconButton(
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
-                              onPressed: () {},
+                              onPressed: () {
+                                BlocProvider.of<CartCubit>(context).doIntent(
+                                  DeleteCartItemIntent(
+                                    cartItemId: cartModel!.product!.id
+                                        .toString(),
+                                  ),
+                                );
+                                showAppSnackbar(
+                                  context,
+                                  LocaleKeys.productDeletedSuccessfully.tr(),
+                                );
+                              },
                               iconSize: 16,
                               icon: ImageIcon(
                                 AssetImage(Assets.delete),

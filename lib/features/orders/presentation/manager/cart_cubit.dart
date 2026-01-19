@@ -2,6 +2,7 @@ import 'package:flower_shop/app/config/base_state/base_state.dart';
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/orders/domain/models/user_carts_model.dart';
 import 'package:flower_shop/features/orders/domain/usecase/add_product_to_cart_usecase.dart';
+import 'package:flower_shop/features/orders/domain/usecase/delete_cart_item_usecase.dart';
 import 'package:flower_shop/features/orders/domain/usecase/get_user_carts_usecase.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_intent.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_states.dart';
@@ -12,8 +13,12 @@ import 'package:injectable/injectable.dart';
 class CartCubit extends Cubit<CartStates> {
   final GetUserCartsUsecase _getCarts;
   final AddProductToCartUsecase _addProductToCartUsecase;
-  CartCubit(this._getCarts, this._addProductToCartUsecase)
-    : super(CartStates());
+  final DeleteCartItemUsecase _deleteCartItemUsecase;
+  CartCubit(
+    this._getCarts,
+    this._addProductToCartUsecase,
+    this._deleteCartItemUsecase,
+  ) : super(CartStates());
 
   List<CartItemsModel> cartsList = [];
 
@@ -23,6 +28,8 @@ class CartCubit extends Cubit<CartStates> {
         _getAllCarts();
       case AddProductToCartIntent():
         _addProductToCart(product: intent.productId, quantity: intent.quantity);
+      case DeleteCartItemIntent():
+        _deleteCartItem(cartItemId: intent.cartItemId);
     }
   }
 
@@ -59,6 +66,29 @@ class CartCubit extends Cubit<CartStates> {
                 ?.whereType<CartItemsModel>()
                 .toList() ??
             [];
+        emit(state.copyWith(cart: Resource.success(response.data)));
+
+      case ErrorApiResult<UserCartsModel>():
+        emit(state.copyWith(cart: Resource.error(response.error)));
+    }
+  }
+
+  Future<void> _deleteCartItem({required String cartItemId}) async {
+    emit(state.copyWith(cart: Resource.loading()));
+    ApiResult<UserCartsModel> response = await _deleteCartItemUsecase.call(
+      cartItemId: cartItemId,
+    );
+    switch (response) {
+      case SuccessApiResult<UserCartsModel>():
+        cartsList.removeWhere((item) => item.id.toString() == cartItemId);
+
+        final updatedCartItems =
+            response.data.cart?.cartItems
+                ?.whereType<CartItemsModel>()
+                .toList() ??
+            [];
+
+        cartsList = updatedCartItems;
         emit(state.copyWith(cart: Resource.success(response.data)));
 
       case ErrorApiResult<UserCartsModel>():
