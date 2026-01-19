@@ -8,4 +8,6 @@ class AppConstants {
   static const String defaultErrorMessage =
       "Something went wrong please try again later ";
   static const String bestseller = 'Best Sellers';
+  static const String sessionExpiredMessage =
+      'Session expired. Please login again.';
 }
