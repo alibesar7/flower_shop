@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flower_shop/features/edit_profile/data/datascources/editProfileDataScource.dart';
 import 'package:flower_shop/features/edit_profile/data/models/request/editprofile_request/edit_profile_request.dart';
 import 'package:flower_shop/features/edit_profile/data/models/response/editprofile_response/edit_profile_resonse.dart';
@@ -22,6 +23,20 @@ class EditprofiledatascourceImp extends EditProfileDataSource {
       return response.data!;
     } catch (e) {
       print("Error in DataSource: $e");
+      rethrow;
+    }
+  }
+
+  @override
+  Future<EditProfileResponse> uploadPhoto({
+    required String token,
+    required File photo,
+  }) async {
+    try {
+      final response = await apiClient.uploadPhoto(token: token, photo: photo);
+      return response.data!;
+    } catch (e) {
+      print("Error in uploadPhoto DataSource: $e");
       rethrow;
     }
   }

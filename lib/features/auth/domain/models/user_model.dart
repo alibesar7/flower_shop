@@ -5,6 +5,8 @@ class UserModel {
   final String email;
   final String? photo;
   final String role;
+  final String? phone;
+  final String? gender;
   final List<dynamic>? wishlist;
 
   const UserModel({
@@ -14,6 +16,8 @@ class UserModel {
     required this.email,
     this.photo,
     required this.role,
+    this.phone,
+    this.gender,
     this.wishlist,
   });
 }

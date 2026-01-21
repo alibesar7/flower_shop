@@ -327,30 +327,43 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<HttpResponse<ChangePassResponse>> changePassword(
-    String token,
-    ChangePassRequest request,
-  ) async {
+  Future<HttpResponse<EditProfileResponse>> uploadPhoto({
+    required String token,
+    required File photo,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _options = _setStreamType<HttpResponse<ChangePassResponse>>(
-      Options(method: 'PATCH', headers: _headers, extra: _extra)
+    final _data = FormData();
+    _data.files.add(
+      MapEntry(
+        'photo',
+        MultipartFile.fromFileSync(
+          photo.path,
+          filename: photo.path.split(Platform.pathSeparator).last,
+        ),
+      ),
+    );
+    final _options = _setStreamType<HttpResponse<EditProfileResponse>>(
+      Options(
+            method: 'PUT',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'multipart/form-data',
+          )
           .compose(
             _dio.options,
-            'auth/change-password',
+            'auth/upload-photo',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ChangePassResponse _value;
+    late EditProfileResponse _value;
     try {
-      _value = ChangePassResponse.fromJson(_result.data!);
+      _value = EditProfileResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

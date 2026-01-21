@@ -21,6 +21,7 @@ dependencies:
   flutter_svg: ^2.2.0  # MOVE from dev_dependencies to dependencies
   get_it: 9.2.0  # ADD THIS (needed for injectable)
   go_router: ^17.0.0
+  image_picker: ^1.2.1
   injectable: 2.7.0  # ADD THIS
   intl: ^0.20.2
   json_annotation: ^4.9.0

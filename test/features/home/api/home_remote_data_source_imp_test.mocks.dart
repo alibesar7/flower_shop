@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
+import 'dart:io' as _i20;
 
 import 'package:flower_shop/app/core/api_manger/api_client.dart' as _i3;
 import 'package:flower_shop/features/auth/data/models/request/forget_password_request_model/forget_password_request_model.dart'
@@ -30,12 +31,8 @@ import 'package:flower_shop/features/e_commerce/data/models/response/product_det
     as _i17;
 import 'package:flower_shop/features/e_commerce/data/models/response/products_response.dart'
     as _i14;
-import 'package:flower_shop/features/edit_profile/data/models/request/changepass_request/changePassrequest.dart'
-    as _i21;
 import 'package:flower_shop/features/edit_profile/data/models/request/editprofile_request/edit_profile_request.dart'
     as _i19;
-import 'package:flower_shop/features/edit_profile/data/models/response/changepass_response/changePassRespnse.dart'
-    as _i20;
 import 'package:flower_shop/features/edit_profile/data/models/response/editprofile_response/edit_profile_resonse.dart'
     as _i18;
 import 'package:flower_shop/features/home/data/models/response/home_response.dart'
@@ -242,19 +239,22 @@ class MockApiClient extends _i1.Mock implements _i3.ApiClient {
           as _i4.Future<_i2.HttpResponse<_i18.EditProfileResponse>>);
 
   @override
-  _i4.Future<_i2.HttpResponse<_i20.ChangePassResponse>> changePassword(
-    String? token,
-    _i21.ChangePassRequest? request,
-  ) =>
+  _i4.Future<_i2.HttpResponse<_i18.EditProfileResponse>> uploadPhoto({
+    required String? token,
+    required _i20.File? photo,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#changePassword, [token, request]),
+            Invocation.method(#uploadPhoto, [], {#token: token, #photo: photo}),
             returnValue:
-                _i4.Future<_i2.HttpResponse<_i20.ChangePassResponse>>.value(
-                  _FakeHttpResponse_0<_i20.ChangePassResponse>(
+                _i4.Future<_i2.HttpResponse<_i18.EditProfileResponse>>.value(
+                  _FakeHttpResponse_0<_i18.EditProfileResponse>(
                     this,
-                    Invocation.method(#changePassword, [token, request]),
+                    Invocation.method(#uploadPhoto, [], {
+                      #token: token,
+                      #photo: photo,
+                    }),
                   ),
                 ),
           )
-          as _i4.Future<_i2.HttpResponse<_i20.ChangePassResponse>>);
+          as _i4.Future<_i2.HttpResponse<_i18.EditProfileResponse>>);
 }

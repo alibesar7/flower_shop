@@ -13,4 +13,5 @@ class AppEndpointString {
   static const String productDetails = 'products/{id}';
   static const String editProfile = 'auth/editProfile';
   static const String changepassword = 'auth/change-password';
+  static const String uploadPhoto = 'auth/upload-photo';
 }
