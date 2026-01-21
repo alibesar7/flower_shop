@@ -47,4 +47,3 @@ app.*.map.json
 lib/generated/
 **/*.g.dart
 **/*.freezed.dart
-**/*.mocks.dart
