@@ -37,82 +37,87 @@ class BestSellerCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(14),
       onTap: onTap,
-      child: BlocListener<CartCubit, CartStates>(
-        listener: (context, state) {
-          final cartResource = BlocProvider.of<CartCubit>(context).state.cart;
-          if (cartResource != null) {
-            if (cartResource.status == Status.success) {
-              showAppSnackbar(context, LocaleKeys.productAddedToCart.tr());
-            } else if (cartResource.status == Status.error) {
-              showAppSnackbar(
-                context,
-                cartResource.error.toString(),
-                backgroundColor: AppColors.red,
-              );
-            }
-          }
-        },
-        child: Container(
-          padding: padding,
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: Colors.grey.shade300),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Image
-              AspectRatio(
-                aspectRatio: 1.15,
-                child: Container(
-                  color: const Color(0xFFF7E9EE),
-                  child: Image.network(
-                    product.imgCover ?? '',
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) =>
-                        const Center(child: Icon(Icons.image_not_supported)),
+      child: Container(
+        padding: padding,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: Colors.grey.shade300),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image
+            AspectRatio(
+              aspectRatio: 1.15,
+              child: Container(
+                color: const Color(0xFFF7E9EE),
+                child: Image.network(
+                  product.imgCover ?? '',
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) =>
+                      const Center(child: Icon(Icons.image_not_supported)),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.title ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppStyles.font12BlackBold,
                   ),
-                ),
-              ),
+                  const SizedBox(height: 6),
 
-              const SizedBox(height: 10),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title ?? '',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppStyles.font12BlackBold,
-                    ),
-                    const SizedBox(height: 6),
-
-                    Row(
-                      children: [
-                        Text('EGP $price', style: AppStyles.black14bold),
-                        const SizedBox(width: 8),
-                        if (oldPrice != null)
-                          Text(
-                            oldPrice.toString(),
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey.shade600,
-                              decoration: TextDecoration.lineThrough,
-                            ),
+                  Row(
+                    children: [
+                      Text('EGP $price', style: AppStyles.black14bold),
+                      const SizedBox(width: 8),
+                      if (oldPrice != null)
+                        Text(
+                          oldPrice.toString(),
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey.shade600,
+                            decoration: TextDecoration.lineThrough,
                           ),
-                      ],
-                    ),
-                  ],
-                ),
+                        ),
+                    ],
+                  ),
+                ],
               ),
+            ),
 
-              const Spacer(),
+            const Spacer(),
 
-              SizedBox(
+            BlocListener<CartCubit, CartStates>(
+              listener: (context, state) {
+                final cartResource = BlocProvider.of<CartCubit>(
+                  context,
+                ).state.cart;
+                if (cartResource != null) {
+                  if (cartResource.status == Status.success) {
+                    showAppSnackbar(
+                      context,
+                      LocaleKeys.productAddedToCart.tr(),
+                    );
+                  } else if (cartResource.status == Status.error) {
+                    showAppSnackbar(
+                      context,
+                      cartResource.error.toString(),
+                      backgroundColor: AppColors.red,
+                    );
+                  }
+                }
+              },
+              child: SizedBox(
                 width: double.infinity,
                 height: 32,
                 child: ElevatedButton.icon(
@@ -138,8 +143,8 @@ class BestSellerCard extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

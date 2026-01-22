@@ -37,102 +37,106 @@ class ProductItemCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(14),
       onTap: onTap,
-      child: BlocListener<CartCubit, CartStates>(
-        listener: (context, state) {
-          final cartResource = BlocProvider.of<CartCubit>(context).state.cart;
-          if (cartResource != null) {
-            if (cartResource.status == Status.success) {
-              showAppSnackbar(context, LocaleKeys.productAddedToCart.tr());
-            } else if (cartResource.status == Status.error) {
-              showAppSnackbar(
-                context,
-                cartResource.error.toString(),
-                backgroundColor: AppColors.red,
-              );
-            }
-          }
-        },
-        child: Container(
-          padding: padding,
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: Colors.grey.shade300),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Image
-              Expanded(
-                child: ClipRRect(
-                  child: AspectRatio(
-                    aspectRatio: 1.15,
-                    child: Container(
-                      color: const Color(0xFFF7E9EE),
-                      child: Image.network(
-                        product.imgCover.toString(),
-                        fit: BoxFit.fill,
-                        errorBuilder: (_, __, ___) => const Center(
-                          child: Icon(Icons.image_not_supported),
-                        ),
-                      ),
+      child: Container(
+        padding: padding,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: Colors.grey.shade300),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image
+            Expanded(
+              child: ClipRRect(
+                child: AspectRatio(
+                  aspectRatio: 1.15,
+                  child: Container(
+                    color: const Color(0xFFF7E9EE),
+                    child: Image.network(
+                      product.imgCover.toString(),
+                      fit: BoxFit.fill,
+                      errorBuilder: (_, __, ___) =>
+                          const Center(child: Icon(Icons.image_not_supported)),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+            ),
+            const SizedBox(height: 10),
 
-              // Name
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title.toString(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppStyles.font12BlackBold,
-                    ),
-                    const SizedBox(height: 6),
+            // Name
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.title.toString(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppStyles.font12BlackBold,
+                  ),
+                  const SizedBox(height: 6),
 
-                    // Prices
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                  // Prices
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'EGP ${_format(priceAfterDiscount)}',
+                        style: AppStyles.black14bold,
+                      ),
+                      const SizedBox(width: 8),
+                      if (hasOldPrice)
                         Text(
-                          'EGP ${_format(priceAfterDiscount)}',
-                          style: AppStyles.black14bold,
+                          _format(originalPrice),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey.shade600,
+                            decoration: TextDecoration.lineThrough,
+                          ),
                         ),
-                        const SizedBox(width: 8),
-                        if (hasOldPrice)
-                          Text(
-                            _format(originalPrice),
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey.shade600,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        const SizedBox(width: 8),
+                      const SizedBox(width: 8),
 
-                        // if (product.discountPercent != null &&
-                        //     product.discountPercent! > 0)
-                        if (discountPercentage > 0)
-                          Text(
-                            '${discountPercentage.round()} %',
-                            style: AppStyles.green14regular,
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
+                      // if (product.discountPercent != null &&
+                      //     product.discountPercent! > 0)
+                      if (discountPercentage > 0)
+                        Text(
+                          '${discountPercentage.round()} %',
+                          style: AppStyles.green14regular,
+                        ),
+                    ],
+                  ),
+                ],
               ),
+            ),
 
-              const SizedBox(height: 10),
+            const SizedBox(height: 10),
 
-              // Button
-              SizedBox(
+            // Button
+            BlocListener<CartCubit, CartStates>(
+              listener: (context, state) {
+                final cartResource = BlocProvider.of<CartCubit>(
+                  context,
+                ).state.cart;
+                if (cartResource != null) {
+                  if (cartResource.status == Status.success) {
+                    showAppSnackbar(
+                      context,
+                      LocaleKeys.productAddedToCart.tr(),
+                    );
+                  } else if (cartResource.status == Status.error) {
+                    showAppSnackbar(
+                      context,
+                      cartResource.error.toString(),
+                      backgroundColor: AppColors.red,
+                    );
+                  }
+                }
+              },
+              child: SizedBox(
                 width: double.infinity,
                 height: 30,
                 child: ElevatedButton.icon(
@@ -159,8 +163,8 @@ class ProductItemCard extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

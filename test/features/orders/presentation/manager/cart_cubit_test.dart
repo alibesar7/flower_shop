@@ -132,7 +132,7 @@ void main() {
     );
   });
 
-  group('App Product To Cart', () {
+  group('Add Product To Cart', () {
     blocTest(
       'emit loading, success when AddProductToCartIntent success',
       build: () {

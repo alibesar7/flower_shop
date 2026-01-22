@@ -12,8 +12,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  @override
+  void initState() {
+    super.initState();
+    final cartCubit = BlocProvider.of<CartCubit>(context);
+    cartCubit.doIntent(GetAllCartsIntent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,8 +84,6 @@ class CartPage extends StatelessWidget {
             const SizedBox(height: 24),
             Expanded(
               child: BlocBuilder<CartCubit, CartStates>(
-                bloc: BlocProvider.of<CartCubit>(context)
-                  ..doIntent(GetAllCartsIntent()),
                 builder: (context, state) {
                   final isLoading = state.cart?.status == Status.loading;
                   final carts = state.cart?.data?.cart?.cartItems ?? [];

@@ -58,7 +58,7 @@ class CartItemWidget extends StatelessWidget {
             : Row(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(16),
+                    borderRadius: BorderRadius.circular(8),
                     child: Container(
                       width: 96,
                       height: 100,
@@ -162,16 +162,13 @@ class CartItemWidget extends StatelessWidget {
                                     increase: false,
                                   ),
                                 );
-                                cartModel!.quantity! > 1
-                                    ? showAppSnackbar(
-                                        context,
-                                        LocaleKeys.productUpdated.tr(),
-                                      )
-                                    : showAppSnackbar(
-                                        context,
-                                        LocaleKeys.productDeletedSuccessfully
+                                showAppSnackbar(
+                                  context,
+                                  cartModel!.quantity! > 1
+                                      ? LocaleKeys.productUpdated.tr()
+                                      : LocaleKeys.productDeletedSuccessfully
                                             .tr(),
-                                      );
+                                );
                               },
                               icon: Icon(
                                 Icons.minimize,
