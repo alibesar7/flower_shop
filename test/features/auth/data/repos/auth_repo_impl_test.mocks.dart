@@ -24,6 +24,8 @@ import 'package:flower_shop/features/auth/data/models/response/forget_password_r
     as _i9;
 import 'package:flower_shop/features/auth/data/models/response/login_response_model.dart'
     as _i5;
+import 'package:flower_shop/features/auth/data/models/response/logout_response_model.dart'
+    as _i15;
 import 'package:flower_shop/features/auth/data/models/response/reset_password_response_model/reset_password_response_model.dart'
     as _i13;
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart'
@@ -142,6 +144,21 @@ class MockAuthRemoteDataSource extends _i1.Mock
                 ),
           )
           as _i3.Future<_i4.ApiResult<_i13.ResetPasswordResponse>>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i15.LogoutResponse>> logout({
+    required String? token,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logout, [], {#token: token}),
+            returnValue: _i3.Future<_i4.ApiResult<_i15.LogoutResponse>>.value(
+              _i8.dummyValue<_i4.ApiResult<_i15.LogoutResponse>>(
+                this,
+                Invocation.method(#logout, [], {#token: token}),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.ApiResult<_i15.LogoutResponse>>);
 
   @override
   _i3.Future<_i4.ApiResult<_i15.ChangePasswordResponse>> changePassword(

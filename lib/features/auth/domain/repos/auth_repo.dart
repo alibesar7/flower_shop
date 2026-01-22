@@ -1,4 +1,5 @@
 import 'package:flower_shop/app/core/network/api_result.dart';
+import 'package:flower_shop/features/auth/data/models/response/logout_response_model.dart';
 import 'package:flower_shop/features/auth/domain/models/login_model.dart';
 import 'package:flower_shop/features/auth/domain/models/signup_model.dart';
 
@@ -27,6 +28,7 @@ abstract class AuthRepo {
   Future<ApiResult<ResetPasswordEntity>> resetPassword(
     ResetPasswordRequest request,
   );
+  Future<ApiResult<LogoutResponse>> logout({required String token});
 
   Future<ApiResult<ChangePasswordEntity>> changePassword(
     ChangePasswordRequest request,

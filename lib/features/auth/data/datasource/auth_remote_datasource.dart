@@ -1,6 +1,7 @@
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart';
 import 'package:flower_shop/features/auth/data/models/response/login_response_model.dart';
+import 'package:flower_shop/features/auth/data/models/response/logout_response_model.dart';
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart';
 
 import '../models/request/change-password-request-models/change-password-request-model.dart';
@@ -36,6 +37,8 @@ abstract class AuthRemoteDataSource {
   Future<ApiResult<ResetPasswordResponse>> resetPassword(
     ResetPasswordRequest request,
   );
+
+  Future<ApiResult<LogoutResponse>> logout({required String token});
 
   Future<ApiResult<ChangePasswordResponse>> changePassword(
     ChangePasswordRequest request,
