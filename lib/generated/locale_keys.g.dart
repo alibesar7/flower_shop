@@ -104,4 +104,7 @@ abstract class LocaleKeys {
   static const confirmNewPassword = 'confirmNewPassword';
   static const update = 'update';
   static const changePassword = 'changePassword';
+  static const profileUpdatedSuccessfully = 'profileUpdatedSuccessfully';
+  static const tokenNotFound = 'tokenNotFound';
+  static const editProfile = 'editProfile';
 }

@@ -6,6 +6,9 @@ import 'package:flower_shop/features/auth/presentation/signup/pages/signup_scree
 import 'package:flower_shop/features/auth/presentation/login/pages/login_page.dart';
 import 'package:flower_shop/features/best_seller/menager/best_sell_cubit.dart';
 import 'package:flower_shop/features/best_seller/pages/best_sell_screen.dart';
+import 'package:flower_shop/features/main_profile/presentation/cubit/profile_cubit.dart';
+import 'package:flower_shop/features/main_profile/presentation/cubit/profile_intent.dart';
+import 'package:flower_shop/features/main_profile/presentation/screens/profile_screen.dart';
 import 'package:flower_shop/features/nav_bar/presentation/manager/nav_cubit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +24,8 @@ import '../../../features/home/domain/models/occasion_model.dart';
 import '../../../features/e_commerce/presentation/product details/manger/product_details_cubit/product_details_cubit.dart';
 import '../../../features/e_commerce/presentation/product details/pages/product_details_page.dart';
 import '../../../features/nav_bar/presentation/pages/app_sections.dart';
+import 'package:flower_shop/features/edit_profile/presentation/pages/edit_profile_screen.dart';
+import 'package:flower_shop/features/main_profile/domain/models/profile_user_model.dart';
 import '../../config/di/di.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -103,7 +108,7 @@ final GoRouter appRouter = GoRouter(
     ),
 
     GoRoute(
-      path: RouteNames.BestSeller,
+      path: RouteNames.bestSeller,
       builder: (context, state) {
         return BlocProvider(
           create: (_) => getIt<BestSellerCubit>(),
@@ -119,6 +124,23 @@ final GoRouter appRouter = GoRouter(
           create: (_) => getIt<ChangePasswordCubit>(),
           child: ChangePasswordPage(),
         );
+      },
+    ),
+    GoRoute(
+      path: RouteNames.profile,
+      builder: (context, state) {
+        return BlocProvider(
+          create: (_) => getIt<ProfileCubit>()..doIntent(LoadProfileEvent()),
+          child: const ProfileScreen(),
+        );
+      },
+    ),
+
+    GoRoute(
+      path: RouteNames.editProfile,
+      builder: (context, state) {
+        final user = state.extra as ProfileUserModel?;
+        return EditProfilePage(user: user);
       },
     ),
   ],

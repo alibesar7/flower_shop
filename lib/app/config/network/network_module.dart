@@ -37,6 +37,5 @@ abstract class NetworkModule {
   }
 
   @lazySingleton
-  ApiClient authApiClient(Dio dio) =>
-      ApiClient(dio, baseUrl: AppEndpointString.baseUrl);
+  ApiClient authApiClient(Dio dio) => ApiClient(dio);
 }

@@ -63,6 +63,22 @@ import '../../../features/e_commerce/presentation/occasion/manager/occasion_cubi
     as _i25;
 import '../../../features/e_commerce/presentation/product%20details/manger/product_details_cubit/product_details_cubit.dart'
     as _i50;
+import '../../../features/edit_profile/api/datascources/editProfileDataScource_imp.dart'
+    as _i406;
+import '../../../features/edit_profile/data/datascources/edit_profile_datasource.dart'
+    as _i558;
+import '../../../features/edit_profile/data/repos/edit_profile_repo_impl.dart'
+    as _i544;
+import '../../../features/edit_profile/domain/repos/edit_profile_repo.dart'
+    as _i725;
+import '../../../features/edit_profile/domain/usecases/edit_profile_usecase.dart'
+    as _i276;
+import '../../../features/edit_profile/domain/usecases/upload_photo_usecase.dart'
+    as _i1;
+import '../../../features/edit_profile/presentation/manager/changePhotoCubit/upload_photo_cubit.dart'
+    as _i231;
+import '../../../features/edit_profile/presentation/manager/editProfileCubit/edit_profile_cubit.dart'
+    as _i790;
 import '../../../features/home/api/home_remote_data_source_imp.dart' as _i874;
 import '../../../features/home/data/datasource/home_remote_data_source.dart'
     as _i701;
@@ -81,6 +97,17 @@ import '../../../features/home/presentation/manager/factory/home_factory.dart'
 import '../../../features/home/presentation/manager/factory/home_factory_imp.dart'
     as _i73;
 import '../../../features/home/presentation/manager/home_cubit.dart' as _i682;
+import '../../../features/main_profile/api/profile_remote_data_source_impl.dart'
+    as _i381;
+import '../../../features/main_profile/data/datasource/profile_remote_data_source.dart'
+    as _i955;
+import '../../../features/main_profile/data/repos/profile_repo_impl.dart'
+    as _i562;
+import '../../../features/main_profile/domain/repos/profile_repo.dart' as _i866;
+import '../../../features/main_profile/domain/usecase/get_current_user_usecase.dart'
+    as _i285;
+import '../../../features/main_profile/presentation/cubit/profile_cubit.dart'
+    as _i650;
 import '../../../features/nav_bar/presentation/manager/nav_cubit.dart' as _i405;
 import '../../core/api_manger/api_client.dart' as _i890;
 import '../auth_storage/auth_storage.dart' as _i603;
@@ -103,17 +130,35 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i890.ApiClient>(
       () => networkModule.authApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i558.EditProfileDataSource>(
+      () => _i406.EditprofiledatascourceImp(gh<_i890.ApiClient>()),
+    );
     gh.factory<_i708.AuthRemoteDataSource>(
       () => _i777.AuthRemoteDataSourceImpl(gh<_i890.ApiClient>()),
     );
     gh.factory<_i701.HomeRemoteDataSource>(
       () => _i874.HomeRemoteDataSourceImp(gh<_i890.ApiClient>()),
     );
+    gh.factory<_i725.EditprofileRepo>(
+      () => _i544.EditprofileRepoImpl(gh<_i558.EditProfileDataSource>()),
+    );
     gh.factory<_i712.AuthRepo>(
       () => _i866.AuthRepoImp(gh<_i708.AuthRemoteDataSource>()),
     );
     gh.factory<_i520.HomeRepo>(
       () => _i401.HomeRepoImp(gh<_i701.HomeRemoteDataSource>()),
+    );
+    gh.factory<_i276.EditProfileUseCase>(
+      () => _i276.EditProfileUseCase(gh<_i725.EditprofileRepo>()),
+    );
+    gh.factory<_i1.UploadPhotoUseCase>(
+      () => _i1.UploadPhotoUseCase(gh<_i725.EditprofileRepo>()),
+    );
+    gh.factory<_i790.EditProfileCubit>(
+      () => _i790.EditProfileCubit(
+        gh<_i276.EditProfileUseCase>(),
+        gh<_i603.AuthStorage>(),
+      ),
     );
     gh.factory<_i152.EcommerceRemoteDatasource>(
       () => _i396.EcommerceRemoteDatasourceImpl(gh<_i890.ApiClient>()),
@@ -140,6 +185,9 @@ extension GetItInjectableX on _i174.GetIt {
         email,
       ),
     );
+    gh.factory<_i955.ProfileremoteDataSource>(
+      () => _i381.ProfileRemoteDataSourceImpl(gh<_i890.ApiClient>()),
+    );
     gh.factory<_i543.SignupUsecase>(
       () => _i543.SignupUsecase(gh<_i712.AuthRepo>()),
     );
@@ -152,6 +200,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factoryParam<_i378.ResetPasswordCubit, String, dynamic>(
       (email, _) =>
           _i378.ResetPasswordCubit(email, gh<_i280.ChangePasswordUseCase>()),
+    );
+    gh.factory<_i231.UploadPhotoCubit>(
+      () => _i231.UploadPhotoCubit(
+        gh<_i1.UploadPhotoUseCase>(),
+        gh<_i603.AuthStorage>(),
+      ),
     );
     gh.factory<_i115.ChangePasswordCubit>(
       () => _i115.ChangePasswordCubit(gh<_i991.ChangePasswordUseCase>()),
@@ -182,6 +236,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i710.AllCategoriesUsecase>(
       () => _i710.AllCategoriesUsecase(gh<_i332.EcommerceRepo>()),
     );
+    gh.factory<_i866.ProfileRepo>(
+      () => _i562.ProfileRepoImpl(
+        profileRemoteDataSource: gh<_i955.ProfileremoteDataSource>(),
+      ),
+    );
     gh.factory<_i810.LoginCubit>(
       () => _i810.LoginCubit(gh<_i75.LoginUseCase>(), gh<_i603.AuthStorage>()),
     );
@@ -201,6 +260,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i682.HomeCubit>(() => _i682.HomeCubit(gh<_i94.HomeFactory>()));
+    gh.factory<_i285.GetCurrentUserUsecase>(
+      () => _i285.GetCurrentUserUsecase(gh<_i866.ProfileRepo>()),
+    );
     gh.factory<_i259.AllCategoriesCubit>(
       () => _i259.AllCategoriesCubit(
         gh<_i710.AllCategoriesUsecase>(),
@@ -209,6 +271,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i25.OccasionCubit>(
       () => _i25.OccasionCubit(gh<_i985.GetProductUsecase>()),
+    );
+    gh.factory<_i650.ProfileCubit>(
+      () => _i650.ProfileCubit(
+        gh<_i285.GetCurrentUserUsecase>(),
+        gh<_i603.AuthStorage>(),
+      ),
     );
     return this;
   }
