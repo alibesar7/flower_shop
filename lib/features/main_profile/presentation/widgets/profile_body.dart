@@ -1,5 +1,8 @@
 import 'package:flower_shop/app/core/app_constants.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
+import 'package:flower_shop/features/auth/presentation/logout/manager/logout_cubit.dart';
+import 'package:flower_shop/features/auth/presentation/logout/manager/logout_state.dart';
+import 'package:flower_shop/features/auth/presentation/logout/manager/logout_intent.dart';
 import 'package:flower_shop/features/main_profile/domain/models/profile_user_model.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_cubit.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_intent.dart';
@@ -9,7 +12,6 @@ import 'package:go_router/go_router.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key, required this.user});
-
   final ProfileUserModel user;
 
   @override
@@ -116,12 +118,46 @@ class ProfileBody extends StatelessWidget {
               ),
             ],
           ),
-
-          rowItem(
-            children: [
-              const Text('Logout'),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
-            ],
+          //Logout Button
+          BlocConsumer<LogoutCubit, LogoutStates>(
+            listener: (context, state) {
+              if (state.logoutResource.isSuccess) {
+                context.go(RouteNames.login);
+              }
+              if (state.logoutResource.isError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      state.logoutResource.error ?? "Logout failed",
+                    ),
+                  ),
+                );
+              }
+            },
+            builder: (context, state) {
+              final isLoading = state.logoutResource.isLoading;
+              return rowItem(
+                children: [
+                  const Text('Logout'),
+                  IconButton(
+                    onPressed: isLoading
+                        ? null
+                        : () {
+                            context.read<LogoutCubit>().doIntent(
+                              PerformLogout(),
+                            );
+                          },
+                    icon: isLoading
+                        ? const SizedBox(
+                            width: 22,
+                            height: 22,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.logout),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),
