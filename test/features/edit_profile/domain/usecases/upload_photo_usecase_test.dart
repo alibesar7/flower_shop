@@ -1,13 +1,12 @@
 // upload_photo_usecase_test.dart
-import 'dart:io';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/edit_profile/data/models/response/editprofile_response/edit_profile_resonse.dart';
 import 'package:flower_shop/features/edit_profile/domain/repos/editProfile_repo.dart';
 import 'package:flower_shop/features/edit_profile/domain/usecases/upload_photo_usecase.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 import 'upload_photo_usecase_test.mocks.dart';
 
@@ -27,7 +26,7 @@ void main() {
   });
 
   final tToken = 'token';
-  final tPhoto = File('test/assets/test_image.jpg'); // dummy file
+  final tPhoto = XFile('test/assets/test_image.jpg'); // dummy file
   final tResponse = EditProfileResponse(
     message: 'Photo uploaded',
     user: User(

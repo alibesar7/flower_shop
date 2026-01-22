@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -13,14 +14,16 @@ import 'package:flower_shop/app/config/base_state/base_state.dart';
 
 import 'editProfileCubit_test.mocks.dart';
 
-@GenerateMocks([EditProfileUseCase])
+@GenerateMocks([EditProfileUseCase, AuthStorage])
 void main() {
   late MockEditProfileUseCase mockUseCase;
+  late MockAuthStorage mockAuthStorage;
   late EditProfileCubit cubit;
 
   setUp(() {
     mockUseCase = MockEditProfileUseCase();
-    cubit = EditProfileCubit(mockUseCase);
+    mockAuthStorage = MockAuthStorage();
+    cubit = EditProfileCubit(mockUseCase, mockAuthStorage);
 
     provideDummy<ApiResult<EditProfileResponse>>(
       SuccessApiResult(data: EditProfileResponse()),

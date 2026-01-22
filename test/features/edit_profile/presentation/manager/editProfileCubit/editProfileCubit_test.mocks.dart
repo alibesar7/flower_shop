@@ -5,7 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:flower_shop/app/config/auth_storage/auth_storage.dart' as _i8;
 import 'package:flower_shop/app/core/network/api_result.dart' as _i5;
+import 'package:flower_shop/features/auth/domain/models/user_model.dart' as _i9;
 import 'package:flower_shop/features/edit_profile/data/models/response/editprofile_response/edit_profile_resonse.dart'
     as _i6;
 import 'package:flower_shop/features/edit_profile/domain/repos/editProfile_repo.dart'
@@ -87,4 +89,91 @@ class MockEditProfileUseCase extends _i1.Mock
                 ),
           )
           as _i4.Future<_i5.ApiResult<_i6.EditProfileResponse>>);
+}
+
+/// A class which mocks [AuthStorage].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthStorage extends _i1.Mock implements _i8.AuthStorage {
+  MockAuthStorage() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> saveToken(String? token) =>
+      (super.noSuchMethod(
+            Invocation.method(#saveToken, [token]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<String?> getToken() =>
+      (super.noSuchMethod(
+            Invocation.method(#getToken, []),
+            returnValue: _i4.Future<String?>.value(),
+          )
+          as _i4.Future<String?>);
+
+  @override
+  _i4.Future<void> clearToken() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearToken, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> saveUser(_i9.UserModel? user) =>
+      (super.noSuchMethod(
+            Invocation.method(#saveUser, [user]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<_i9.UserModel?> getUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#getUser, []),
+            returnValue: _i4.Future<_i9.UserModel?>.value(),
+          )
+          as _i4.Future<_i9.UserModel?>);
+
+  @override
+  _i4.Future<void> clearUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearUser, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> setRememberMe(bool? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setRememberMe, [value]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<bool> getRememberMe() =>
+      (super.noSuchMethod(
+            Invocation.method(#getRememberMe, []),
+            returnValue: _i4.Future<bool>.value(false),
+          )
+          as _i4.Future<bool>);
+
+  @override
+  _i4.Future<void> clearAll() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearAll, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }

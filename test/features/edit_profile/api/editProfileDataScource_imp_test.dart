@@ -1,13 +1,14 @@
 // editprofile_repo_test.dart
-import 'dart:io';
-import 'package:flower_shop/features/edit_profile/data/repos/editprofileRepoImpl.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:mockito/annotations.dart';
+import 'dart:typed_data';
+import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/edit_profile/data/datascources/editProfileDataScource.dart';
 import 'package:flower_shop/features/edit_profile/data/models/request/editprofile_request/edit_profile_request.dart';
 import 'package:flower_shop/features/edit_profile/data/models/response/editprofile_response/edit_profile_resonse.dart';
-import 'package:flower_shop/app/core/network/api_result.dart';
+import 'package:flower_shop/features/edit_profile/data/repos/editprofileRepoImpl.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 import 'editProfileDataScource_imp_test.mocks.dart';
 
@@ -39,7 +40,10 @@ void main() {
     ),
   );
 
-  final tPhoto = File('test/assets/test_image.jpg');
+  final tPhoto = XFile.fromData(
+    Uint8List.fromList([1, 2, 3]),
+    name: 'test.jpg',
+  );
 
   group('editProfile', () {
     test('should return SuccessApiResult when DataSource succeeds', () async {
@@ -86,7 +90,10 @@ void main() {
     test('should return SuccessApiResult when DataSource succeeds', () async {
       // arrange
       when(
-        mockDataSource.uploadPhoto(token: tToken, photo: tPhoto),
+        mockDataSource.uploadPhoto(
+          token: anyNamed('token'),
+          photo: anyNamed('photo'),
+        ),
       ).thenAnswer((_) async => tResponse);
 
       // act
@@ -96,14 +103,20 @@ void main() {
       expect(result, isA<SuccessApiResult<EditProfileResponse>>());
       expect((result as SuccessApiResult).data.message, 'Profile updated');
       verify(
-        mockDataSource.uploadPhoto(token: tToken, photo: tPhoto),
+        mockDataSource.uploadPhoto(
+          token: anyNamed('token'),
+          photo: anyNamed('photo'),
+        ),
       ).called(1);
     });
 
     test('should return ErrorApiResult when DataSource throws', () async {
       // arrange
       when(
-        mockDataSource.uploadPhoto(token: tToken, photo: tPhoto),
+        mockDataSource.uploadPhoto(
+          token: anyNamed('token'),
+          photo: anyNamed('photo'),
+        ),
       ).thenThrow(Exception('API Error'));
 
       // act
@@ -112,7 +125,10 @@ void main() {
       // assert
       expect(result, isA<ErrorApiResult>());
       verify(
-        mockDataSource.uploadPhoto(token: tToken, photo: tPhoto),
+        mockDataSource.uploadPhoto(
+          token: anyNamed('token'),
+          photo: anyNamed('photo'),
+        ),
       ).called(1);
     });
   });
