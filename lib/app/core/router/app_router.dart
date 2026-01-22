@@ -119,6 +119,7 @@ final GoRouter appRouter = GoRouter(
     ),
 
     GoRoute(path: RouteNames.cartPage, builder: (context, state) => CartPage()),
+
     GoRoute(
       path: RouteNames.changePassword,
       builder: (context, state) {

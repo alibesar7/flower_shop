@@ -1,8 +1,11 @@
 import 'dart:io' as io;
+import 'package:flower_shop/app/core/router/route_names.dart';
+import 'package:flower_shop/features/auth/presentation/change_password/pages/change_password_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flower_shop/app/core/values/app_endpoint_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flower_shop/features/auth/domain/models/user_model.dart';
 import 'package:flower_shop/app/config/di/di.dart';
@@ -268,8 +271,11 @@ class _EditProfilePageBodyState extends State<EditProfilePageBody> {
             ),
             const SizedBox(height: 32),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.push(RouteNames.changePassword);
+              },
               child: TextFormFieldWidget(
+                enabled: false,
                 label: 'password',
                 hint: '*********',
                 suffixIcon: Text(
