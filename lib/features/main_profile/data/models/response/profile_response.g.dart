@@ -9,15 +9,13 @@ part of 'profile_response.dart';
 ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
     ProfileResponse(
       message: json['message'] as String?,
-      profileUserModel: json['ProfileUserModel'] == null
+      profileUserModel: json['user'] == null
           ? null
-          : ProfileUserModel.fromJson(
-              json['ProfileUserModel'] as Map<String, dynamic>,
-            ),
+          : ProfileUserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'ProfileUserModel': instance.profileUserModel,
+      'user': instance.profileUserModel,
     };

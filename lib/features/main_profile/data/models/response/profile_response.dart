@@ -7,7 +7,8 @@ part 'profile_response.g.dart';
 class ProfileResponse {
   @JsonKey(name: "message")
   final String? message;
-  @JsonKey(name: "ProfileUserModel")
+
+  @JsonKey(name: "user")
   final ProfileUserModel? profileUserModel;
 
   ProfileResponse({required this.message, required this.profileUserModel});
@@ -19,10 +20,18 @@ class ProfileResponse {
 
   ProfileUserModel toDomain() {
     return ProfileUserModel(
-      id: profileUserModel?.id ?? "",
-      firstName: profileUserModel?.firstName ?? "",
-      lastName: profileUserModel?.lastName ?? "",
-      email: profileUserModel?.email ?? "",
+      id: profileUserModel?.id,
+      firstName: profileUserModel?.firstName,
+      lastName: profileUserModel?.lastName,
+      email: profileUserModel?.email,
+      gender: profileUserModel?.gender,
+      phone: profileUserModel?.phone,
+      photo: profileUserModel?.photo,
+      role: profileUserModel?.role,
+      wishlist: profileUserModel?.wishlist,
+      addresses: profileUserModel?.addresses,
+      createdAt: profileUserModel?.createdAt,
+      passwordChangedAt: profileUserModel?.passwordChangedAt,
     );
   }
 }
