@@ -1,6 +1,6 @@
 import 'dart:io';
 
-sealed class UploadPhotoIntent {}
+abstract class UploadPhotoIntent {}
 
 class SelectPhotoIntent extends UploadPhotoIntent {
   final File photo;
