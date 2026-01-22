@@ -1,20 +1,16 @@
-part of 'profile_cubit.dart';
+import 'package:flower_shop/app/config/base_state/base_state.dart';
+import 'package:flower_shop/features/main_profile/domain/models/profile_user_model.dart';
 
-@immutable
-abstract class ProfileState {
-  const ProfileState();
-}
+class ProfileState {
+  final Resource<ProfileUserModel> user;
 
-class ProfileInitial extends ProfileState {}
+  ProfileState({required this.user});
 
-class ProfileLoading extends ProfileState {}
+  factory ProfileState.initial() {
+    return ProfileState(user: Resource.initial());
+  }
 
-class ProfileLoaded extends ProfileState {
-  final ProfileUserModel user;
-  const ProfileLoaded(this.user);
-}
-
-class ProfileError extends ProfileState {
-  final String message;
-  const ProfileError(this.message);
+  ProfileState copyWith({Resource<ProfileUserModel>? user}) {
+    return ProfileState(user: user ?? this.user);
+  }
 }

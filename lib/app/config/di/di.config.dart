@@ -137,6 +137,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i285.GetCurrentUserUsecase>(
       () => _i285.GetCurrentUserUsecase(gh<_i866.ProfileRepo>()),
     );
+    gh.factory<_i650.ProfileCubit>(
+      () => _i650.ProfileCubit(
+        gh<_i285.GetCurrentUserUsecase>(),
+        gh<_i603.AuthStorage>(),
+      ),
+    );
     gh.factory<_i710.AllCategoriesUsecase>(
       () => _i710.AllCategoriesUsecase(gh<_i332.EcommerceRepo>()),
     );
@@ -187,12 +193,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i702.ForgetPasswordCubit>(
       () => _i702.ForgetPasswordCubit(gh<_i878.ForgotPasswordUseCase>()),
-    );
-    gh.factory<_i650.ProfileCubit>(
-      () => _i650.ProfileCubit(
-        getCurrentUserUsecase: gh<_i285.GetCurrentUserUsecase>(),
-        authStorage: gh<_i603.AuthStorage>(),
-      ),
     );
     gh.factory<_i259.AllCategoriesCubit>(
       () => _i259.AllCategoriesCubit(
