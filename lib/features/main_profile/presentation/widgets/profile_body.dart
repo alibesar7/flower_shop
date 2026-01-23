@@ -1,8 +1,8 @@
 import 'package:flower_shop/app/core/app_constants.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/auth/presentation/logout/manager/logout_cubit.dart';
-import 'package:flower_shop/features/auth/presentation/logout/manager/logout_state.dart';
 import 'package:flower_shop/features/auth/presentation/logout/manager/logout_intent.dart';
+import 'package:flower_shop/features/auth/presentation/logout/manager/logout_state.dart';
 import 'package:flower_shop/features/main_profile/domain/models/profile_user_model.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_cubit.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_intent.dart';
@@ -16,13 +16,12 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: const EdgeInsets.all(12),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          rowItem(
-            mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        /// Profile Header
+        Center(
+          child: Column(
             children: [
               InkWell(
                 onTap: () async {
@@ -32,147 +31,165 @@ class ProfileBody extends StatelessWidget {
                   }
                 },
                 child: CircleAvatar(
-                  radius: 40,
+                  radius: 42,
                   backgroundColor: Colors.grey.shade200,
                   child: ClipOval(
                     child: Image.network(
                       user.photo ?? '',
-                      width: 80,
-                      height: 80,
+                      width: 84,
+                      height: 84,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) {
-                        return const Icon(Icons.person, size: 40);
-                      },
+                      errorBuilder: (_, __, ___) =>
+                          const Icon(Icons.person, size: 42),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(user.firstName ?? AppConstants.noName),
-                  Text(user.email ?? AppConstants.noEmail),
-                ],
+
+              const SizedBox(height: 12),
+
+              Text(
+                user.firstName ?? AppConstants.noName,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+              ),
+
+              const SizedBox(height: 4),
+
+              Text(
+                user.email ?? AppConstants.noEmail,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Colors.grey),
               ),
             ],
           ),
+        ),
 
-          rowItem(
-            children: [
-              const Text(AppConstants.myOrders),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
-            ],
-          ),
+        const SizedBox(height: 8),
+        const Divider(),
 
-          rowItem(
-            children: [
-              const Text(AppConstants.savedaddresses),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
-            ],
-          ),
+        _ProfileItem(
+          title: AppConstants.myOrders,
+          icon: Icons.receipt_long,
+          onTap: () {},
+        ),
 
-          rowItem(
-            children: [
-              const Text(AppConstants.notifications),
-              Switch(value: true, onChanged: (_) {}),
-            ],
-          ),
+        _ProfileItem(
+          title: AppConstants.savedaddresses,
+          icon: Icons.location_on_outlined,
+          onTap: () {},
+        ),
 
-          rowItem(
-            children: [
-              const Text(AppConstants.Language),
-              DropdownButton<String>(
-                value: 'en',
-                items: const [
-                  DropdownMenuItem(value: 'en', child: Text('English')),
-                  DropdownMenuItem(value: 'ar', child: Text('Arabic')),
-                ],
-                onChanged: (_) {},
-              ),
-            ],
-          ),
+        _ProfileItem(
+          title: AppConstants.notifications,
+          icon: Icons.notifications_none,
+          trailing: Switch(value: true, onChanged: (_) {}),
+        ),
 
-          rowItem(
-            children: [
-              const Text(AppConstants.aboutUs),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
-            ],
+        _ProfileItem(
+          title: AppConstants.Language,
+          icon: Icons.language,
+          trailing: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: 'en',
+              items: const [
+                DropdownMenuItem(value: 'en', child: Text('English')),
+                DropdownMenuItem(value: 'ar', child: Text('Arabic')),
+              ],
+              onChanged: (_) {},
+            ),
           ),
+        ),
 
-          rowItem(
-            children: [
-              const Text(AppConstants.termsAndConditions),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
-            ],
-          ),
-          //Logout Button
-          BlocConsumer<LogoutCubit, LogoutStates>(
-            listener: (context, state) {
-              if (state.logoutResource.isSuccess) {
-                context.go(RouteNames.login);
-              }
-              if (state.logoutResource.isError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      state.logoutResource.error ?? "Logout failed",
-                    ),
-                  ),
-                );
-              }
-            },
-            builder: (context, state) {
-              final isLoading = state.logoutResource.isLoading;
-              return rowItem(
-                children: [
-                  const Text('Logout'),
-                  IconButton(
-                    onPressed: isLoading
-                        ? null
-                        : () {
-                            context.read<LogoutCubit>().doIntent(
-                              PerformLogout(),
-                            );
-                          },
-                    icon: isLoading
-                        ? const SizedBox(
-                            width: 22,
-                            height: 22,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : const Icon(Icons.logout),
-                  ),
-                ],
+        const Divider(),
+
+        _ProfileItem(
+          title: AppConstants.aboutUs,
+          icon: Icons.info_outline,
+          onTap: () {},
+        ),
+
+        _ProfileItem(
+          title: AppConstants.termsAndConditions,
+          icon: Icons.description_outlined,
+          onTap: () {},
+        ),
+
+        const Divider(),
+
+        /// Logout
+        BlocConsumer<LogoutCubit, LogoutStates>(
+          listener: (context, state) {
+            if (state.logoutResource.isSuccess) {
+              context.go(RouteNames.login);
+            }
+            if (state.logoutResource.isError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.logoutResource.error ?? 'Logout failed'),
+                ),
               );
-            },
-          ),
-        ],
-      ),
+            }
+          },
+          builder: (context, state) {
+            final isLoading = state.logoutResource.isLoading;
+            return _ProfileItem(
+              title: AppConstants.logout,
+              icon: Icons.logout,
+              color: Colors.red,
+              trailing: isLoading
+                  ? const SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : null,
+              onTap: isLoading
+                  ? null
+                  : () {
+                      context.read<LogoutCubit>().doIntent(PerformLogout());
+                    },
+            );
+          },
+        ),
+      ],
     );
   }
 }
 
-Widget rowItem({
-  required List<Widget> children,
-  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.spaceBetween,
-  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-}) {
-  return Row(
-    mainAxisAlignment: mainAxisAlignment,
-    crossAxisAlignment: crossAxisAlignment,
-    children: children,
-  );
+class _ProfileItem extends StatelessWidget {
+  const _ProfileItem({
+    required this.title,
+    required this.icon,
+    this.onTap,
+    this.trailing,
+    this.color,
+  });
+
+  final String title;
+  final IconData icon;
+  final VoidCallback? onTap;
+  final Widget? trailing;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final itemColor = color ?? Theme.of(context).colorScheme.onSurface;
+
+    return ListTile(
+      leading: Icon(icon, color: itemColor),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: itemColor,
+        ),
+      ),
+      trailing: trailing ?? const Icon(Icons.arrow_forward_ios, size: 16),
+      onTap: onTap,
+    );
+  }
 }

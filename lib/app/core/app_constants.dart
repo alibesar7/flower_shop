@@ -33,4 +33,8 @@ class AppConstants {
   static const String password = 'Password';
   static const String update = 'Update';
   static const String editProfile = 'Edit Profile';
+  static const String logout = 'Logout';
+  static const String english = 'English';
+  static const String arabic = 'Arabic';
+  static const String logoutFailed = 'Logout failed';
 }

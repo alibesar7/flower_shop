@@ -7,6 +7,7 @@ import 'package:flower_shop/features/main_profile/presentation/widgets/guest_scr
 import 'package:flower_shop/features/main_profile/presentation/widgets/profile_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileContent extends StatelessWidget {
   const ProfileContent({super.key});
@@ -30,13 +31,14 @@ class ProfileContent extends StatelessWidget {
 
             return GuestProfileScreen(
               onLoginPressed: () {
-                Navigator.of(context).pushNamed(RouteNames.login);
+                context.go('/login');
               },
+
               onRegisterPressed: () {
-                Navigator.of(context).pushNamed(RouteNames.signup);
+                context.go('/signup');
               },
               onContinueAsGuest: () {
-                context.read<ProfileCubit>().doIntent(LoadProfileEvent());
+                context.go('/');
               },
             );
           }
@@ -48,13 +50,13 @@ class ProfileContent extends StatelessWidget {
 
         return GuestProfileScreen(
           onLoginPressed: () {
-            Navigator.of(context).pushNamed(RouteNames.login);
+            context.go('/login');
           },
           onRegisterPressed: () {
-            Navigator.of(context).pushNamed(RouteNames.signup);
+            context.go('/signup');
           },
           onContinueAsGuest: () {
-            context.read<ProfileCubit>().doIntent(LoadProfileEvent());
+            context.go('/home');
           },
         );
       },
