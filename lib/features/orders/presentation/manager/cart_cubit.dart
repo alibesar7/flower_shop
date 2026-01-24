@@ -63,7 +63,9 @@ class CartCubit extends Cubit<CartStates> {
     required String product,
     required int quantity,
   }) async {
-    emit(state.copyWith(cart: Resource.loading()));
+    emit(
+      state.copyWith(cart: Resource.loading(), lastAction: CartAction.adding),
+    );
     ApiResult<UserCartsModel> response = await _addProductToCartUsecase.call(
       product: product,
       quantity: quantity,
@@ -75,7 +77,12 @@ class CartCubit extends Cubit<CartStates> {
                 ?.whereType<CartItemsModel>()
                 .toList() ??
             [];
-        emit(state.copyWith(cart: Resource.success(response.data)));
+        emit(
+          state.copyWith(
+            cart: Resource.success(response.data),
+            lastAction: CartAction.adding,
+          ),
+        );
 
       case ErrorApiResult<UserCartsModel>():
         emit(state.copyWith(cart: Resource.error(response.error)));
@@ -146,5 +153,9 @@ class CartCubit extends Cubit<CartStates> {
       total += price * (item.quantity ?? 1);
     }
     return total;
+  }
+
+  void resetAction() {
+    emit(state.copyWith(lastAction: CartAction.none));
   }
 }

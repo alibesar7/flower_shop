@@ -35,14 +35,14 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^10.0.0
-  build_runner: ^2.4.6
+  build_runner: ^2.7.1
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  injectable_generator: ^2.10.0
+  injectable_generator: ^2.4.1
   json_serializable: ^6.8.0
   mockito: ^5.5.0
-  retrofit_generator: ^10.2.1
+  retrofit_generator: 10.0.1
 
 flutter:
   uses-material-design: true

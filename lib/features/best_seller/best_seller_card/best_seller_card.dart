@@ -1,12 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flower_shop/app/config/base_state/base_state.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
 import 'package:flower_shop/app/core/ui_helper/style/font_style.dart';
-import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
 import 'package:flower_shop/features/home/domain/models/best_seller_model.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_cubit.dart';
 import 'package:flower_shop/features/orders/presentation/manager/cart_intent.dart';
-import 'package:flower_shop/features/orders/presentation/manager/cart_states.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,49 +94,28 @@ class BestSellerCard extends StatelessWidget {
 
             const Spacer(),
 
-            BlocListener<CartCubit, CartStates>(
-              listener: (context, state) {
-                final cartResource = BlocProvider.of<CartCubit>(
-                  context,
-                ).state.cart;
-                if (cartResource != null) {
-                  if (cartResource.status == Status.success) {
-                    showAppSnackbar(
-                      context,
-                      LocaleKeys.productAddedToCart.tr(),
-                    );
-                  } else if (cartResource.status == Status.error) {
-                    showAppSnackbar(
-                      context,
-                      cartResource.error.toString(),
-                      backgroundColor: AppColors.red,
-                    );
-                  }
-                }
-              },
-              child: SizedBox(
-                width: double.infinity,
-                height: 32,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    BlocProvider.of<CartCubit>(context).doIntent(
-                      AddProductToCartIntent(
-                        productId: product.id.toString(),
-                        quantity: 1,
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.shopping_cart_outlined, size: 18),
-                  label: Text(
-                    LocaleKeys.addToCard.tr(),
-                    style: AppStyles.white13medium,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.pink,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+            SizedBox(
+              width: double.infinity,
+              height: 32,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  BlocProvider.of<CartCubit>(context).doIntent(
+                    AddProductToCartIntent(
+                      productId: product.id.toString(),
+                      quantity: 1,
                     ),
+                  );
+                },
+                icon: const Icon(Icons.shopping_cart_outlined, size: 18),
+                label: Text(
+                  LocaleKeys.addToCard.tr(),
+                  style: AppStyles.white13medium,
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.pink,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
               ),
