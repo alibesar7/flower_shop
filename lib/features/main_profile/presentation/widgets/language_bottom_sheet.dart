@@ -5,8 +5,6 @@ import '../../../../app/core/ui_helper/color/colors.dart';
 import '../../../../app/core/ui_helper/style/font_style.dart';
 import '../../../../generated/locale_keys.g.dart';
 
-
-
 class LanguageBottomSheet extends StatelessWidget {
   const LanguageBottomSheet({super.key});
 

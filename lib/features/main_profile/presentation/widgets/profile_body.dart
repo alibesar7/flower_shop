@@ -94,18 +94,15 @@ class ProfileBody extends StatelessWidget {
         _ProfileItem(
           title: AppConstants.Language,
           icon: Icons.language,
-          onTap: (){
-
-
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) => const LanguageBottomSheet(),
-                );
-
-
-
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => const LanguageBottomSheet(),
+            );
           },
-          trailing:Text(context.locale.languageCode == 'ar' ? 'Arabic' : 'English'),
+          trailing: Text(
+            context.locale.languageCode == 'ar' ? 'Arabic' : 'English',
+          ),
         ),
 
         const Divider(),
