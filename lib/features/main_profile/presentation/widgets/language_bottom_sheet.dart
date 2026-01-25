@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../generated/locale_keys.g.dart';
-import '../ui_helper/color/colors.dart';
-import '../ui_helper/style/font_style.dart';
+import '../../../../app/core/ui_helper/color/colors.dart';
+import '../../../../app/core/ui_helper/style/font_style.dart';
+import '../../../../generated/locale_keys.g.dart';
+
+
 
 class LanguageBottomSheet extends StatelessWidget {
   const LanguageBottomSheet({super.key});
@@ -34,7 +36,7 @@ class LanguageBottomSheet extends StatelessWidget {
             Text(
               LocaleKeys.change_language.tr(),
               style: AppStyles.black14bold.copyWith(
-                color: AppColors.pink, // title in pink like screenshot
+                color: AppColors.pink,
                 fontSize: 18,
               ),
             ),

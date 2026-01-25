@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/core/app_constants.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/auth/presentation/logout/manager/logout_cubit.dart';
@@ -9,6 +10,8 @@ import 'package:flower_shop/features/main_profile/presentation/cubit/profile_int
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import 'language_bottom_sheet.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key, required this.user});
@@ -91,16 +94,18 @@ class ProfileBody extends StatelessWidget {
         _ProfileItem(
           title: AppConstants.Language,
           icon: Icons.language,
-          trailing: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: 'en',
-              items: const [
-                DropdownMenuItem(value: 'en', child: Text('English')),
-                DropdownMenuItem(value: 'ar', child: Text('Arabic')),
-              ],
-              onChanged: (_) {},
-            ),
-          ),
+          onTap: (){
+
+
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const LanguageBottomSheet(),
+                );
+
+
+
+          },
+          trailing:Text(context.locale.languageCode == 'ar' ? 'Arabic' : 'English'),
         ),
 
         const Divider(),
