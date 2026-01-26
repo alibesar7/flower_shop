@@ -1,7 +1,5 @@
 import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
-import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_cubit.dart';
-import 'package:flower_shop/features/main_profile/presentation/cubit/profile_intent.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_state.dart';
 import 'package:flower_shop/features/main_profile/presentation/widgets/guest_screen.dart';
 import 'package:flower_shop/features/main_profile/presentation/widgets/profile_body.dart';

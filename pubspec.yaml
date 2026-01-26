@@ -50,6 +50,7 @@ flutter:
   assets:
     - assets/images/
     - assets/translations/
+    - assets/files/
 
 easy_localization:
   path: assets/translations
