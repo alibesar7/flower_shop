@@ -1,4 +1,5 @@
 import 'package:flower_shop/app/core/router/route_names.dart';
+import 'package:flower_shop/features/addresses/presentation/categories/pages/add_address_page.dart';
 import 'package:flower_shop/features/app_start/presentation/pages/app_start_page.dart';
 import 'package:flower_shop/features/auth/presentation/change_password/manager/change_password_cubit.dart';
 import 'package:flower_shop/features/auth/presentation/change_password/pages/change_password_page.dart';
@@ -30,7 +31,7 @@ import 'package:flower_shop/features/main_profile/domain/models/profile_user_mod
 import '../../config/di/di.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RouteNames.appStart, //  start here
+  initialLocation: RouteNames.addAddressPage, //  start here
   routes: [
     GoRoute(
       path: RouteNames.signup,
@@ -144,6 +145,12 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final user = state.extra as ProfileUserModel?;
         return EditProfilePage(user: user);
+      },
+    ),
+    GoRoute(
+      path: RouteNames.addAddressPage,
+      builder: (context, state) {
+        return AddAddressPage();
       },
     ),
   ],

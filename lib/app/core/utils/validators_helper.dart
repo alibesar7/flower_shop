@@ -47,4 +47,32 @@ class Validators {
     }
     return null;
   }
+
+  static String? validateRecipientName(String? value) {
+    if (value == null || value.isEmpty) {
+      return UserErrorMessages.requiredRecipientName;
+    }
+    if (value.length < 3) {
+      return UserErrorMessages.least3Characters;
+    }
+    if (RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%-]').hasMatch(value)) {
+      return UserErrorMessages.invalidRecipientName;
+    }
+    return null;
+  }
+  static String? validateAddress(String? value) {
+    if (value == null || value.isEmpty) {
+      return UserErrorMessages.requiredAddress;
+    }
+    if (value.length < 3) {
+      return UserErrorMessages.least3Characters;
+    }
+    if (RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%-]').hasMatch(value)) {
+      return UserErrorMessages.invalidAddress;
+    }
+    return null;
+  }
+
+
+
 }

@@ -115,5 +115,10 @@
   "productAddedToCart": "Product Added To Cart",
   "change_language": "Change Language",
   "arabic": "Arabic",
-  "english": "English"
+  "english": "English",
+  "invalidRecipientName": "Invalid Recipient Name",
+  "invalidAddress": "Invalid Address",
+  "requiredRecipientName": "Required Recipient Name",
+  "requiredAddress": "Required Address"
+
 }
