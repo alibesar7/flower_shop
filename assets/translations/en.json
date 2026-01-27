@@ -115,5 +115,12 @@
   "productAddedToCart": "Product Added To Cart",
   "change_language": "Change Language",
   "arabic": "Arabic",
-  "english": "English"
+  "english": "English",
+  "sortBy": "Sort By",
+  "lowestPrice": "Lowest Price",
+  "highestPrice": "Highest Price",
+  "newest": "Newest",
+  "oldest": "Oldest",
+  "discount": "Discounts",
+  "filter": "Filter"
 }

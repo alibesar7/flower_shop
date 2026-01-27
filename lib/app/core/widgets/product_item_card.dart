@@ -90,7 +90,7 @@ class ProductItemCard extends StatelessWidget {
                         'EGP ${_format(priceAfterDiscount)}',
                         style: AppStyles.black14bold,
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 5),
                       if (hasOldPrice)
                         Text(
                           _format(originalPrice),
@@ -100,13 +100,12 @@ class ProductItemCard extends StatelessWidget {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                      const SizedBox(width: 8),
-
+                      const SizedBox(width: 5),
                       // if (product.discountPercent != null &&
                       //     product.discountPercent! > 0)
                       if (discountPercentage > 0)
                         Text(
-                          '${discountPercentage.round()} %',
+                          '${discountPercentage.round()}%',
                           style: AppStyles.green14regular,
                         ),
                     ],
