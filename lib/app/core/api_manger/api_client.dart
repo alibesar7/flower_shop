@@ -3,6 +3,8 @@ import 'package:flower_shop/features/auth/data/models/response/logout_response_m
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart';
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart';
 import 'package:flower_shop/features/auth/data/models/response/login_response_model.dart';
+import 'package:flower_shop/features/checkout/data/models/response/address_response.dart';
+import 'package:flower_shop/features/checkout/data/models/response/cash_order_response.dart';
 import 'package:flower_shop/features/e_commerce/data/models/response/product_details_response.dart';
 import 'package:flower_shop/features/edit_profile/data/models/request/editprofile_request/edit_profile_request.dart';
 import 'package:flower_shop/features/edit_profile/data/models/response/editprofile_response/edit_profile_resonse.dart';
@@ -99,6 +101,7 @@ abstract class ApiClient {
     @Body() required EditProfileRequest request,
   });
 
+
   @MultiPart()
   @PUT(AppEndpointString.uploadPhoto)
   Future<HttpResponse<EditProfileResponse>> uploadPhoto({
@@ -110,4 +113,14 @@ abstract class ApiClient {
   Future<HttpResponse<LogoutResponse>> logout({
     @Header("Authorization") required String token,
   });
+
+  @POST(AppEndpointString.cashOrder)
+  Future<HttpResponse<CashOrderResponse>> cashOrder(
+    @Header("Authorization")  String token, 
+  );
+
+  @GET(AppEndpointString.addresses)
+  Future<HttpResponse<AddressResponse>> address(
+    @Header("Authorization")  String token,
+  );
 }

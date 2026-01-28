@@ -1,4 +1,5 @@
 import 'package:flower_shop/app/config/auth_storage/auth_storage.dart';
+import 'package:flower_shop/app/core/app_constants.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_cubit.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_intent.dart';
@@ -31,14 +32,14 @@ class ProfileContent extends StatelessWidget {
 
             return GuestProfileScreen(
               onLoginPressed: () {
-                context.go('/login');
+                context.go(AppConstants.login);
               },
 
               onRegisterPressed: () {
-                context.go('/signup');
+                context.go(AppConstants.register);
               },
               onContinueAsGuest: () {
-                context.go('/');
+                context.go(AppConstants.home);
               },
             );
           }
@@ -48,17 +49,18 @@ class ProfileContent extends StatelessWidget {
           return ProfileBody(user: userState.data!);
         }
 
-        return GuestProfileScreen(
-          onLoginPressed: () {
-            context.go('/login');
-          },
-          onRegisterPressed: () {
-            context.go('/signup');
-          },
-          onContinueAsGuest: () {
-            context.go('/home');
-          },
-        );
+return GuestProfileScreen(
+  onLoginPressed: () {
+    context.go('/login');
+  },
+  onRegisterPressed: () {
+    context.go('/signup');
+  },
+  onContinueAsGuest: () {
+    context.go('/home');
+  },
+);
+
       },
     );
   }
