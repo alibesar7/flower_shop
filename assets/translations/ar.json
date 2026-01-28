@@ -111,5 +111,6 @@
   "no_products_found": "لم يتم العثور على منتجات",
   "change_language": "تغيير اللغة",
   "arabic": "العربية",
-  "english": "الإنجليزية"
+  "english": "الإنجليزية",
+  "initialSearchMsg" : "ابحث عن المنتج الذي تريده"
 }

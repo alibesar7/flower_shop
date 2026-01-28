@@ -1,8 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/app/core/ui_helper/assets/images.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
-import 'package:flower_shop/generated/locale_keys.g.dart';
+import 'package:flower_shop/features/home/presentation/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchWithFilter extends StatelessWidget {
   const SearchWithFilter({super.key});
@@ -14,21 +15,8 @@ class SearchWithFilter extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: GestureDetector(
-              onTap: () {},
-              child: SizedBox(
-                height: 48,
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: LocaleKeys.search.tr(),
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-              ),
+            child: SearchTextField(
+              onTap: () => context.push(RouteNames.searchPage),
             ),
           ),
 

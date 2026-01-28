@@ -115,5 +115,6 @@
   "productAddedToCart": "Product Added To Cart",
   "change_language": "Change Language",
   "arabic": "Arabic",
-  "english": "English"
+  "english": "English",
+  "initialSearchMsg" : "Search For Any Product You Want"
 }

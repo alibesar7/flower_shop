@@ -52,6 +52,7 @@ abstract class ApiClient {
   Future<HttpResponse<ProductsResponse>> getProducts({
     @Query("occasion") String? occasion,
     @Query("category") String? category,
+    @Query("search") String? search,
   });
 
   @GET(AppEndpointString.allCategories)
