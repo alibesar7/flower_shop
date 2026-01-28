@@ -25,6 +25,8 @@ import '../../../features/addresses/domain/usecases/edit_user_address.dart'
     as _i345;
 import '../../../features/addresses/domain/usecases/get_user_addresses.dart'
     as _i974;
+import '../../../features/addresses/presentation/saved_addresses/manager/saved_address_cubit.dart'
+    as _i288;
 import '../../../features/app_start/presentation/manager/app_cubit.dart'
     as _i858;
 import '../../../features/auth/api/datasource/auth_remote_datasource_impl.dart'
@@ -262,6 +264,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i498.GetProductsUseCase>(
       () => _i498.GetProductsUseCase(gh<_i520.HomeRepo>()),
+    );
+    gh.factory<_i288.SavedAddressCubit>(
+      () => _i288.SavedAddressCubit(
+        gh<_i601.AddressRepo>(),
+        gh<_i603.AuthStorage>(),
+      ),
     );
     gh.lazySingleton<_i94.HomeFactory>(
       () => _i73.RemoteHomeFactory(

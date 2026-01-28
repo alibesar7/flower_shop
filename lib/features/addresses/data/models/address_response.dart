@@ -6,14 +6,14 @@ part 'address_response.g.dart';
 
 @JsonSerializable()
 class AddressResponse {
-  @JsonKey(name: "error")
-  final String? error;
   @JsonKey(name: "message")
   final String? message;
-  @JsonKey(name: "addresses")
-  final List<Address>? addresses;
+  @JsonKey(name: "error")
+  final String? error;
+  @JsonKey(name: "address")
+  final List<Address>? address;
 
-  AddressResponse({this.error, this.message, this.addresses});
+  AddressResponse({this.message, this.error, this.address});
 
   factory AddressResponse.fromJson(Map<String, dynamic> json) {
     return _$AddressResponseFromJson(json);
@@ -24,6 +24,6 @@ class AddressResponse {
   }
 
   List<AddressEntity> toEntityList() {
-    return addresses?.map((e) => e.toEntity()).toList() ?? [];
+    return address?.map((e) => e.toEntity()).toList() ?? [];
   }
 }

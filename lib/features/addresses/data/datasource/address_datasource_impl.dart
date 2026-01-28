@@ -4,6 +4,7 @@ import 'package:flower_shop/app/core/network/safe_api_call.dart';
 import 'package:flower_shop/features/addresses/data/datasource/address_datasource.dart';
 import 'package:flower_shop/features/addresses/data/models/address_request.dart';
 import 'package:flower_shop/features/addresses/data/models/address_response.dart';
+import 'package:flower_shop/features/addresses/data/models/get_address_response.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddressDatasource)
@@ -11,7 +12,7 @@ class AddressDatasourceImpl extends AddressDatasource {
   ApiClient apiClient;
   AddressDatasourceImpl(this.apiClient);
   @override
-  Future<ApiResult<AddressResponse>?> getAddresses({required String token}) {
+  Future<ApiResult<GetAddressResponse>?> getAddresses({required String token}) {
     return safeApiCall(call: () => apiClient.getAddresses(token: token));
   }
 

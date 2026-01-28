@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flower_shop/features/addresses/data/models/address_request.dart';
 import 'package:flower_shop/features/addresses/data/models/address_response.dart';
+import 'package:flower_shop/features/addresses/data/models/get_address_response.dart';
 import 'package:flower_shop/features/auth/data/models/response/logout_response_model.dart';
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart';
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart';
@@ -114,7 +115,7 @@ abstract class ApiClient {
   });
 
   @GET(AppEndpointString.addresses)
-  Future<HttpResponse<AddressResponse>> getAddresses({
+  Future<HttpResponse<GetAddressResponse>> getAddresses({
     @Header("Authorization") required String token,
   });
 

@@ -115,6 +115,8 @@
   "invalidRecipientName": "اسم المستلم غير صحيح",
   "invalidAddress": "العنوان غير صحيح",
   "requiredRecipientName": "يرجى إدخال اسم المستلم",
-  "requiredAddress": "يرجى إدخال العنوان"
+  "requiredAddress": "يرجى إدخال العنوان",
+  "addNewAddress": "إضافة عنوان جديد",
+  "savedAddress": "تم حفظ العنوان"
 
 }

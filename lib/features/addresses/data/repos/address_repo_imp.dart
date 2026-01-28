@@ -2,6 +2,7 @@ import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/addresses/data/datasource/address_datasource.dart';
 import 'package:flower_shop/features/addresses/data/models/address_request.dart';
 import 'package:flower_shop/features/addresses/data/models/address_response.dart';
+import 'package:flower_shop/features/addresses/data/models/get_address_response.dart';
 import 'package:flower_shop/features/addresses/domain/models/address_entity.dart';
 import 'package:flower_shop/features/addresses/domain/repos/address_repo.dart';
 import 'package:injectable/injectable.dart';
@@ -18,13 +19,13 @@ class AddressRepoImp implements AddressRepo {
   }) async {
     final result = await addressDatasource.getAddresses(token: token);
 
-    if (result is SuccessApiResult<AddressResponse>) {
+    if (result is SuccessApiResult<GetAddressResponse>) {
       return SuccessApiResult<List<AddressEntity>>(
         data: result.data.toEntityList(),
       );
     }
 
-    if (result is ErrorApiResult<AddressResponse>) {
+    if (result is ErrorApiResult<GetAddressResponse>) {
       return ErrorApiResult<List<AddressEntity>>(error: result.error);
     }
 

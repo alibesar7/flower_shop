@@ -119,6 +119,8 @@
   "invalidRecipientName": "Invalid Recipient Name",
   "invalidAddress": "Invalid Address",
   "requiredRecipientName": "Required Recipient Name",
-  "requiredAddress": "Required Address"
+  "requiredAddress": "Required Address",
+  "addNewAddress": "Add New Address",
+  "savedAddress": "Saved Address"
 
 }
