@@ -47,6 +47,10 @@ import '../../../features/auth/presentation/signup/manager/signup_cubit.dart'
 import '../../../features/auth/presentation/verify_reset_code/manager/verify_reset_code_cubit.dart'
     as _i303;
 import '../../../features/best_seller/menager/best_sell_cubit.dart' as _i627;
+import '../../../features/checkout/data/datasource/checkout_data_source.dart'
+    as _i673;
+import '../../../features/checkout/data/repos/checkout_repo_imp.dart' as _i178;
+import '../../../features/checkout/domain/repos/checkout_repo.dart' as _i14;
 import '../../../features/e_commerce/data/datasource/ecommerce_remote_datasource.dart'
     as _i152;
 import '../../../features/e_commerce/data/datasource/ecommerce_remote_datasource_impl.dart'
@@ -142,6 +146,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i405.NavCubit>(() => _i405.NavCubit());
     gh.lazySingleton<_i603.AuthStorage>(() => _i603.AuthStorage());
     gh.factory<_i858.AppCubit>(() => _i858.AppCubit(gh<_i603.AuthStorage>()));
+    gh.factory<_i14.CheckoutRepo>(
+      () => _i178.CheckoutRepoImpl(
+        checkoutDataSource: gh<_i673.CheckoutDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.dio(gh<_i603.AuthStorage>()),
     );

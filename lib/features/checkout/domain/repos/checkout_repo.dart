@@ -6,6 +6,5 @@ import 'package:flower_shop/features/main_profile/domain/models/profile_user_mod
 
 abstract class CheckoutRepo {
   Future<ApiResult<CashOrderModel>> postCashOrder(String token);
-    Future<ApiResult<AddressModel>> getAddress(String token);
-
+Future<ApiResult<List<AddressModel>>> getAddress(String token);
 }

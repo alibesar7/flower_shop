@@ -1,4 +1,6 @@
-class AddressModel {
+import 'package:equatable/equatable.dart';
+
+class AddressModel extends Equatable {
   final String id;
   final String username;
   final String phone;
@@ -16,4 +18,8 @@ class AddressModel {
     required this.lat,
     required this.long,
   });
+  @override
+  List<Object?> get props => [id, username, phone, city, street, lat, long];
+
+  
 }

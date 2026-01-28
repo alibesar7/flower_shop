@@ -1,4 +1,6 @@
-class CashOrderModel {
+import 'package:equatable/equatable.dart';
+
+class CashOrderModel extends Equatable {
   final String id;
   final String userId;
   final List<OrderItem> items;
@@ -11,7 +13,7 @@ class CashOrderModel {
   final DateTime updatedAt;
   final String orderNumber;
 
-  CashOrderModel({
+  const CashOrderModel({
     required this.id,
     required this.userId,
     required this.items,
@@ -24,23 +26,41 @@ class CashOrderModel {
     required this.updatedAt,
     required this.orderNumber,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        userId,
+        items,
+        totalPrice,
+        paymentType,
+        isPaid,
+        isDelivered,
+        state,
+        createdAt,
+        updatedAt,
+        orderNumber,
+      ];
 }
 
-class OrderItem {
+class OrderItem extends Equatable {
   final String id;
   final Product product;
   final double price;
   final int quantity;
 
-  OrderItem({
+  const OrderItem({
     required this.id,
     required this.product,
     required this.price,
     required this.quantity,
   });
+
+  @override
+  List<Object?> get props => [id, product, price, quantity];
 }
 
-class Product {
+class Product extends Equatable {
   final String id;
   final String title;
   final String description;
@@ -50,7 +70,7 @@ class Product {
   final int quantity;
   final String category;
 
-  Product({
+  const Product({
     required this.id,
     required this.title,
     required this.description,
@@ -60,4 +80,16 @@ class Product {
     required this.quantity,
     required this.category,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        description,
+        imgCover,
+        price,
+        priceAfterDiscount,
+        quantity,
+        category,
+      ];
 }

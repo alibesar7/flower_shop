@@ -1,3 +1,4 @@
+import 'package:flower_shop/features/checkout/domain/models/address_model.dart';
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
@@ -6,49 +7,75 @@ part 'address_response.g.dart';
 
 @JsonSerializable()
 class AddressResponse {
-    @JsonKey(name: "message")
-    final String message;
-    @JsonKey(name: "addresses")
-    final List<Address> addresses;
+  @JsonKey(name: "message")
+  final String message;
+  @JsonKey(name: "addresses")
+  final List<Address> addresses;
 
-    AddressResponse({
-        required this.message,
-        required this.addresses,
-    });
+  AddressResponse({
+    required this.message,
+    required this.addresses,
+  });
 
-    factory AddressResponse.fromJson(Map<String, dynamic> json) => _$AddressResponseFromJson(json);
+  factory AddressResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddressResponseFromJson(json);
 
-    Map<String, dynamic> toJson() => _$AddressResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AddressResponseToJson(this);
+
+List<AddressModel> toDomain() {
+  return addresses.map((e) => e.toDomain()).toList();
 }
+
+}
+
 
 @JsonSerializable()
 class Address {
-    @JsonKey(name: "street")
-    final String street;
-    @JsonKey(name: "phone")
-    final String phone;
-    @JsonKey(name: "city")
-    final String city;
-    @JsonKey(name: "lat")
-    final String lat;
-    @JsonKey(name: "long")
-    final String long;
-    @JsonKey(name: "username")
-    final String username;
-    @JsonKey(name: "_id")
-    final String id;
+  @JsonKey(name: "street")
+  final String street;
 
-    Address({
-        required this.street,
-        required this.phone,
-        required this.city,
-        required this.lat,
-        required this.long,
-        required this.username,
-        required this.id,
-    });
+  @JsonKey(name: "phone")
+  final String phone;
 
-    factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+  @JsonKey(name: "city")
+  final String city;
 
-    Map<String, dynamic> toJson() => _$AddressToJson(this);
+  @JsonKey(name: "lat")
+  final String lat;
+
+  @JsonKey(name: "long")
+  final String long;
+
+  @JsonKey(name: "username")
+  final String username;
+
+  @JsonKey(name: "_id")
+  final String id;
+
+  Address({
+    required this.street,
+    required this.phone,
+    required this.city,
+    required this.lat,
+    required this.long,
+    required this.username,
+    required this.id,
+  });
+
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
+
+  AddressModel toDomain() {
+    return AddressModel(
+      id: id,
+      username: username,
+      phone: phone,
+      city: city,
+      street: street,
+      lat: double.parse(lat),
+      long: double.parse(long),
+    );
+  }
 }
