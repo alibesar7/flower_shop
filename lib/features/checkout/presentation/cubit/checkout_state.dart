@@ -28,6 +28,7 @@ class CheckoutState {
     this.deliveryFee = 0,
     this.error,
     this.isLoading = false,
+    
   })  : addresses = addresses ?? Resource.initial(),
         order = order ?? Resource.initial();
 

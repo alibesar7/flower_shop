@@ -1,6 +1,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class OrderStatusSection extends StatelessWidget {
@@ -16,13 +17,13 @@ class OrderStatusSection extends StatelessWidget {
     Color statusColor;
 
     if (order.isDelivered) {
-      statusText = 'delivered'.tr();
+      statusText = LocaleKeys.delivered.tr();
       statusColor = Colors.green;
     } else if (order.isPaid) {
-      statusText = 'paid'.tr();
+      statusText = LocaleKeys.paid.tr();
       statusColor = Colors.blue;
     } else {
-      statusText = 'pending'.tr();
+      statusText = LocaleKeys.pending.tr();
       statusColor = Colors.orange;
     }
 
@@ -38,7 +39,7 @@ class OrderStatusSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'order_status'.tr(),
+           LocaleKeys.order_status.tr(),
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           Text(
@@ -54,6 +55,4 @@ class OrderStatusSection extends StatelessWidget {
     );
   }
 }
-
-// ---------- Order Items Section ----------
 

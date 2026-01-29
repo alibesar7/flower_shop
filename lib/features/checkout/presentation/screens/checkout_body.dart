@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
@@ -8,10 +9,10 @@ import 'package:flower_shop/features/checkout/presentation/widgets/gifts.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/order_status.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/payment.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/place_order.dart';
-import 'package:flower_shop/features/orders/presentation/widgets/total_price_section.dart';
+import 'package:flower_shop/features/checkout/presentation/widgets/total_price.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 class CheckoutBody extends StatefulWidget {
   const CheckoutBody({super.key});
 
@@ -33,19 +34,28 @@ class _CheckoutBodyState extends State<CheckoutBody> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<CheckoutCubit, CheckoutState>(
+      // 🔒 Listen ONLY to meaningful transitions
       listenWhen: (prev, curr) =>
-          prev.order != curr.order || prev.error != curr.error,
+          prev.order != curr.order ||
+          (prev.error != curr.error && curr.error != null),
       listener: (context, state) {
+        // ✅ SUCCESS FIRST
         if (state.order.isSuccess) {
           showAppSnackbar(
             context,
-            'order_success'.tr(),
+            LocaleKeys.order_success.tr(),
             backgroundColor: AppColors.green,
           );
+          return; // ⛔ stop here — no double SnackBars
         }
 
+        // ❌ ERROR
         if (state.error != null) {
-          showAppSnackbar(context, state.error!, backgroundColor: Colors.red);
+          showAppSnackbar(
+            context,
+            state.error!,
+            backgroundColor: AppColors.red,
+          );
         }
       },
       child: BlocBuilder<CheckoutCubit, CheckoutState>(
@@ -59,51 +69,55 @@ class _CheckoutBodyState extends State<CheckoutBody> {
           if (addresses.isError) {
             return Center(
               child: Text(
-                addresses.error ?? 'failed_load_addresses'.tr(),
-                style: const TextStyle(color: Colors.red),
+                addresses.error ?? LocaleKeys.failed_load_addresses.tr(),
+                style: const TextStyle(color: AppColors.red),
               ),
             );
           }
 
           if (addresses.data?.isEmpty ?? true) {
-            return Center(child: Text('no_addresses'.tr()));
+            return Center(child: Text(LocaleKeys.no_addresses.tr()));
           }
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const DeliveryTimeWidget(),
-                const SizedBox(height: 24),
-                AddressSection(state: state),
-                const SizedBox(height: 24),
-                PaymentMethodSection(state: state),
-                const SizedBox(height: 24),
-                GiftSection(
-                  isGift: state.isGift,
-                  giftNameController: _giftNameController,
-                  giftPhoneController: _giftPhoneController,
-                  onToggle: (val) =>
-                      context.read<CheckoutCubit>().toggleGift(val),
-                  onNameChanged: (val) =>
-                      context.read<CheckoutCubit>().updateGiftName(val),
-                  onPhoneChanged: (val) =>
-                      context.read<CheckoutCubit>().updateGiftPhone(val),
-                ),
-                const SizedBox(height: 24),
+          return KeyedSubtree(
+            key: ValueKey(context.locale.languageCode),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const DeliveryTimeWidget(),
+                  const SizedBox(height: 24),
 
-                // Place Order Button
-                PlaceOrderButton(state: state),
-                const SizedBox(height: 24),
+                  AddressSection(state: state),
+                  const SizedBox(height: 24),
 
-                if (state.order.isSuccess) ...[
-                  OrderStatusSection(state: state),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 16),
-                  TotalPriceSection(isLoading: false),
+                  PaymentMethodSection(state: state),
+                  const SizedBox(height: 24),
+
+                  GiftSection(
+                    isGift: state.isGift,
+                    giftNameController: _giftNameController,
+                    giftPhoneController: _giftPhoneController,
+                    onToggle: (val) =>
+                        context.read<CheckoutCubit>().toggleGift(val),
+                    onNameChanged: (val) =>
+                        context.read<CheckoutCubit>().updateGiftName(val),
+                    onPhoneChanged: (val) =>
+                        context.read<CheckoutCubit>().updateGiftPhone(val),
+                  ),
+                  const SizedBox(height: 24),
+
+                  PlaceOrderButton(state: state),
+                  const SizedBox(height: 24),
+
+                  if (state.order.isSuccess) ...[
+                    OrderStatusSection(state: state),
+                    const SizedBox(height: 16),
+                    const TotalPrice(),
+                  ],
                 ],
-              ],
+              ),
             ),
           );
         },
@@ -111,27 +125,3 @@ class _CheckoutBodyState extends State<CheckoutBody> {
     );
   }
 }
-
-
-
-
-  void showAppSnackbar(
-    BuildContext context,
-    String message, {
-    Color backgroundColor = AppColors.green,
-  }) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text(message, style: Theme.of(context).textTheme.labelSmall),
-          backgroundColor: backgroundColor,
-          behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          duration: const Duration(seconds: 3),
-        ),
-      );
-  }

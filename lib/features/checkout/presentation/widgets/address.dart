@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class AddressSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'delivery_address'.tr(),
+          LocaleKeys.delivery_address.tr(),
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
@@ -46,7 +47,7 @@ class AddressSection extends StatelessWidget {
           onPressed: () {},
           icon: const Icon(Icons.add, color: Colors.pink),
           label: Text(
-            'add_new'.tr(),
+            LocaleKeys.add_new.tr(),
             style: const TextStyle(color: Colors.pink),
           ),
         ),

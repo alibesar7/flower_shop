@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_intents.dart';
 import 'package:flower_shop/features/checkout/presentation/screens/checkout_body.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +18,7 @@ class CheckoutScreen extends StatelessWidget {
           context.read<CheckoutCubit>()..doIntent(GetAllCheckoutIntents()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Checkout'),
+          title: Text(LocaleKeys.checkout.tr()),
           leading: BackButton(
             onPressed: () {
               context.push(RouteNames.home);

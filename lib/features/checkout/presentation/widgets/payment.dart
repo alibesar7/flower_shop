@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/payment_method.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class PaymentMethodSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'payment_method'.tr(),
+          LocaleKeys.payment_method.tr(),
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
@@ -33,7 +34,7 @@ class PaymentMethodSection extends StatelessWidget {
                 activeColor: Colors.pink,
                 onChanged: (val) =>
                     context.read<CheckoutCubit>().changePaymentMethod(val!),
-                title: Text('cash_on_delivery'.tr()),
+                title: Text(LocaleKeys.cash_on_delivery.tr()),
               ),
               RadioListTile<PaymentMethod>(
                 value: PaymentMethod.card,
@@ -41,7 +42,7 @@ class PaymentMethodSection extends StatelessWidget {
                 activeColor: Colors.pink,
                 onChanged: (val) =>
                     context.read<CheckoutCubit>().changePaymentMethod(val!),
-                title: Text('credit_card'.tr()),
+                title: Text(LocaleKeys.credit_card.tr()),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class GiftSection extends StatelessWidget {
@@ -28,7 +29,7 @@ class GiftSection extends StatelessWidget {
           value: isGift,
           activeColor: Colors.pink,
           onChanged: onToggle,
-          title: Text('it_is_a_gift'.tr()),
+          title: Text(LocaleKeys.it_is_a_gift.tr()),
         ),
         if (isGift) ...[
           const SizedBox(height: 8),
@@ -36,7 +37,7 @@ class GiftSection extends StatelessWidget {
             controller: giftNameController,
             onChanged: onNameChanged,
             decoration: InputDecoration(
-              labelText: 'Name'.tr(),
+              labelText: LocaleKeys.recipient_name.tr(),
               border: const OutlineInputBorder(),
             ),
           ),
@@ -45,7 +46,7 @@ class GiftSection extends StatelessWidget {
             controller: giftPhoneController,
             onChanged: onPhoneChanged,
             decoration: InputDecoration(
-              labelText: 'Phone Number'.tr(),
+              labelText: LocaleKeys.recipient_phone.tr(),
               border: const OutlineInputBorder(),
             ),
           ),
