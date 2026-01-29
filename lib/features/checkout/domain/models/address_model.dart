@@ -20,6 +20,4 @@ class AddressModel extends Equatable {
   });
   @override
   List<Object?> get props => [id, username, phone, city, street, lat, long];
-
-  
 }

@@ -26,6 +26,7 @@ class CartCubit extends Cubit<CartStates> {
   List<CartItemsModel> cartsList = [];
 
   void doIntent(CartIntent intent) {
+    
     switch (intent) {
       case GetAllCartsIntent():
         _getAllCarts();

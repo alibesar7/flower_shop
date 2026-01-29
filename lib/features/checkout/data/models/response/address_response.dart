@@ -1,7 +1,5 @@
 import 'package:flower_shop/features/checkout/domain/models/address_model.dart';
-import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'dart:convert';
 
 part 'address_response.g.dart';
 

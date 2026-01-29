@@ -6,6 +6,9 @@ import 'package:flower_shop/features/auth/presentation/signup/pages/signup_scree
 import 'package:flower_shop/features/auth/presentation/login/pages/login_page.dart';
 import 'package:flower_shop/features/best_seller/menager/best_sell_cubit.dart';
 import 'package:flower_shop/features/best_seller/pages/best_sell_screen.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/checkout_intents.dart';
+import 'package:flower_shop/features/checkout/presentation/screens/checkout_screen.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_cubit.dart';
 import 'package:flower_shop/features/main_profile/presentation/cubit/profile_intent.dart';
 import 'package:flower_shop/features/main_profile/presentation/screens/profile_screen.dart';
@@ -146,5 +149,15 @@ final GoRouter appRouter = GoRouter(
         return EditProfilePage(user: user);
       },
     ),
+
+        GoRoute(
+      path: RouteNames.checkout,
+      builder: (context, state) {
+        return BlocProvider(
+          create: (_) => getIt<CheckoutCubit>()..doIntent(GetAllCheckoutIntents()),
+          child: const CheckoutScreen(),
+        );
+      },
+    )
   ],
 );

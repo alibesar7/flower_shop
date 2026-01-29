@@ -5,10 +5,9 @@ import 'package:flower_shop/features/checkout/data/datasource/checkout_data_sour
 import 'package:flower_shop/features/checkout/data/models/response/address_response.dart';
 import 'package:flower_shop/features/checkout/data/models/response/cash_order_response.dart';
 import 'package:flower_shop/features/home/data/datasource/home_remote_data_source.dart';
-import 'package:flower_shop/features/home/data/models/response/home_response.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: HomeRemoteDataSource)
+@Injectable(as: CheckoutDataSource)
 class CheckoutDataSourceImp extends CheckoutDataSource {
   ApiClient apiClient;
  CheckoutDataSourceImp (this.apiClient);
