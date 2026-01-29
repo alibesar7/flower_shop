@@ -18,7 +18,12 @@ class CheckoutScreen extends StatelessWidget {
           context.read<CheckoutCubit>()..doIntent(GetAllCheckoutIntents()),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.checkout.tr()),
+          title: Builder(
+            builder: (context) => KeyedSubtree(
+              key: ValueKey(context.locale.languageCode),
+              child: Text(LocaleKeys.checkout.tr()),
+            ),
+          ),
           leading: BackButton(
             onPressed: () {
               context.push(RouteNames.home);
