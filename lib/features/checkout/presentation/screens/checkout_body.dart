@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flower_shop/app/config/base_state/base_state.dart';
 import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_intents.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
-import 'package:flower_shop/features/checkout/presentation/cubit/payment_method.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/address.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/delivery_time.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/gifts.dart';
@@ -57,6 +57,10 @@ class _CheckoutBodyState extends State<CheckoutBody> {
             backgroundColor: AppColors.red,
           );
         }
+
+        if (!state.order.isSuccess && state.order != Resource.initial()) {
+          context.read<CheckoutCubit>().doIntent(ResetOrderIntent());
+        }
       },
       child: BlocBuilder<CheckoutCubit, CheckoutState>(
         builder: (context, state) {
@@ -91,7 +95,7 @@ class _CheckoutBodyState extends State<CheckoutBody> {
 
                   AddressSection(state: state),
                   const SizedBox(height: 24),
-                  PaymentMethodSection(state: CheckoutState()),
+                  PaymentMethodSection(state: state),
                   const SizedBox(height: 24),
 
                   GiftSection(

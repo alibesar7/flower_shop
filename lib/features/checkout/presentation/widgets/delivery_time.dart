@@ -12,17 +12,20 @@ class DeliveryTimeWidget extends StatelessWidget {
       children: [
         const Icon(Icons.access_time, size: 18),
         const SizedBox(width: 8),
-                Text(LocaleKeys.instant.tr()),
-
-        Text(LocaleKeys.arrive_by_datetime.tr(), style: TextStyle(color:  AppColors.green)),
-
-        const Spacer(),
+        Text(LocaleKeys.instant.tr(),),
         Text(
-          LocaleKeys.schedule.tr(),
-          style: const TextStyle(
-            color: AppColors.pink,
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
+          LocaleKeys.arrive_by_datetime.tr(),
+          style: TextStyle(color: AppColors.green),
+        ),
+        const Spacer(),
+        InkWell(
+          child: Text(
+            LocaleKeys.schedule.tr(),
+            style: const TextStyle(
+              color: AppColors.pink,
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],

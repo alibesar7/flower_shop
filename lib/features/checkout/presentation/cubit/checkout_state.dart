@@ -7,7 +7,7 @@ class CheckoutState {
   final Resource<List<AddressModel>> addresses;
   final Resource<CashOrderModel> order;
   final AddressModel? selectedAddress;
-  final PaymentMethod paymentMethod;
+  final PaymentMethod? paymentMethod;
   final bool isGift;
   final String giftName;
   final String giftPhone;
@@ -20,7 +20,7 @@ class CheckoutState {
     Resource<List<AddressModel>>? addresses,
     Resource<CashOrderModel>? order,
     this.selectedAddress,
-    this.paymentMethod = PaymentMethod.cash,
+    this.paymentMethod ,
     this.isGift = false,
     this.giftName = '',
     this.giftPhone = '',

@@ -149,6 +149,7 @@
   "recipient_name": "Recipient name",
   "Recipient_phone": "Recipient phone number",
   "place_order": "Place Order",
-  "instant": "Instant",
-  "arrive_by_datetime" :"Arrive by 03 sep 2026, 11 AM"
+  "instant": "Instant ",
+  "arrive_by_datetime" :"Arrive by 03 sep 2026, 11 AM",
+  "in_cart" :"In Cart"
 }

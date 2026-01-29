@@ -1,7 +1,7 @@
 import 'package:flower_shop/features/checkout/domain/models/address_model.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/payment_method.dart';
 
-sealed class CheckoutIntents {}
+ class CheckoutIntents {}
 
 class GetAllCheckoutIntents extends CheckoutIntents {}
 
@@ -37,3 +37,5 @@ class UpdateGiftPhoneIntent extends CheckoutIntents {
   final String phone;
   UpdateGiftPhoneIntent(this.phone);
 }
+
+class ResetOrderIntent extends CheckoutIntents {}

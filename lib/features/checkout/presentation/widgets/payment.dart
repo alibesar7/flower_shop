@@ -60,7 +60,7 @@ class PaymentMethodSection extends StatelessWidget {
                 groupValue: state.paymentMethod,
                 title: LocaleKeys.cash_on_delivery.tr(),
                 onChanged: (val) =>
-                    context.read<CheckoutCubit>().doIntent(CashOrderIntent()),
+                    context.read<CheckoutCubit>().doIntent(ChangePaymentMethodIntent(PaymentMethod.cash)),
               ),
 
               PaymentMethodTile(
@@ -68,7 +68,7 @@ class PaymentMethodSection extends StatelessWidget {
                 groupValue: state.paymentMethod,
                 title: LocaleKeys.credit_card.tr(),
                 onChanged: (val) =>
-                    context.read<CheckoutCubit>().doIntent(CreditOrderIntent()),
+                    context.read<CheckoutCubit>().doIntent(ChangePaymentMethodIntent(PaymentMethod.card)),
               ),
             ],
           ),

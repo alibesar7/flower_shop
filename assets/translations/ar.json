@@ -149,6 +149,7 @@
   "recipient_name": "اسم المستلم",
   "recipient_phone": "رقم هاتف المستلم",
   "place_order": "إتمام الطلب",
-  "instant": "فوري",
-  "arrive_by_datetime": "يصل بحلول 03 سبتمبر 2026، 11 صباحًا"
+  "instant": "فوري ",
+  "arrive_by_datetime": "يصل بحلول 03 سبتمبر 2026، 11 صباحًا",
+  "in_cart" :"في السلة"
 }

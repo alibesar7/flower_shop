@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
@@ -10,11 +9,15 @@ class OrderStatusSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.order.data == null) return const SizedBox.shrink();
+    // Only show status if order exists and was successful
+    if (!state.order.isSuccess || state.order.data == null) {
+      return const SizedBox.shrink();
+    }
 
     final order = state.order.data!;
-    String statusText;
-    Color statusColor;
+
+    final String statusText;
+    final Color statusColor;
 
     if (order.isDelivered) {
       statusText = LocaleKeys.delivered.tr();
@@ -39,8 +42,11 @@ class OrderStatusSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-           LocaleKeys.order_status.tr(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            LocaleKeys.order_status.tr(),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
           Text(
             statusText,
@@ -55,4 +61,3 @@ class OrderStatusSection extends StatelessWidget {
     );
   }
 }
-

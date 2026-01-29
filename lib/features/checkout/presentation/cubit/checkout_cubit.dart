@@ -10,6 +10,7 @@ import 'package:flower_shop/features/checkout/presentation/cubit/checkout_intent
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/payment_method.dart';
 import 'package:injectable/injectable.dart';
+
 @injectable
 class CheckoutCubit extends Cubit<CheckoutState> {
   final GetAddressUsecase _getAddressUsecase;
@@ -60,6 +61,14 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       case UpdateGiftPhoneIntent():
         emit(state.copyWith(giftPhone: intent.phone));
         break;
+      case ResetOrderIntent():
+        emit(
+          state.copyWith(
+            order: Resource.initial(),
+            error: null,
+            isLoading: false,
+          ),
+        );
     }
   }
 
@@ -81,9 +90,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
       case ErrorApiResult<List<AddressModel>>():
         emit(
-          state.copyWith(
-            addresses: Resource.error(result.error.toString()),
-          ),
+          state.copyWith(addresses: Resource.error(result.error.toString())),
         );
         break;
     }
