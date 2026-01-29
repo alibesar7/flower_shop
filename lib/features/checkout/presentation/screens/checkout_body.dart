@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/app/core/widgets/show_snak_bar.dart';
-import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
-import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/checkout_intents.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/payment_method.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/address.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/delivery_time.dart';
 import 'package:flower_shop/features/checkout/presentation/widgets/gifts.dart';
@@ -13,6 +15,7 @@ import 'package:flower_shop/features/checkout/presentation/widgets/total_price.d
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class CheckoutBody extends StatefulWidget {
   const CheckoutBody({super.key});
 
@@ -34,22 +37,19 @@ class _CheckoutBodyState extends State<CheckoutBody> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<CheckoutCubit, CheckoutState>(
-      // 🔒 Listen ONLY to meaningful transitions
       listenWhen: (prev, curr) =>
           prev.order != curr.order ||
           (prev.error != curr.error && curr.error != null),
       listener: (context, state) {
-        // ✅ SUCCESS FIRST
         if (state.order.isSuccess) {
           showAppSnackbar(
             context,
             LocaleKeys.order_success.tr(),
             backgroundColor: AppColors.green,
           );
-          return; // ⛔ stop here — no double SnackBars
+          return;
         }
 
-        // ❌ ERROR
         if (state.error != null) {
           showAppSnackbar(
             context,
@@ -91,24 +91,29 @@ class _CheckoutBodyState extends State<CheckoutBody> {
 
                   AddressSection(state: state),
                   const SizedBox(height: 24),
-
-                  PaymentMethodSection(state: state),
+                  PaymentMethodSection(state: CheckoutState()),
                   const SizedBox(height: 24),
 
                   GiftSection(
                     isGift: state.isGift,
                     giftNameController: _giftNameController,
                     giftPhoneController: _giftPhoneController,
-                    onToggle: (val) =>
-                        context.read<CheckoutCubit>().toggleGift(val),
-                    onNameChanged: (val) =>
-                        context.read<CheckoutCubit>().updateGiftName(val),
-                    onPhoneChanged: (val) =>
-                        context.read<CheckoutCubit>().updateGiftPhone(val),
+                    onToggle: (val) => context.read<CheckoutCubit>().doIntent(
+                      ToggleGiftIntent(val),
+                    ),
+                    onNameChanged: (val) => context
+                        .read<CheckoutCubit>()
+                        .doIntent(UpdateGiftNameIntent(val)),
+                    onPhoneChanged: (val) => context
+                        .read<CheckoutCubit>()
+                        .doIntent(UpdateGiftPhoneIntent(val)),
                   ),
+
                   const SizedBox(height: 24),
 
+                  /// 🛒 Place order
                   PlaceOrderButton(state: state),
+
                   const SizedBox(height: 24),
 
                   if (state.order.isSuccess) ...[

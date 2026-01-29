@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
+import 'package:flower_shop/features/checkout/presentation/cubit/checkout_intents.dart';
 import 'package:flower_shop/features/checkout/presentation/cubit/checkout_state.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class AddressSection extends StatelessWidget {
               groupValue: state.selectedAddress,
               activeColor: Colors.pink,
               onChanged: (val) =>
-                  context.read<CheckoutCubit>().selectAddress(val!),
+                  context.read<CheckoutCubit>().doIntent(SelectAddressIntent(address)),
               title: Text(address.username),
               subtitle: Text('${address.street}, ${address.city}'),
               secondary: const Icon(Icons.edit, size: 18),
