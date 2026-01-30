@@ -52,7 +52,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ),
                   const SizedBox(height: 18),
                   CustomTextFormField(
-                    controller: _nameCtrl,
+                    controller: _addressCtrl,
                     label: 'Address',
                     hint: 'Enter the address',
                     validator: Validators.validateAddress,
@@ -75,7 +75,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   CustomButton(
                     isEnabled: false,
                     isLoading: false,
-                    text: "Save address ",
+                    text: "Save address",
                     onPressed: () {},
                   ),
                 ],

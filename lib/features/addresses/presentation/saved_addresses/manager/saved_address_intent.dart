@@ -1,4 +1,9 @@
-sealed class SavedAddressIntent {}
+import 'package:equatable/equatable.dart';
+
+sealed class SavedAddressIntent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 class GetAddressesIntent extends SavedAddressIntent {}
 
@@ -6,6 +11,9 @@ class DeleteAddressIntent extends SavedAddressIntent {
   final String addressId;
 
   DeleteAddressIntent({required this.addressId});
+
+  @override
+  List<Object?> get props => [addressId];
 }
 
 class EditAddressIntent extends SavedAddressIntent {
@@ -26,4 +34,15 @@ class EditAddressIntent extends SavedAddressIntent {
     required this.long,
     required this.username,
   });
+
+  @override
+  List<Object?> get props => [
+    addressId,
+    street,
+    phone,
+    city,
+    lat,
+    long,
+    username,
+  ];
 }
