@@ -1,12 +1,34 @@
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/app/core/ui_helper/assets/images.dart';
 import 'package:flower_shop/app/core/ui_helper/color/colors.dart';
+import 'package:flower_shop/features/e_commerce/presentation/categories/manager/all_categories_cubit.dart';
+import 'package:flower_shop/features/e_commerce/presentation/categories/manager/all_categories_intent.dart';
 import 'package:flower_shop/features/home/presentation/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class SearchWithFilter extends StatelessWidget {
+class SearchWithFilter extends StatefulWidget {
   const SearchWithFilter({super.key});
+
+  @override
+  State<SearchWithFilter> createState() => _SearchWithFilterState();
+}
+
+class _SearchWithFilterState extends State<SearchWithFilter> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<AllCategoriesCubit>(context).ecommerceUiEventStream.listen((
+      EcommerceUiEvents event,
+    ) {
+      if (!mounted) return;
+      switch (event) {
+        case OnSearchTapEvent():
+          context.go(RouteNames.searchPage);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +38,9 @@ class SearchWithFilter extends StatelessWidget {
         children: [
           Expanded(
             child: SearchTextField(
-              onTap: () => context.push(RouteNames.searchPage),
+              onTap: () => BlocProvider.of<AllCategoriesCubit>(
+                context,
+              ).doUiIntent(OnSearchTapEvent()),
             ),
           ),
 

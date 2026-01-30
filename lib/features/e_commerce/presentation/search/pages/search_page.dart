@@ -64,7 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                 icon: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: InkWell(
-                    onTap: () => context.pop(),
+                    onTap: () => context.push(RouteNames.home),
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
