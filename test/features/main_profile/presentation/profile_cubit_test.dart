@@ -72,10 +72,10 @@ void main() {
       },
       act: (cubit) => cubit.doIntent(LoadProfileEvent()),
       expect: () => [
-        isA<ProfileState>().having((s) => s.user.isLoading, 'isLoading', true),
+        isA<ProfileState>().having((s) => s.user?.isLoading, 'isLoading', true),
         isA<ProfileState>()
-            .having((s) => s.user.isSuccess, 'isSuccess', true)
-            .having((s) => s.user.data, 'user', user),
+            .having((s) => s.user?.isSuccess, 'isSuccess', true)
+            .having((s) => s.user?.data, 'user', user),
       ],
     );
 
@@ -88,10 +88,10 @@ void main() {
       },
       act: (cubit) => cubit.doIntent(LoadProfileEvent()),
       expect: () => [
-        isA<ProfileState>().having((s) => s.user.isLoading, 'isLoading', true),
+        isA<ProfileState>().having((s) => s.user?.isLoading, 'isLoading', true),
         isA<ProfileState>()
-            .having((s) => s.user.isError, 'isError', true)
-            .having((s) => s.user.error, 'error message', 'Token not found'),
+            .having((s) => s.user?.isError, 'isError', true)
+            .having((s) => s.user?.error, 'error message', 'Token not found'),
       ],
     );
   });
