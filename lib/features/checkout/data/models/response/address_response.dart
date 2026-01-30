@@ -9,7 +9,6 @@ double _safeDouble(dynamic value) {
   return double.tryParse(value.toString()) ?? 0.0;
 }
 
-/// ---------------- RESPONSE ----------------
 @JsonSerializable()
 class AddressResponse {
   @JsonKey(name: "message")
@@ -33,7 +32,6 @@ class AddressResponse {
   }
 }
 
-/// ---------------- ADDRESS ----------------
 @JsonSerializable()
 class Address {
   @JsonKey(name: "street")
@@ -46,7 +44,7 @@ class Address {
   final String city;
 
   @JsonKey(name: "lat")
-  final dynamic lat; // <-- dynamic to handle bad backend values
+  final dynamic lat; 
 
   @JsonKey(name: "long")
   final dynamic long;
