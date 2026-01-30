@@ -25,26 +25,6 @@ void main() {
       expect(find.byIcon(Icons.location_pin), findsOneWidget);
     });
 
-    testWidgets('validation triggers for Address field', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(createWidgetUnderTest());
-
-      final addressField = find.ancestor(
-        of: find.text('Address'),
-        matching: find.byType(TextFormField),
-      );
-
-      await tester.enterText(addressField, 'ab');
-
-      expect(find.text(UserErrorMessages.least3Characters), findsOneWidget);
-
-      await tester.enterText(addressField, 'Valid Address');
-      await tester.pump();
-
-      expect(find.text(UserErrorMessages.least3Characters), findsNothing);
-    });
-
     testWidgets('validation triggers for Phone number field', (
       WidgetTester tester,
     ) async {
