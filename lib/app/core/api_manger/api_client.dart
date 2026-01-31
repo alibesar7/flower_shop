@@ -4,7 +4,6 @@ import 'package:flower_shop/features/auth/data/models/response/logout_response_m
 import 'package:flower_shop/features/auth/data/models/response/signup_dto.dart';
 import 'package:flower_shop/features/auth/data/models/request/login_request_model.dart';
 import 'package:flower_shop/features/auth/data/models/response/login_response_model.dart';
-import 'package:flower_shop/features/checkout/data/models/response/address_response.dart';
 import 'package:flower_shop/features/checkout/data/models/response/cash_order_response.dart';
 import 'package:flower_shop/features/e_commerce/data/models/response/product_details_response.dart';
 import 'package:flower_shop/features/edit_profile/data/models/request/editprofile_request/edit_profile_request.dart';
@@ -28,6 +27,7 @@ import '../../../features/auth/data/models/response/change-password-response-mod
 import '../../../features/auth/data/models/response/forget_password_response_model/forget_password_response_model.dart';
 import '../../../features/auth/data/models/response/reset_password_response_model/reset_password_response_model.dart';
 import '../../../features/auth/data/models/response/verify_reset_code_response_model/verify_reset_code_response_model.dart';
+import '../../../features/checkout/data/models/response/address_check_out_response.dart';
 import '../../../features/e_commerce/data/models/response/all_categories_dto.dart';
 import '../../../features/e_commerce/data/models/response/products_response.dart';
 import '../values/app_endpoint_strings.dart';
@@ -45,18 +45,18 @@ abstract class ApiClient {
 
   @POST(AppEndpointString.sendEmail)
   Future<HttpResponse<ForgotPasswordResponse>> forgotPassword(
-    @Body() ForgotPasswordRequest request,
-  );
+      @Body() ForgotPasswordRequest request,
+      );
 
   @POST(AppEndpointString.verifyResetCode)
   Future<HttpResponse<VerifyResetCodeResponse>> verifyResetCode(
-    @Body() VerifyResetCodeRequest request,
-  );
+      @Body() VerifyResetCodeRequest request,
+      );
 
   @PUT(AppEndpointString.resetPassword)
   Future<HttpResponse<ResetPasswordResponse>> resetPassword(
-    @Body() ResetPasswordRequest request,
-  );
+      @Body() ResetPasswordRequest request,
+      );
 
   @GET(AppEndpointString.getProduct)
   Future<HttpResponse<ProductsResponse>> getProducts({
@@ -73,36 +73,37 @@ abstract class ApiClient {
 
   @GET(AppEndpointString.productDetails)
   Future<HttpResponse<ProductDetailsResponse>> getProductDetails(
-    @Path(ApiConstants.id) String productId,
-  );
+      @Path(ApiConstants.id) String productId,
+      );
 
   @GET(AppEndpointString.cartPage)
   Future<HttpResponse<UserCartsDto>> getUserCarts();
 
   @POST(AppEndpointString.cartPage)
   Future<HttpResponse<UserCartsDto>> addProductToCart(
-    @Body() Map<String, dynamic> body,
-  );
+      @Body() Map<String, dynamic> body,
+      );
 
   @DELETE('${AppEndpointString.cartPage}/{${ApiConstants.id}}')
   Future<HttpResponse<UserCartsDto>> deleteCartItem(
-    @Path(ApiConstants.id) String cartItemId,
-  );
+      @Path(ApiConstants.id) String cartItemId,
+      );
 
   @PUT('${AppEndpointString.cartPage}/{${ApiConstants.id}}')
   Future<HttpResponse<UserCartsDto>> updateCartItemQuantity(
-    @Path(ApiConstants.id) String cartItemId,
-    @Body() Map<String, dynamic> body,
-  );
+      @Path(ApiConstants.id) String cartItemId,
+      @Body() Map<String, dynamic> body,
+      );
+
   @PATCH(AppEndpointString.changePassword)
   Future<HttpResponse<ChangePasswordResponse>> changePassword(
-    @Body() ChangePasswordRequest request,
-  );
+      @Body() ChangePasswordRequest request,
+      );
 
   @GET(AppEndpointString.profileData)
   Future<HttpResponse<ProfileResponse>> getProfileData(
-    @Header(ApiConstants.authorization) String token,
-  );
+      @Header(ApiConstants.authorization) String token,
+      );
 
   @PUT(AppEndpointString.editProfile)
   Future<HttpResponse<EditProfileResponse>> editProfile({
@@ -124,13 +125,14 @@ abstract class ApiClient {
 
   @POST(AppEndpointString.cashOrder)
   Future<HttpResponse<CashOrderResponse>> cashOrder(
-    @Header("Authorization") String token,
-  );
+      @Header("Authorization") String token,
+      );
 
   @GET(AppEndpointString.addresses)
-  Future<HttpResponse<AddressResponse>> address(
-    @Header("Authorization") String token,
-  );
+  Future<HttpResponse<AddressCheckOutResponse>> address(
+      @Header("Authorization") String token,
+      );
+
   @POST(AppEndpointString.checkout)
   Future<HttpResponse<PaymentResponse>> checkoutOrder({
     @Header("Authorization") required String token,
@@ -159,6 +161,6 @@ abstract class ApiClient {
   Future<HttpResponse<AddressResponse>> editAddress({
     @Header("Authorization") required String token,
     @Path('id') required String addressId,
-    @Body() required AddressRequest request,
+    @Body() required AddressModel request,
   });
 }

@@ -182,6 +182,6 @@
   "address_saved_successfully": "Address saved successfully",
   "failed_to_save_address": "Failed to save address",
   "addNewAddress": "Add New Address",
-  "savedAddress": "Saved Address"
-
+  "savedAddress": "Saved Address",
+  "recipient_phone": "Recipient phone"
 }

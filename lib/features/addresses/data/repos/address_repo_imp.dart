@@ -85,7 +85,7 @@ class AddressRepoImp implements AddressRepo {
     final result = await addressDatasource.editAddress(
       token: token,
       addressId: addressId,
-      addressRequest: AddressRequest(
+      addressRequest: AddressModel(
         street: street,
         phone: phone,
         city: city,

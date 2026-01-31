@@ -1,7 +1,7 @@
 import 'package:flower_shop/features/checkout/domain/models/address_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'address_response.g.dart';
+part 'address_check_out_response.g.dart';
 
 double _safeDouble(dynamic value) {
   if (value == null) return 0.0;
@@ -10,19 +10,19 @@ double _safeDouble(dynamic value) {
 }
 
 @JsonSerializable()
-class AddressResponse {
+class AddressCheckOutResponse {
   @JsonKey(name: "message")
   final String message;
 
   @JsonKey(name: "addresses")
   final List<Address> addresses;
 
-  AddressResponse({required this.message, required this.addresses});
+  AddressCheckOutResponse({required this.message, required this.addresses});
 
-  factory AddressResponse.fromJson(Map<String, dynamic> json) =>
-      _$AddressResponseFromJson(json);
+  factory AddressCheckOutResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddressCheckOutResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AddressResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AddressCheckOutResponseToJson(this);
 
   List<AddressModel> toDomain() {
     return addresses.map((e) => e.toDomain()).toList();
@@ -62,8 +62,7 @@ class Address {
     required this.id,
   });
 
-  factory Address.fromJson(Map<String, dynamic> json) =>
-      _$AddressFromJson(json);
+  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressToJson(this);
 

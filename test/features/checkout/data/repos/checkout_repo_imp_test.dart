@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/checkout/data/datasource/checkout_data_source.dart';
-import 'package:flower_shop/features/checkout/data/models/response/address_response.dart';
+import 'package:flower_shop/features/checkout/data/models/response/address_check_out_response.dart';
 import 'package:flower_shop/features/checkout/data/models/response/cash_order_response.dart';
 import 'package:flower_shop/features/checkout/domain/models/address_model.dart';
 import 'package:flower_shop/features/checkout/domain/models/cash_order_model.dart';
@@ -27,7 +27,7 @@ void main() {
   group('CheckoutRepoImpl.postCashOrder', () {
     test(
       'returns SuccessApiResult<CashOrderModel> when datasource succeeds',
-      () async {
+          () async {
         // arrange
         final fakeResponse = CashOrderResponse(
           message: 'success',
@@ -80,15 +80,17 @@ void main() {
       expect((result as ErrorApiResult).error, 'network error');
 
       verify(mockDataSource.cashOrder(token)).called(1);
+      verifyNoMoreInteractions(mockDataSource);
     });
   });
 
   group('CheckoutRepoImpl.getAddress', () {
     test(
       'returns SuccessApiResult<List<AddressModel>> when datasource succeeds',
-      () async {
+          () async {
         // arrange
-        final fakeResponse = AddressResponse(message: 'success', addresses: []);
+        final fakeResponse =
+        AddressCheckOutResponse(message: 'success', addresses: []);
 
         when(
           mockDataSource.getAddress(token),
@@ -123,6 +125,7 @@ void main() {
       expect((result as ErrorApiResult).error, 'unauthorized');
 
       verify(mockDataSource.getAddress(token)).called(1);
+      verifyNoMoreInteractions(mockDataSource);
     });
   });
 }

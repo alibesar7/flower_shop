@@ -1,5 +1,5 @@
+import 'package:flower_shop/features/checkout/data/models/response/address_check_out_response.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flower_shop/features/checkout/data/models/response/address_response.dart';
 import 'package:flower_shop/features/checkout/domain/models/address_model.dart';
 
 void main() {
@@ -22,7 +22,7 @@ void main() {
       };
 
       // act
-      final response = AddressResponse.fromJson(json);
+      final response = AddressCheckOutResponse.fromJson(json);
 
       // assert
       expect(response.message, "address fetched successfully");
@@ -38,7 +38,7 @@ void main() {
 
     test('toJson returns correct json structure', () {
       // arrange
-      final response = AddressResponse(
+      final response = AddressCheckOutResponse(
         message: "success",
         addresses: [
           Address(
@@ -60,7 +60,6 @@ void main() {
       expect(json['message'], "success");
       expect(json['addresses'], isA<List>());
 
-      // Access the address directly without casting if it's not serialized properly
       final firstAddress = response.addresses.first;
       expect(firstAddress.id, "addr_1");
       expect(firstAddress.city, "Giza");
@@ -70,7 +69,7 @@ void main() {
 
     test('toDomain maps AddressResponse to List<AddressModel>', () {
       // arrange
-      final response = AddressResponse(
+      final response = AddressCheckOutResponse(
         message: "success",
         addresses: [
           Address(
@@ -101,7 +100,7 @@ void main() {
 
     test('safeDouble handles null and invalid values', () {
       // arrange
-      final response = AddressResponse(
+      final response = AddressCheckOutResponse(
         message: "success",
         addresses: [
           Address(

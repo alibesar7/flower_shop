@@ -38,7 +38,7 @@ class AddressDatasourceImpl extends AddressDatasource {
   Future<ApiResult<AddressResponse>?> editAddress({
     required String token,
     required String addressId,
-    required AddressRequest addressRequest,
+    required AddressModel addressRequest,
   }) {
     return safeApiCall(
       call: () => apiClient.editAddress(

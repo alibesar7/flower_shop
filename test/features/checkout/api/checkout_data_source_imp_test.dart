@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flower_shop/features/checkout/api/checkout_data_source_imp.dart';
+import 'package:flower_shop/features/checkout/data/models/response/address_check_out_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -8,7 +9,6 @@ import 'package:retrofit/retrofit.dart';
 import 'package:flower_shop/app/core/api_manger/api_client.dart';
 import 'package:flower_shop/app/core/network/api_result.dart';
 import 'package:flower_shop/features/checkout/data/models/response/cash_order_response.dart';
-import 'package:flower_shop/features/checkout/data/models/response/address_response.dart';
 
 import '../../auth/api/datasource/auth_remote_datasource_impl_test.mocks.dart';
 
@@ -140,18 +140,18 @@ void main() {
         // arrange
         const token = "Bearer test-token";
 
-        final fakeResponse = AddressResponse(
+        final fakeResponse = AddressCheckOutResponse(
           message: "address fetched successfully",
           addresses: [],
         );
 
-        final dioResponse = Response<AddressResponse>(
+        final dioResponse = Response<AddressCheckOutResponse>(
           requestOptions: RequestOptions(path: '/address'),
           data: fakeResponse,
           statusCode: 200,
         );
 
-        final fakeHttpResponse = HttpResponse<AddressResponse>(
+        final fakeHttpResponse = HttpResponse<AddressCheckOutResponse>(
           dioResponse.data!,
           dioResponse,
         );
@@ -164,7 +164,7 @@ void main() {
         final result = await dataSource.getAddress(token);
 
         // assert
-        expect(result, isA<SuccessApiResult<AddressResponse>>());
+        expect(result, isA<SuccessApiResult<AddressCheckOutResponse>>());
         final data = (result as SuccessApiResult).data;
         expect(data.message, "address fetched successfully");
 
@@ -182,7 +182,7 @@ void main() {
       final result = await dataSource.getAddress(token);
 
       // assert
-      expect(result, isA<ErrorApiResult<AddressResponse>>());
+      expect(result, isA<ErrorApiResult<AddressCheckOutResponse>>());
       expect(
         (result as ErrorApiResult).error.toString(),
         contains("network error"),
