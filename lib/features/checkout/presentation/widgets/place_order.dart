@@ -42,7 +42,7 @@ class PlaceOrderButton extends StatelessWidget {
                 if (paymentMethod == PaymentMethod.card) {
                   context.read<PaymentCubit>().doIntent(
                     ExecutePaymentIntent(
-                      returnUrl: 'http://10.0.2.2:3000',
+                      returnUrl: 'flower://payment-success',
                       street: state.selectedAddress?.street,
                       phone: state.selectedAddress?.phone,
                       city: state.selectedAddress?.city,

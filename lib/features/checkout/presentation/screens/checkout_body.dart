@@ -85,8 +85,8 @@ class _CheckoutBodyState extends State<CheckoutBody> {
           listener: (context, state) {
             final res = state.paymentResponse;
             if (res != null && res.isSuccess) {
-              closeInAppWebView();
               if (res.data?.session?.url != null) {
+                // Real payment: launch URL and wait for user to return/redirect
                 _launchURL(res.data!.session!.url!).then((success) {
                   if (!success) {
                     showAppSnackbar(
@@ -103,17 +103,18 @@ class _CheckoutBodyState extends State<CheckoutBody> {
                   }
                 });
               } else {
+                // Simulated success (no URL): go home after delay
                 showAppSnackbar(
                   context,
                   LocaleKeys.order_success.tr(),
                   backgroundColor: Colors.green,
                 );
+                Future.delayed(const Duration(seconds: 3), () {
+                  if (mounted) {
+                    context.go(RouteNames.home);
+                  }
+                });
               }
-              Future.delayed(const Duration(seconds: 3), () {
-                if (mounted) {
-                  context.go(RouteNames.home);
-                }
-              });
             }
 
             if (res != null && res.isError) {
