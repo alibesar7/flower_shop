@@ -20,10 +20,9 @@ void main() {
       SuccessApiResult<AllCategoriesModel>(data: AllCategoriesModel()),
     );
   });
-  group('All add_address use case', () {
+  group('All categories use case', () {
     test(
-      'return ApiSuccess when repo return get all add_address success',
-      () async {
+      'return ApiSuccess when repo return get all categories success',      () async {
         final fakeData = AllCategoriesModel(
           message: 'success',
           categories: [
@@ -53,7 +52,7 @@ void main() {
       },
     );
 
-    test('return ApiError when repo return get all add_address fail', () async {
+    test('return ApiError when repo return get all categories', () async {
       when(mockRepo.getAllCategories()).thenAnswer(
         (_) async =>
             ErrorApiResult<AllCategoriesModel>(error: 'Something went wrong'),

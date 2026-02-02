@@ -16,7 +16,7 @@ class AppEndpointString {
   static const String addresses = 'addresses';
 
   static const String signup = '/auth/signup';
-  static const String allCategories = '/add_address';
+  static const String allCategories = '/categories';
   static const String getProduct = '/products';
   static const String home = '/home';
   static const String productDetails = 'products/{id}';
