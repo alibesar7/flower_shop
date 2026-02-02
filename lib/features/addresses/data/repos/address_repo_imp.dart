@@ -60,8 +60,14 @@ class AddressRepoImp implements AddressRepo {
   }
 
   @override
-  Future<ApiResult<AddressDto>?> addAddress(String token, AddressModel addAddressRequest) async {
-    final response = await addressDatasource.addAddress(token, addAddressRequest);
+  Future<ApiResult<AddressDto>?> addAddress(
+    String token,
+    AddressModel addAddressRequest,
+  ) async {
+    final response = await addressDatasource.addAddress(
+      token,
+      addAddressRequest,
+    );
     switch (response) {
       case SuccessApiResult<AddAddressResponse>():
         return SuccessApiResult(data: response.data.toAddress());
@@ -71,6 +77,7 @@ class AddressRepoImp implements AddressRepo {
         return null;
     }
   }
+
   @override
   Future<ApiResult<List<AddressEntity>>> editAddress({
     required String token,

@@ -1,4 +1,3 @@
-
 class AreaItem {
   final String id;
   final String governorateId;

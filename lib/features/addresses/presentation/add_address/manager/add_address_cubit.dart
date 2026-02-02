@@ -66,8 +66,8 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     // load areas
     final areaStr = await rootBundle.loadString('assets/data/states.json');
     final List areaJson = jsonDecode(areaStr) as List;
-    final areaObj =areaJson.cast<Map<String, dynamic>>().firstWhere(
-          (x) => x['type'] == 'table' && x['name'] == 'cities',
+    final areaObj = areaJson.cast<Map<String, dynamic>>().firstWhere(
+      (x) => x['type'] == 'table' && x['name'] == 'cities',
       orElse: () => {},
     );
     final List dataArea = (areaObj['data'] as List? ?? []);
@@ -79,7 +79,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     final citiesStr = await rootBundle.loadString('assets/data/cities.json');
     final List root = jsonDecode(citiesStr) as List;
     final tableObj = root.cast<Map<String, dynamic>>().firstWhere(
-          (x) => x['type'] == 'table' && x['name'] == 'governorates',
+      (x) => x['type'] == 'table' && x['name'] == 'governorates',
       orElse: () => {},
     );
 
@@ -88,7 +88,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
         .map((e) => CityItem.fromJson(e as Map<String, dynamic>))
         .toList();
 
-    final next = state.copyWith(area: areas, cities: cities,allAreas: areas);
+    final next = state.copyWith(area: areas, cities: cities, allAreas: areas);
     emit(next.copyWith(isFormValid: _validate(next)));
   }
 
@@ -113,7 +113,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
     final countryOk = s.selectedArea != null;
     final cityOk = s.selectedCity != null;
     final recipientOk = Validators.validateRecipientName(s.recipient) == null;
-    return addressOk && phoneOk && recipientOk && countryOk && cityOk ;
+    return addressOk && phoneOk && recipientOk && countryOk && cityOk;
   }
 
   Future<void> _submit({required String token}) async {
@@ -141,7 +141,9 @@ class AddAddressCubit extends Cubit<AddAddressState> {
         emit(state.copyWith(submitResult: Resource.error(result!.error)));
         break;
       case null:
-        emit(state.copyWith(submitResult: Resource.error("Something went wrong")));
+        emit(
+          state.copyWith(submitResult: Resource.error("Something went wrong")),
+        );
         break;
     }
   }

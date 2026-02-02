@@ -42,42 +42,40 @@ void main() {
   );
 
   group('AddressDatasourceImpl', () {
-    test('should return SuccessApiResult when api call is successful', () async {
-      // Arrange
-      final httpResponse = HttpResponse(
-        tAddAddressResponse,
-        Response(
-          requestOptions: RequestOptions(path: '/addresses'),
-          statusCode: 200,
-          data: tAddAddressResponse.toJson(),
-        ),
-      );
+    test(
+      'should return SuccessApiResult when api call is successful',
+      () async {
+        // Arrange
+        final httpResponse = HttpResponse(
+          tAddAddressResponse,
+          Response(
+            requestOptions: RequestOptions(path: '/addresses'),
+            statusCode: 200,
+            data: tAddAddressResponse.toJson(),
+          ),
+        );
 
-      when(
-        mockApiClient.addAddress(
-          token: anyNamed('token'),
-          request: anyNamed('request'),
-        ),
-      ).thenAnswer((_) async => httpResponse);
+        when(
+          mockApiClient.addAddress(
+            token: anyNamed('token'),
+            request: anyNamed('request'),
+          ),
+        ).thenAnswer((_) async => httpResponse);
 
-      // Act
-      final result = await datasource.addAddress(tToken, tAddressModel);
+        // Act
+        final result = await datasource.addAddress(tToken, tAddressModel);
 
-      // Assert
-      expect(result, isA<SuccessApiResult<AddAddressResponse>>());
-      expect(
-        (result as SuccessApiResult<AddAddressResponse>).data,
-        tAddAddressResponse,
-      );
+        // Assert
+        expect(result, isA<SuccessApiResult<AddAddressResponse>>());
+        expect(
+          (result as SuccessApiResult<AddAddressResponse>).data,
+          tAddAddressResponse,
+        );
 
-      verify(
-        mockApiClient.addAddress(
-          token: tToken,
-          request: tAddressModel,
-        ),
-      );
-      verifyNoMoreInteractions(mockApiClient);
-    });
+        verify(mockApiClient.addAddress(token: tToken, request: tAddressModel));
+        verifyNoMoreInteractions(mockApiClient);
+      },
+    );
 
     test('should return ErrorApiResult when api call throws', () async {
       // Arrange
@@ -94,12 +92,7 @@ void main() {
       // Assert
       expect(result, isA<ErrorApiResult<AddAddressResponse>>());
 
-      verify(
-        mockApiClient.addAddress(
-          token: tToken,
-          request: tAddressModel,
-        ),
-      );
+      verify(mockApiClient.addAddress(token: tToken, request: tAddressModel));
       verifyNoMoreInteractions(mockApiClient);
     });
   });

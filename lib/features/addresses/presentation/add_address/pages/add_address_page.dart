@@ -40,12 +40,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (_) => getIt<AddAddressCubit>()..doIntent(LoadLookupsEvent()),
       child: BlocConsumer<AddAddressCubit, AddAddressState>(
         listener: (context, state) {
-
           final status = state.submitResult.status;
 
           if (status == Status.success) {
@@ -58,7 +56,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
           }
 
           if (status == Status.error) {
-            final msg = state.submitResult.error ?? LocaleKeys.failed_to_save_address.tr();
+            final msg =
+                state.submitResult.error ??
+                LocaleKeys.failed_to_save_address.tr();
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(msg)));
@@ -70,7 +70,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
           return Scaffold(
             body: Column(
               children: [
-                SizedBox(height: 50,),
+                SizedBox(height: 50),
                 Row(
                   children: [
                     IconButton(
@@ -81,95 +81,94 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ],
                 ),
 
-                   SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Container(
-                              height: 170,
-                              color: Colors.grey.shade200,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  const AddressMapSection(),
-                                  const Icon(
-                                    Icons.location_pin,
-                                    size: 44,
-                                    color: Colors.pink,
-                                  ),
-                                ],
-                              ),
+                SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 170,
+                            color: Colors.grey.shade200,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                const AddressMapSection(),
+                                const Icon(
+                                  Icons.location_pin,
+                                  size: 44,
+                                  color: Colors.pink,
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 18),
+                        ),
+                        const SizedBox(height: 18),
 
-                          // Address
-                          CustomTextFormField(
-                            key: const Key('address_field'),
-                            controller: _addressCtrl,
-                            label: LocaleKeys.address.tr(),
-                            hint: LocaleKeys.enter_address.tr(),
-                            validator: Validators.validateAddress,
-                            onChanged: (v) => context
-                                .read<AddAddressCubit>()
-                                .doIntent(AddressChangedEvent(v)),
-                          ),
-                          const SizedBox(height: 20),
+                        // Address
+                        CustomTextFormField(
+                          key: const Key('address_field'),
+                          controller: _addressCtrl,
+                          label: LocaleKeys.address.tr(),
+                          hint: LocaleKeys.enter_address.tr(),
+                          validator: Validators.validateAddress,
+                          onChanged: (v) => context
+                              .read<AddAddressCubit>()
+                              .doIntent(AddressChangedEvent(v)),
+                        ),
+                        const SizedBox(height: 20),
 
-                          // Phone
-                          CustomTextFormField(
-                            key: const Key('phone_field'),
-                            controller: _phoneCtrl,
-                            label: LocaleKeys.phoneNumber.tr(),
-                            hint: LocaleKeys.enter_phone_number.tr(),
-                            validator: Validators.validatePhone,
-                            onChanged: (v) => context
-                                .read<AddAddressCubit>()
-                                .doIntent(PhoneChangedEvent(v)),
-                          ),
-                          const SizedBox(height: 20),
+                        // Phone
+                        CustomTextFormField(
+                          key: const Key('phone_field'),
+                          controller: _phoneCtrl,
+                          label: LocaleKeys.phoneNumber.tr(),
+                          hint: LocaleKeys.enter_phone_number.tr(),
+                          validator: Validators.validatePhone,
+                          onChanged: (v) => context
+                              .read<AddAddressCubit>()
+                              .doIntent(PhoneChangedEvent(v)),
+                        ),
+                        const SizedBox(height: 20),
 
-                          // Recipient
-                          CustomTextFormField(
-                            key: const Key('recipient_field'),
-                            controller: _recipientCtrl,
-                            label: LocaleKeys.recipient_name.tr(),
-                            hint: LocaleKeys.enter_recipient_name.tr(),
-                            validator: Validators.validateRecipientName,
-                            onChanged: (v) => context
-                                .read<AddAddressCubit>()
-                                .doIntent(RecipientChangedEvent(v)),
-                          ),
-                          const SizedBox(height: 20),
-                          AreaCityRow(state: state),
+                        // Recipient
+                        CustomTextFormField(
+                          key: const Key('recipient_field'),
+                          controller: _recipientCtrl,
+                          label: LocaleKeys.recipient_name.tr(),
+                          hint: LocaleKeys.enter_recipient_name.tr(),
+                          validator: Validators.validateRecipientName,
+                          onChanged: (v) => context
+                              .read<AddAddressCubit>()
+                              .doIntent(RecipientChangedEvent(v)),
+                        ),
+                        const SizedBox(height: 20),
+                        AreaCityRow(state: state),
 
-                          const SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
-                          CustomButton(
-                            isEnabled: state.isFormValid && !isLoading,
-                            isLoading: isLoading,
-                            text: LocaleKeys.save_address.tr(),
-                            onPressed: () async {
-                              final token = await authStorage.getToken();
-                              if (token == null) return;
-                              final ok =
-                                  _formKey.currentState?.validate() ?? false;
-                              if (!ok) return;
-                              context.read<AddAddressCubit>().doIntent(
-                                SubmitAddAddressEvent('Bearer $token'),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                        CustomButton(
+                          isEnabled: state.isFormValid && !isLoading,
+                          isLoading: isLoading,
+                          text: LocaleKeys.save_address.tr(),
+                          onPressed: () async {
+                            final token = await authStorage.getToken();
+                            if (token == null) return;
+                            final ok =
+                                _formKey.currentState?.validate() ?? false;
+                            if (!ok) return;
+                            context.read<AddAddressCubit>().doIntent(
+                              SubmitAddAddressEvent('Bearer $token'),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
-
+                ),
               ],
             ),
           );

@@ -8,7 +8,10 @@ import '../models/response/address_model.dart';
 
 abstract class AddressDatasource {
   Future<ApiResult<GetAddressResponse>?> getAddresses({required String token});
-  Future<ApiResult<AddAddressResponse>?> addAddress(String token,AddressModel addAddressRequest);
+  Future<ApiResult<AddAddressResponse>?> addAddress(
+    String token,
+    AddressModel addAddressRequest,
+  );
 
   Future<ApiResult<AddressResponse>?> deleteAddress({
     required String token,

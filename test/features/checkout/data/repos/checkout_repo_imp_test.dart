@@ -27,7 +27,7 @@ void main() {
   group('CheckoutRepoImpl.postCashOrder', () {
     test(
       'returns SuccessApiResult<CashOrderModel> when datasource succeeds',
-          () async {
+      () async {
         // arrange
         final fakeResponse = CashOrderResponse(
           message: 'success',
@@ -87,10 +87,12 @@ void main() {
   group('CheckoutRepoImpl.getAddress', () {
     test(
       'returns SuccessApiResult<List<AddressModel>> when datasource succeeds',
-          () async {
+      () async {
         // arrange
-        final fakeResponse =
-        AddressCheckOutResponse(message: 'success', addresses: []);
+        final fakeResponse = AddressCheckOutResponse(
+          message: 'success',
+          addresses: [],
+        );
 
         when(
           mockDataSource.getAddress(token),

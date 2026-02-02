@@ -56,5 +56,4 @@ class UserErrorMessages {
   static String get requiredCity => LocaleKeys.requiredCity.tr();
 
   static String get requiredArea => LocaleKeys.requiredArea.tr();
-
 }

@@ -114,7 +114,7 @@ void main() {
 
     test(
       'should return ApiError when get all categories throws exception',
-          () async {
+      () async {
         when(datasource.getAllCategories()).thenAnswer(
           (_) async => ErrorApiResult<AllCategoriesDto>(error: 'Network error'),
         );

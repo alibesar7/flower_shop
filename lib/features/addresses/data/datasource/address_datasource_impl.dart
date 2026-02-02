@@ -28,12 +28,18 @@ class AddressDatasourceImpl extends AddressDatasource {
       call: () => apiClient.deleteAddress(token: token, addressId: addressId),
     );
   }
+
   @override
-  Future<ApiResult<AddAddressResponse>?> addAddress(String token,AddressModel addAddressRequest) {
+  Future<ApiResult<AddAddressResponse>?> addAddress(
+    String token,
+    AddressModel addAddressRequest,
+  ) {
     return safeApiCall<AddAddressResponse>(
-      call: () => apiClient.addAddress(token: token, request: addAddressRequest),
+      call: () =>
+          apiClient.addAddress(token: token, request: addAddressRequest),
     );
   }
+
   @override
   Future<ApiResult<AddressResponse>?> editAddress({
     required String token,

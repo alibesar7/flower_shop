@@ -20,7 +20,6 @@ abstract class NetworkModule {
 
     dio.interceptors.add(AppInterceptor(authStorage));
 
-    // Logger (keep it last)
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,

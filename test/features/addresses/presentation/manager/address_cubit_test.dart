@@ -35,22 +35,22 @@ void main() {
           "id": "10",
           "governorate_id": "1",
           "city_name_ar": "مدينة نصر",
-          "city_name_en": "Nasr City"
+          "city_name_en": "Nasr City",
         },
         {
           "id": "11",
           "governorate_id": "1",
           "city_name_ar": "المعادى",
-          "city_name_en": "Maadi"
+          "city_name_en": "Maadi",
         },
         {
           "id": "12",
           "governorate_id": "2",
           "city_name_ar": "الدقى",
-          "city_name_en": "Dokki"
-        }
-      ]
-    }
+          "city_name_en": "Dokki",
+        },
+      ],
+    },
   ]);
 
   final governoratesJson = jsonEncode([
@@ -64,21 +64,21 @@ void main() {
         {
           "id": "1",
           "governorate_name_ar": "القاهرة",
-          "governorate_name_en": "Cairo"
+          "governorate_name_en": "Cairo",
         },
         {
           "id": "2",
           "governorate_name_ar": "الجيزة",
-          "governorate_name_en": "Giza"
-        }
-      ]
-    }
+          "governorate_name_en": "Giza",
+        },
+      ],
+    },
   ]);
 
   setUpAll(() async {
     ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
       'flutter/assets',
-          (ByteData? message) async {
+      (ByteData? message) async {
         final key = utf8.decode(message!.buffer.asUint8List());
         String content;
 
@@ -145,9 +145,12 @@ void main() {
       'SubmitAddAddressEvent emits loading then success when usecase succeeds',
       build: buildCubit,
       setUp: () {
-        when(mockUsecase(token: anyNamed('token'), data: anyNamed('data')))
-            .thenAnswer((_) async =>
-            SuccessApiResult<AddressDto>(data: AddressDto(message: 'ok')));
+        when(
+          mockUsecase(token: anyNamed('token'), data: anyNamed('data')),
+        ).thenAnswer(
+          (_) async =>
+              SuccessApiResult<AddressDto>(data: AddressDto(message: 'ok')),
+        );
       },
       act: (cubit) async {
         cubit.doIntent(LoadLookupsEvent());
@@ -155,7 +158,7 @@ void main() {
 
         cubit.doIntent(AddressChangedEvent('Street 1'));
         cubit.doIntent(PhoneChangedEvent('01000000000')); // ✅ removed ?.
-        cubit.doIntent(RecipientChangedEvent('Maiar'));   // ✅ removed ?.
+        cubit.doIntent(RecipientChangedEvent('Maiar')); // ✅ removed ?.
 
         final cairo = cubit.state.cities.firstWhere((c) => c.id == '1');
         cubit.doIntent(CitySelectedEvent(cairo));
@@ -169,9 +172,14 @@ void main() {
       verify: (cubit) {
         expect(cubit.state.submitResult.status, Status.success);
 
-        final captured = verify(
-          mockUsecase(token: anyNamed('token'), data: captureAnyNamed('data')),
-        ).captured.single as AddressModel;
+        final captured =
+            verify(
+                  mockUsecase(
+                    token: anyNamed('token'),
+                    data: captureAnyNamed('data'),
+                  ),
+                ).captured.single
+                as AddressModel;
 
         expect(captured.street, 'Street 1');
         expect(captured.phone, '01000000000');

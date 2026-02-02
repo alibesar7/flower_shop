@@ -153,7 +153,6 @@
   "instant": "فوري ",
   "arrive_by_datetime": "يصل بحلول 03 سبتمبر 2026، 11 صباحًا",
   "in_cart": "في السلة",
-  "english": "الإنجليزية",
   "invalidRecipientName": "اسم المستلم غير صحيح",
   "invalidAddress": "العنوان غير صحيح",
   "requiredRecipientName": "يرجى إدخال اسم المستلم",
@@ -164,7 +163,6 @@
   "enter_address": "أدخل العنوان",
   "phone_number": "رقم الهاتف",
   "enter_phone_number": "أدخل رقم الهاتف",
-  "recipient_name": "اسم المستلم",
   "enter_recipient_name": "أدخل اسم المستلم",
   "save_address": "حفظ العنوان",
   "area": "المنطقة",
@@ -181,4 +179,12 @@
   "failed_to_save_address": "فشل حفظ العنوان",
   "addNewAddress": "إضافة عنوان جديد",
   "savedAddress": "تم حفظ العنوان",
+  "discount": "خصم",
+  "sortBy": "الترتيب حسب",
+  "lowestPrice": "السعر الأدنى",
+  "highestPrice": "السعر الأعلى",
+  "newest": "الأحدث",
+  "oldest": "الأقدم",
+  "filter": "تصفية"
+
 }

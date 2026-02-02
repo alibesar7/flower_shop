@@ -22,7 +22,8 @@ void main() {
   });
   group('All categories use case', () {
     test(
-      'return ApiSuccess when repo return get all categories success',      () async {
+      'return ApiSuccess when repo return get all categories success',
+      () async {
         final fakeData = AllCategoriesModel(
           message: 'success',
           categories: [

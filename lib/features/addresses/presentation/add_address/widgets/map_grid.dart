@@ -91,14 +91,17 @@ class _AddressMapSectionState extends State<AddressMapSection> {
       );
 
       await _controller?.animateCamera(
-        CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: 15)),
+        CameraUpdate.newCameraPosition(
+          CameraPosition(target: latLng, zoom: 15),
+        ),
       );
-    } catch (_) {
-
-    }
+    } catch (_) {}
   }
 
-  void _showLocationDialog({bool deniedForever = false, bool serviceOff = false}) {
+  void _showLocationDialog({
+    bool deniedForever = false,
+    bool serviceOff = false,
+  }) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -157,7 +160,10 @@ class _AddressMapSectionState extends State<AddressMapSection> {
               alignment: Alignment.center,
               children: [
                 GoogleMap(
-                  initialCameraPosition: CameraPosition(target: _center, zoom: 12),
+                  initialCameraPosition: CameraPosition(
+                    target: _center,
+                    zoom: 12,
+                  ),
                   onMapCreated: (c) => _controller = c,
                   myLocationEnabled: _permissionGranted,
                   myLocationButtonEnabled: _permissionGranted,
@@ -168,7 +174,10 @@ class _AddressMapSectionState extends State<AddressMapSection> {
                   onCameraIdle: () {
                     // when user stops moving map: save lat/lng to cubit
                     context.read<AddAddressCubit>().doIntent(
-                      LocationPickedEvent(lat: _center.latitude, lng: _center.longitude),
+                      LocationPickedEvent(
+                        lat: _center.latitude,
+                        lng: _center.longitude,
+                      ),
                     );
                   },
                 ),
@@ -181,7 +190,10 @@ class _AddressMapSectionState extends State<AddressMapSection> {
                   top: 10,
                   left: 10,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(20),

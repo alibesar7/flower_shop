@@ -2,6 +2,7 @@ import '../../../domain/models/city_item.dart';
 import '../../../domain/models/area_item.dart';
 
 sealed class AddAddressEvent {}
+
 class LoadLookupsEvent extends AddAddressEvent {}
 
 class AddressChangedEvent extends AddAddressEvent {
@@ -33,6 +34,7 @@ class CitySelectedEvent extends AddAddressEvent {
   final CityItem city;
   CitySelectedEvent(this.city);
 }
+
 class LocationPickedEvent extends AddAddressEvent {
   final double lat;
   final double lng;

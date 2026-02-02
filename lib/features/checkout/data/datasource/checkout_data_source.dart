@@ -5,4 +5,5 @@ import '../models/response/address_check_out_response.dart';
 
 abstract class CheckoutDataSource {
   Future<ApiResult<CashOrderResponse>?> cashOrder(String token);
-  Future<ApiResult<AddressCheckOutResponse>?> getAddress(String token);}
+  Future<ApiResult<AddressCheckOutResponse>?> getAddress(String token);
+}

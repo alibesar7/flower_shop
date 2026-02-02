@@ -45,18 +45,18 @@ abstract class ApiClient {
 
   @POST(AppEndpointString.sendEmail)
   Future<HttpResponse<ForgotPasswordResponse>> forgotPassword(
-      @Body() ForgotPasswordRequest request,
-      );
+    @Body() ForgotPasswordRequest request,
+  );
 
   @POST(AppEndpointString.verifyResetCode)
   Future<HttpResponse<VerifyResetCodeResponse>> verifyResetCode(
-      @Body() VerifyResetCodeRequest request,
-      );
+    @Body() VerifyResetCodeRequest request,
+  );
 
   @PUT(AppEndpointString.resetPassword)
   Future<HttpResponse<ResetPasswordResponse>> resetPassword(
-      @Body() ResetPasswordRequest request,
-      );
+    @Body() ResetPasswordRequest request,
+  );
 
   @GET(AppEndpointString.getProduct)
   Future<HttpResponse<ProductsResponse>> getProducts({
@@ -73,37 +73,37 @@ abstract class ApiClient {
 
   @GET(AppEndpointString.productDetails)
   Future<HttpResponse<ProductDetailsResponse>> getProductDetails(
-      @Path(ApiConstants.id) String productId,
-      );
+    @Path(ApiConstants.id) String productId,
+  );
 
   @GET(AppEndpointString.cartPage)
   Future<HttpResponse<UserCartsDto>> getUserCarts();
 
   @POST(AppEndpointString.cartPage)
   Future<HttpResponse<UserCartsDto>> addProductToCart(
-      @Body() Map<String, dynamic> body,
-      );
+    @Body() Map<String, dynamic> body,
+  );
 
   @DELETE('${AppEndpointString.cartPage}/{${ApiConstants.id}}')
   Future<HttpResponse<UserCartsDto>> deleteCartItem(
-      @Path(ApiConstants.id) String cartItemId,
-      );
+    @Path(ApiConstants.id) String cartItemId,
+  );
 
   @PUT('${AppEndpointString.cartPage}/{${ApiConstants.id}}')
   Future<HttpResponse<UserCartsDto>> updateCartItemQuantity(
-      @Path(ApiConstants.id) String cartItemId,
-      @Body() Map<String, dynamic> body,
-      );
+    @Path(ApiConstants.id) String cartItemId,
+    @Body() Map<String, dynamic> body,
+  );
 
   @PATCH(AppEndpointString.changePassword)
   Future<HttpResponse<ChangePasswordResponse>> changePassword(
-      @Body() ChangePasswordRequest request,
-      );
+    @Body() ChangePasswordRequest request,
+  );
 
   @GET(AppEndpointString.profileData)
   Future<HttpResponse<ProfileResponse>> getProfileData(
-      @Header(ApiConstants.authorization) String token,
-      );
+    @Header(ApiConstants.authorization) String token,
+  );
 
   @PUT(AppEndpointString.editProfile)
   Future<HttpResponse<EditProfileResponse>> editProfile({
@@ -125,13 +125,13 @@ abstract class ApiClient {
 
   @POST(AppEndpointString.cashOrder)
   Future<HttpResponse<CashOrderResponse>> cashOrder(
-      @Header("Authorization") String token,
-      );
+    @Header("Authorization") String token,
+  );
 
   @GET(AppEndpointString.addresses)
   Future<HttpResponse<AddressCheckOutResponse>> address(
-      @Header("Authorization") String token,
-      );
+    @Header("Authorization") String token,
+  );
 
   @POST(AppEndpointString.checkout)
   Future<HttpResponse<PaymentResponse>> checkoutOrder({

@@ -30,8 +30,7 @@ class AddAddressState {
     required this.selectedCity,
     required this.selectedArea,
     required this.lat,
-    required this.lng
-
+    required this.lng,
   });
 
   factory AddAddressState.initial() => AddAddressState(
@@ -60,8 +59,8 @@ class AddAddressState {
     CityItem? selectedCity,
     List<AreaItem>? allAreas,
     Resource<AddressDto>? submitResult,
-     double? lat,
-     double? lng,
+    double? lat,
+    double? lng,
   }) {
     return AddAddressState(
       address: address ?? this.address,
@@ -69,14 +68,13 @@ class AddAddressState {
       recipient: recipient ?? this.recipient,
       isFormValid: isFormValid ?? this.isFormValid,
       submitResult: submitResult ?? this.submitResult,
-      cities: cities??this.cities,
-      area:area??this.area,
+      cities: cities ?? this.cities,
+      area: area ?? this.area,
       allAreas: allAreas ?? this.allAreas,
-      selectedCity: selectedCity??this.selectedCity,
-      selectedArea: selectedArea??this.selectedArea,
-      lat: lat??this.lat,
-      lng: lng??this.lng,
-
+      selectedCity: selectedCity ?? this.selectedCity,
+      selectedArea: selectedArea ?? this.selectedArea,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
     );
   }
 }

@@ -14,15 +14,11 @@ class CheckoutDataSourceImp extends CheckoutDataSource {
 
   @override
   Future<ApiResult<CashOrderResponse>?> cashOrder(String token) {
-    return safeApiCall(
-      call: () => apiClient.cashOrder(token),
-    );
+    return safeApiCall(call: () => apiClient.cashOrder(token));
   }
 
   @override
   Future<ApiResult<AddressCheckOutResponse>?> getAddress(String token) {
-    return safeApiCall(
-      call: () => apiClient.address(token),
-    );
+    return safeApiCall(call: () => apiClient.address(token));
   }
 }

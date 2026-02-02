@@ -10,7 +10,10 @@ abstract class AddressRepo {
     required String token,
     required String addressId,
   });
-  Future<ApiResult<AddressDto>?> addAddress(String token,AddressModel addAddressRequest);
+  Future<ApiResult<AddressDto>?> addAddress(
+    String token,
+    AddressModel addAddressRequest,
+  );
 
   Future<ApiResult<List<AddressEntity>>> editAddress({
     required String token,

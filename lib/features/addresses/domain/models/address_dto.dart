@@ -1,8 +1,5 @@
 class AddressDto {
   final String? message;
 
-
-  AddressDto({
-    this.message,
-  });
+  AddressDto({this.message});
 }

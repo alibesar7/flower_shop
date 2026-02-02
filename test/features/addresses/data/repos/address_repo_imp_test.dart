@@ -54,8 +54,9 @@ void main() {
     );
 
     test('returns SuccessApiResult<AddressDto> on success', () async {
-      when(mockDatasource.addAddress(any, any))
-          .thenAnswer((_) async => SuccessApiResult(data: tResponse));
+      when(
+        mockDatasource.addAddress(any, any),
+      ).thenAnswer((_) async => SuccessApiResult(data: tResponse));
 
       final result = await repo.addAddress(tToken, tRequest);
 
@@ -67,8 +68,9 @@ void main() {
     });
 
     test('returns ErrorApiResult on failure', () async {
-      when(mockDatasource.addAddress(any, any))
-          .thenAnswer((_) async =>  ErrorApiResult(error: 'Failed'));
+      when(
+        mockDatasource.addAddress(any, any),
+      ).thenAnswer((_) async => ErrorApiResult(error: 'Failed'));
 
       final result = await repo.addAddress(tToken, tRequest);
 
@@ -94,9 +96,10 @@ void main() {
     );
 
     test('returns list of AddressEntity on success', () async {
-      when(mockDatasource.getAddresses(token: anyNamed('token')))
-          .thenAnswer((_) async =>
-          SuccessApiResult(data: GetAddressResponse(addresses: [tAddress])));
+      when(mockDatasource.getAddresses(token: anyNamed('token'))).thenAnswer(
+        (_) async =>
+            SuccessApiResult(data: GetAddressResponse(addresses: [tAddress])),
+      );
 
       final result = await repo.getAddresses(token: tToken);
 
@@ -107,8 +110,9 @@ void main() {
     });
 
     test('returns ErrorApiResult on failure', () async {
-      when(mockDatasource.getAddresses(token: anyNamed('token')))
-          .thenAnswer((_) async =>  ErrorApiResult(error: 'Failed'));
+      when(
+        mockDatasource.getAddresses(token: anyNamed('token')),
+      ).thenAnswer((_) async => ErrorApiResult(error: 'Failed'));
 
       final result = await repo.getAddresses(token: tToken);
 
@@ -124,42 +128,45 @@ void main() {
   // --------------------------------------------------
   group('deleteAddress', () {
     test('returns list of AddressEntity on success', () async {
-      when(mockDatasource.deleteAddress(
-        token: anyNamed('token'),
-        addressId: anyNamed('addressId'),
-      )).thenAnswer((_) async => SuccessApiResult(
-        data: AddressResponse(address: [
-          Address(
-            id: '1',
-            street: 'X',
-            phone: '1',
-            city: 'C',
-            lat: '1',
-            long: '1',
-            username: 'U',
-          )
-        ]),
-      ));
+      when(
+        mockDatasource.deleteAddress(
+          token: anyNamed('token'),
+          addressId: anyNamed('addressId'),
+        ),
+      ).thenAnswer(
+        (_) async => SuccessApiResult(
+          data: AddressResponse(
+            address: [
+              Address(
+                id: '1',
+                street: 'X',
+                phone: '1',
+                city: 'C',
+                lat: '1',
+                long: '1',
+                username: 'U',
+              ),
+            ],
+          ),
+        ),
+      );
 
-      final result =
-      await repo.deleteAddress(token: tToken, addressId: '1');
+      final result = await repo.deleteAddress(token: tToken, addressId: '1');
 
       expect(result, isA<SuccessApiResult<List<AddressEntity>>>());
 
-      verify(mockDatasource.deleteAddress(
-        token: tToken,
-        addressId: '1',
-      ));
+      verify(mockDatasource.deleteAddress(token: tToken, addressId: '1'));
     });
 
     test('returns ErrorApiResult on failure', () async {
-      when(mockDatasource.deleteAddress(
-        token: anyNamed('token'),
-        addressId: anyNamed('addressId'),
-      )).thenAnswer((_) async =>  ErrorApiResult(error: 'Failed'));
+      when(
+        mockDatasource.deleteAddress(
+          token: anyNamed('token'),
+          addressId: anyNamed('addressId'),
+        ),
+      ).thenAnswer((_) async => ErrorApiResult(error: 'Failed'));
 
-      final result =
-      await repo.deleteAddress(token: tToken, addressId: '1');
+      final result = await repo.deleteAddress(token: tToken, addressId: '1');
 
       expect(result, isA<ErrorApiResult<List<AddressEntity>>>());
       expect((result as ErrorApiResult).error, 'Failed');
@@ -171,23 +178,29 @@ void main() {
   // --------------------------------------------------
   group('editAddress', () {
     test('returns list of AddressEntity on success', () async {
-      when(mockDatasource.editAddress(
-        token: anyNamed('token'),
-        addressId: anyNamed('addressId'),
-        addressRequest: anyNamed('addressRequest'),
-      )).thenAnswer((_) async => SuccessApiResult(
-        data: AddressResponse(address: [
-          Address(
-            id: '1',
-            street: 'New',
-            phone: '9',
-            city: 'C',
-            lat: '2',
-            long: '2',
-            username: 'U',
-          )
-        ]),
-      ));
+      when(
+        mockDatasource.editAddress(
+          token: anyNamed('token'),
+          addressId: anyNamed('addressId'),
+          addressRequest: anyNamed('addressRequest'),
+        ),
+      ).thenAnswer(
+        (_) async => SuccessApiResult(
+          data: AddressResponse(
+            address: [
+              Address(
+                id: '1',
+                street: 'New',
+                phone: '9',
+                city: 'C',
+                lat: '2',
+                long: '2',
+                username: 'U',
+              ),
+            ],
+          ),
+        ),
+      );
 
       final result = await repo.editAddress(
         token: tToken,
@@ -202,19 +215,23 @@ void main() {
 
       expect(result, isA<SuccessApiResult<List<AddressEntity>>>());
 
-      verify(mockDatasource.editAddress(
-        token: tToken,
-        addressId: '1',
-        addressRequest: anyNamed('addressRequest'),
-      ));
+      verify(
+        mockDatasource.editAddress(
+          token: tToken,
+          addressId: '1',
+          addressRequest: anyNamed('addressRequest'),
+        ),
+      );
     });
 
     test('returns ErrorApiResult on failure', () async {
-      when(mockDatasource.editAddress(
-        token: anyNamed('token'),
-        addressId: anyNamed('addressId'),
-        addressRequest: anyNamed('addressRequest'),
-      )).thenAnswer((_) async =>  ErrorApiResult(error: 'Failed'));
+      when(
+        mockDatasource.editAddress(
+          token: anyNamed('token'),
+          addressId: anyNamed('addressId'),
+          addressRequest: anyNamed('addressRequest'),
+        ),
+      ).thenAnswer((_) async => ErrorApiResult(error: 'Failed'));
 
       final result = await repo.editAddress(
         token: tToken,
