@@ -40,6 +40,12 @@ import '../../config/di/di.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: RouteNames.appStart, //  start here
+  redirect: (context, state) {
+    if (state.uri.toString().startsWith('flower://')) {
+      return RouteNames.home;
+    }
+    return null;
+  },
   routes: [
     GoRoute(
       path: RouteNames.signup,
@@ -208,6 +214,10 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         return const SavedAddressView();
       },
+    ),
+    GoRoute(
+      path: '/payment-success',
+      redirect: (context, state) => RouteNames.home,
     ),
   ],
 );

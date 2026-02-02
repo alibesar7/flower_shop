@@ -42,7 +42,7 @@ class _CheckoutBodyState extends State<CheckoutBody> {
   Future<bool> _launchURL(String urlString) async {
     final url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
-      return await launchUrl(url, mode: LaunchMode.inAppWebView);
+      return await launchUrl(url, mode: LaunchMode.externalApplication);
     }
     return false;
   }
@@ -86,7 +86,7 @@ class _CheckoutBodyState extends State<CheckoutBody> {
             final res = state.paymentResponse;
             if (res != null && res.isSuccess) {
               if (res.data?.session?.url != null) {
-                // Real payment: launch URL and wait for user to return/redirect
+                // Real payment: launch and stay on checkout to wait for deep link return
                 _launchURL(res.data!.session!.url!).then((success) {
                   if (!success) {
                     showAppSnackbar(
@@ -103,7 +103,8 @@ class _CheckoutBodyState extends State<CheckoutBody> {
                   }
                 });
               } else {
-                // Simulated success (no URL): go home after delay
+                // Simulated success (no URL): close everything and go home
+                closeInAppWebView();
                 showAppSnackbar(
                   context,
                   LocaleKeys.order_success.tr(),
