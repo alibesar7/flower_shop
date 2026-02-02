@@ -42,7 +42,7 @@ class _CheckoutBodyState extends State<CheckoutBody> {
   Future<bool> _launchURL(String urlString) async {
     final url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
-      return await launchUrl(url, mode: LaunchMode.platformDefault);
+      return await launchUrl(url, mode: LaunchMode.inAppWebView);
     }
     return false;
   }
@@ -85,6 +85,7 @@ class _CheckoutBodyState extends State<CheckoutBody> {
           listener: (context, state) {
             final res = state.paymentResponse;
             if (res != null && res.isSuccess) {
+              closeInAppWebView();
               if (res.data?.session?.url != null) {
                 _launchURL(res.data!.session!.url!).then((success) {
                   if (!success) {
