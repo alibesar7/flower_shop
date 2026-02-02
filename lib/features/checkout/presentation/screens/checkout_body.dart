@@ -13,6 +13,7 @@ import 'package:flower_shop/features/checkout/presentation/widgets/place_order.d
 import 'package:flower_shop/features/checkout/presentation/widgets/total_price.dart';
 import 'package:flower_shop/app/core/router/route_names.dart';
 import 'package:flower_shop/features/orders/presentation/manager/paymentcubit/payment_cubit.dart';
+import 'package:flower_shop/features/orders/presentation/manager/paymentcubit/payment_intent.dart';
 import 'package:flower_shop/features/orders/presentation/manager/paymentcubit/payment_states.dart';
 import 'package:flower_shop/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +39,12 @@ class _CheckoutBodyState extends State<CheckoutBody> {
     super.dispose();
   }
 
-  Future<void> _launchURL(String urlString) async {
+  Future<bool> _launchURL(String urlString) async {
     final url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      return await launchUrl(url, mode: LaunchMode.externalApplication);
     }
+    return false;
   }
 
   @override
@@ -84,7 +86,21 @@ class _CheckoutBodyState extends State<CheckoutBody> {
             final res = state.paymentResponse;
             if (res != null && res.isSuccess) {
               if (res.data?.session?.url != null) {
-                _launchURL(res.data!.session!.url!);
+                _launchURL(res.data!.session!.url!).then((success) {
+                  if (!success) {
+                    showAppSnackbar(
+                      context,
+                      "Couldn't open payment page in emulator",
+                      backgroundColor: Colors.orange,
+                      label: "Simulate",
+                      onPressed: () {
+                        context.read<PaymentCubit>().doIntent(
+                          SimulatePaymentSuccessIntent(),
+                        );
+                      },
+                    );
+                  }
+                });
               } else {
                 showAppSnackbar(
                   context,
