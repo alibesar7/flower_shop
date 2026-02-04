@@ -10,6 +10,7 @@ import 'package:mockito/mockito.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:flower_shop/app/core/api_manger/api_client.dart';
 import 'package:flower_shop/app/core/network/api_result.dart';
+import 'package:flower_shop/features/main_profile/data/models/response/orders_response.dart';
 import 'package:flower_shop/features/main_profile/data/models/response/profile_response.dart';
 import 'package:flower_shop/features/main_profile/domain/models/profile_user_model.dart';
 import '../../auth/api/datasource/auth_remote_datasource_impl_test.mocks.dart';
@@ -234,6 +235,25 @@ void main() {
         (second.content['en'] as List).first,
         'You must be at least 18 years old.',
       );
+    });
+  });
+
+  group("ProfileRemoteDataSourceImpl.getOrders()", () {
+    test("should call getUserOrders from apiClient", () async {
+      // arrange
+      const tToken = "test_token";
+      final tOrderResponse = OrderResponse(message: "success", orders: []);
+
+      when(
+        mockApiClient.getUserOrders(any),
+      ).thenAnswer((_) async => tOrderResponse);
+
+      // act
+      final result = await dataSource.getOrders(token: tToken);
+
+      // assert
+      expect(result, tOrderResponse);
+      verify(mockApiClient.getUserOrders('Bearer $tToken')).called(1);
     });
   });
 }

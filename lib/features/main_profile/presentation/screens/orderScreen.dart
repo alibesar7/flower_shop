@@ -44,7 +44,7 @@ class Orderscreen extends StatelessWidget {
               case Status.loading:
                 return const Center(child: CircularProgressIndicator());
               case Status.error:
-                return Center(child: Text(ordersResource.message ?? "Error"));
+                return Center(child: Text(ordersResource.error ?? "Error"));
               case Status.success:
                 final allOrders = ordersResource.data?.orders ?? [];
 

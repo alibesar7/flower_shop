@@ -1,4 +1,5 @@
 import 'package:flower_shop/features/main_profile/data/models/about_and_terms_dto.dart';
+import 'package:flower_shop/features/main_profile/data/models/response/orders_response.dart';
 import 'package:flower_shop/features/main_profile/domain/models/about_and_terms_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -19,6 +20,10 @@ void main() {
     SuccessApiResult(
       data: ProfileResponse(message: "", profileUserModel: ProfileUserModel()),
     ),
+  );
+  provideDummy<OrderResponse>(OrderResponse(orders: []));
+  provideDummy<ApiResult<OrderResponse>>(
+    SuccessApiResult(data: OrderResponse(orders: [])),
   );
 
   late MockProfileremoteDataSource mockRemote;
@@ -140,5 +145,47 @@ void main() {
       expect(result[1].content['ar'], dtoList[1].content['ar']);
       verify(mockRemote.getTerms()).called(1);
     });
+  });
+
+  group("GetOrders", () {
+    const tToken = "token";
+    final tOrderResponse = OrderResponse(message: "success", orders: []);
+
+    test(
+      'should return SuccessApiResult<OrderResponse> when remote data source is successful',
+      () async {
+        // arrange
+        when(
+          mockRemote.getOrders(token: anyNamed('token')),
+        ).thenAnswer((_) async => tOrderResponse);
+
+        // act
+        final result = await repo.getOrders(token: tToken);
+
+        // assert
+        expect(result, isA<SuccessApiResult<OrderResponse>>());
+        expect((result as SuccessApiResult).data, tOrderResponse);
+        verify(mockRemote.getOrders(token: tToken)).called(1);
+      },
+    );
+
+    test(
+      'should return ErrorApiResult when remote data source throws exception',
+      () async {
+        // arrange
+        const tErrorMessage = "Exception: error";
+        when(
+          mockRemote.getOrders(token: anyNamed('token')),
+        ).thenThrow(Exception("error"));
+
+        // act
+        final result = await repo.getOrders(token: tToken);
+
+        // assert
+        expect(result, isA<ErrorApiResult<OrderResponse>>());
+        expect((result as ErrorApiResult).error, tErrorMessage);
+        verify(mockRemote.getOrders(token: tToken)).called(1);
+      },
+    );
   });
 }
