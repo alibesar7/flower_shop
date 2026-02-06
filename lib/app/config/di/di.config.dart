@@ -165,6 +165,8 @@ import '../../../features/notifications/domain/usecase/delete_notification_by_id
     as _i33;
 import '../../../features/notifications/domain/usecase/get_all_notifications_usecase.dart'
     as _i35;
+import '../../../features/notifications/presentation/manager/notifications_cubit.dart'
+    as _i0;
 import '../../../features/orders/api/datasource/orders_remote_datasource_impl.dart'
     as _i862;
 import '../../../features/orders/data/datasource/orders_remote_datasource.dart'
@@ -349,17 +351,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i386.GetOccasionsUseCase>(),
       ),
     );
+    gh.lazySingleton<_i796.ClearAllNotificationsUseCase>(
+      () => _i796.ClearAllNotificationsUseCase(
+        gh<_i136.NotificationRepoContract>(),
+      ),
+    );
     gh.lazySingleton<_i33.DeleteNotificationUseCase>(
       () =>
           _i33.DeleteNotificationUseCase(gh<_i136.NotificationRepoContract>()),
     );
     gh.lazySingleton<_i35.GetNotificationsUseCase>(
       () => _i35.GetNotificationsUseCase(gh<_i136.NotificationRepoContract>()),
-    );
-    gh.lazySingleton<_i796.ClearAllNotificationsUseCase>(
-      () => _i796.ClearAllNotificationsUseCase(
-        gh<_i136.NotificationRepoContract>(),
-      ),
     );
     gh.factory<_i1023.LogoutCubit>(
       () =>
@@ -437,6 +439,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i924.UploadPhotoCubit(
         gh<_i1.UploadPhotoUseCase>(),
         gh<_i603.AuthStorage>(),
+      ),
+    );
+    gh.factory<_i0.NotificationsCubit>(
+      () => _i0.NotificationsCubit(
+        gh<_i35.GetNotificationsUseCase>(),
+        gh<_i796.ClearAllNotificationsUseCase>(),
+        gh<_i33.DeleteNotificationUseCase>(),
       ),
     );
     gh.factory<_i909.GetOrdersUsecases>(
