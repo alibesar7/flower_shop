@@ -1,4 +1,4 @@
-# 🌸 Flower Shop - Flutter E-commerce Application
+f# 🌸 Flower Shop - Flutter E-commerce Application
 
 ## 💻 Project Description
 
@@ -71,64 +71,64 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 
 ---
 
-## 🖼️ Screenshots
+## 🖼️ ScreenShots
 
 ### 🔐 Authentication
 <div style="display: flex; gap: 10px;">
-  <img src="assets/screenshots/login.png" width="150"/>
-  <img src="assets/screenshots/register.png" width="150"/>
-  <img src="assets/screenshots/forgot_pass.png" width="150"/>
-  <img src="assets/screenshots/reset_password.png" width="150"/>
-  <img src="assets/screenshots/otp.png" width="150"/>
+  <img src="assets/ScreenShots/login.png" width="150"/>
+  <img src="assets/ScreenShots/register.png" width="150"/>
+  <img src="assets/ScreenShots/forgot_pass.png" width="150"/>
+  <img src="assets/ScreenShots/reset_password.png" width="150"/>
+  <img src="assets/ScreenShots/otp.png" width="150"/>
 </div>
 
 ---
 
 ### 🏠 Home & Discovery
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-  <img src="assets/screenshots/home.png" width="150"/>
-  <img src="assets/screenshots/categories.png" width="150"/>
-  <img src="assets/screenshots/search.png" width="150"/>
-  <img src="assets/screenshots/filter.png" width="150"/>
-  <img src="assets/screenshots/product_details.png" width="150"/>
+  <img src="assets/ScreenShots/home.png" width="150"/>
+  <img src="assets/ScreenShots/categories.png" width="150"/>
+  <img src="assets/ScreenShots/search.png" width="150"/>
+  <img src="assets/ScreenShots/filter.png" width="150"/>
+  <img src="assets/ScreenShots/product_details.png" width="150"/>
 </div>
 
 ---
 
 ### 🛍️ Cart & Checkout
 <div style="display: flex; gap: 10px;">
-  <img src="assets/screenshots/cart.png" width="150"/>
-  <img src="assets/screenshots/checkout.png" width="150"/>
-  <img src="assets/screenshots/payment.png" width="150"/>
+  <img src="assets/ScreenShots/cart.png" width="150"/>
+  <img src="assets/ScreenShots/checkout.png" width="150"/>
+  <img src="assets/ScreenShots/payment.png" width="150"/>
 </div>
 
 ---
 
 ### 📍 Address & Location
 <div style="display: flex; gap: 10px;">
-  <img src="assets/screenshots/add_address.png" width="150"/>
-  <img src="assets/screenshots/saved_address.png" width="150"/>
-  <img src="assets/screenshots/location_permission.png" width="150"/>
+  <img src="assets/ScreenShots/add_address.png" width="150"/>
+  <img src="assets/ScreenShots/saved_address.png" width="150"/>
+  <img src="assets/ScreenShots/location_permission.png" width="150"/>
 </div>
 
 ---
 
 ### 👤 Profile & Settings
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-  <img src="assets/screenshots/Profile.png" width="150"/>
-  <img src="assets/screenshots/ar_profile.png" width="150"/>
-  <img src="assets/screenshots/language.png" width="150"/>
-  <img src="assets/screenshots/notifications.png" width="150"/>
-  <img src="assets/screenshots/orders.png" width="150"/>
+  <img src="assets/ScreenShots/Profile.png" width="150"/>
+  <img src="assets/ScreenShots/ar_profile.png" width="150"/>
+  <img src="assets/ScreenShots/language.png" width="150"/>
+  <img src="assets/ScreenShots/notifications.png" width="150"/>
+  <img src="assets/ScreenShots/orders.png" width="150"/>
 </div>
 
 ---
 
 ### 📄 Additional Screens
 <div style="display: flex; gap: 10px;">
-  <img src="assets/screenshots/about_us.png" width="150"/>
-  <img src="assets/screenshots/terms_and_cond.png" width="150"/>
-  <img src="assets/screenshots/notification_per.png" width="150"/>
+  <img src="assets/ScreenShots/about_us.png" width="150"/>
+  <img src="assets/ScreenShots/terms_and_cond.png" width="150"/>
+  <img src="assets/ScreenShots/notification_per.png" width="150"/>
 </div>
 
 ---
