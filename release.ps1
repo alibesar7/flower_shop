@@ -33,3 +33,9 @@ $firebaseArgs = @(
 Start-Process -NoNewWindow -Wait -FilePath "firebase.cmd" -ArgumentList $firebaseArgs
 
 Write-Host "✅ Release process completed!" -ForegroundColor Green
+
+firebase.cmd appdistribution:distribute $apkPath `
+  --app $firebaseAppId `
+  --groups $testerGroup `
+  --release-notes "Bug fixes and performance improvements"
+
