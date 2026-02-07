@@ -137,7 +137,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 ## 🚀 Getting Started
 
 ```bash
-git clone <https://github.com/Hagerdarwish/flower_shop>
+git clone <https://github.com/alibesar7/flower_shop>
 cd flower_shop
 flutter pub get
 flutter pub run build_runner build --delete-conflicting-outputs
