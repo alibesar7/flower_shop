@@ -1,4 +1,4 @@
-f# 🌸 Flower Shop - Flutter E-commerce Application
+ 🌸 Flower Shop - Flutter E-commerce Application
 
 ## 💻 Project Description
 
@@ -77,7 +77,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 <div style="display: flex; gap: 10px;">
   <img src="assets/ScreenShots/login.png" width="150"/>
   <img src="assets/ScreenShots/register.png" width="150"/>
-  <img src="assets/ScreenShots/forgot_pass.png" width="150"/>
+  <img src="assets/ScreenShots/forget_pass.png" width="150"/>
   <img src="assets/ScreenShots/reset_password.png" width="150"/>
   <img src="assets/ScreenShots/otp.png" width="150"/>
 </div>
@@ -88,7 +88,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
   <img src="assets/ScreenShots/home.png" width="150"/>
   <img src="assets/ScreenShots/categories.png" width="150"/>
-  <img src="assets/ScreenShots/search.png" width="150"/>
+  <img src="assets/ScreenShots/shearch.png" width="150"/>
   <img src="assets/ScreenShots/filter.png" width="150"/>
   <img src="assets/ScreenShots/product_details.png" width="150"/>
 </div>
@@ -100,6 +100,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
   <img src="assets/ScreenShots/cart.png" width="150"/>
   <img src="assets/ScreenShots/checkout.png" width="150"/>
   <img src="assets/ScreenShots/payment.png" width="150"/>
+  <img src="assets/ScreenShots/orders.png" width="150"/>
 </div>
 
 ---
@@ -108,7 +109,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 <div style="display: flex; gap: 10px;">
   <img src="assets/ScreenShots/add_address.png" width="150"/>
   <img src="assets/ScreenShots/saved_address.png" width="150"/>
-  <img src="assets/ScreenShots/location_permission.png" width="150"/>
+  <img src="assets/ScreenShots/location_permetion.png" width="150"/>
 </div>
 
 ---
@@ -119,7 +120,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
   <img src="assets/ScreenShots/ar_profile.png" width="150"/>
   <img src="assets/ScreenShots/language.png" width="150"/>
   <img src="assets/ScreenShots/notifications.png" width="150"/>
-  <img src="assets/ScreenShots/orders.png" width="150"/>
+  
 </div>
 
 ---
@@ -127,8 +128,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 ### 📄 Additional Screens
 <div style="display: flex; gap: 10px;">
   <img src="assets/ScreenShots/about_us.png" width="150"/>
-  <img src="assets/ScreenShots/terms_and_cond.png" width="150"/>
-  <img src="assets/ScreenShots/notification_per.png" width="150"/>
+  <img src="assets/ScreenShots/terms_and_cond.png" width="150"/> 
 </div>
 
 ---
@@ -136,7 +136,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
 ## 🚀 Getting Started
 
 ```bash
-git clone <your-repo-link>
+git clone <https://github.com/Hagerdarwish/flower_shop>
 cd flower_shop
 flutter pub get
 flutter pub run build_runner build --delete-conflicting-outputs
