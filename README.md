@@ -120,6 +120,7 @@ The project follows a **Modified Clean Architecture** approach to ensure clear s
   <img src="assets/ScreenShots/ar_profile.png" width="150"/>
   <img src="assets/ScreenShots/language.png" width="150"/>
   <img src="assets/ScreenShots/notifications.png" width="150"/>
+  <img src="assets/ScreenShots/empty_notification.jpg" width="150"/>
   
 </div>
 
